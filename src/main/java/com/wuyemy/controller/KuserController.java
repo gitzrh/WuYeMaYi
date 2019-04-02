@@ -73,7 +73,7 @@ public class KuserController {
 	}
 	@RequestMapping("/qidong")
 	@ResponseBody
-	@Transactional
+	
 	public Msg qidong(@RequestParam("zhanghao") String zhanghao,@RequestParam("tzhanghao")String tzhanghao ){
 		kuserService.qidong(zhanghao);
 		kuserService.insertjifen(zhanghao, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO,BigDecimal.ZERO  );
