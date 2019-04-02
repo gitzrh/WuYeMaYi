@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuyemy.dao.JifenMapper">
+  <resultMap id="BaseResultMap" type="com.wuyemy.bean.Jifen">
+    <id column="jifenid" jdbcType="INTEGER" property="jifenid" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="fxjf" jdbcType="DECIMAL" property="fxjf" />
+    <result column="gcjf" jdbcType="DECIMAL" property="gcjf" />
+    <result column="ztjf" jdbcType="DECIMAL" property="ztjf" />
+    <result column="chjf" jdbcType="DECIMAL" property="chjf" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    jifenid, zhanghao, fxjf, gcjf, ztjf, chjf
+  </sql>
+  <select id="selectByExample" parameterType="com.wuyemy.bean.JifenExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from jifen
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jifen
+    where jifenid = #{jifenid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from jifen
+    where jifenid = #{jifenid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wuyemy.bean.JifenExample">
+    delete from jifen
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wuyemy.bean.Jifen">
+    insert into jifen (jifenid, zhanghao, fxjf, 
+      gcjf, ztjf, chjf)
+    values (#{jifenid,jdbcType=INTEGER}, #{zhanghao,jdbcType=VARCHAR}, #{fxjf,jdbcType=DECIMAL}, 
+      #{gcjf,jdbcType=DECIMAL}, #{ztjf,jdbcType=DECIMAL}, #{chjf,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuyemy.bean.Jifen">
+    insert into jifen
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jifenid != null">
+        jifenid,
+      </if>
+      <if test="zhanghao != null">
+        zhanghao,
+      </if>
+      <if test="fxjf != null">
+        fxjf,
+      </if>
+      <if test="gcjf != null">
+        gcjf,
+      </if>
+      <if test="ztjf != null">
+        ztjf,
+      </if>
+      <if test="chjf != null">
+        chjf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jifenid != null">
+        #{jifenid,jdbcType=INTEGER},
+      </if>
+      <if test="zhanghao != null">
+        #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="fxjf != null">
+        #{fxjf,jdbcType=DECIMAL},
+      </if>
+      <if test="gcjf != null">
+        #{gcjf,jdbcType=DECIMAL},
+      </if>
+      <if test="ztjf != null">
+        #{ztjf,jdbcType=DECIMAL},
+      </if>
+      <if test="chjf != null">
+        #{chjf,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wuyemy.bean.JifenExample" resultType="java.lang.Long">
+    select count(*) from jifen
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update jifen
+    <set>
+      <if test="record.jifenid != null">
+        jifenid = #{record.jifenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zhanghao != null">
+        zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fxjf != null">
+        fxjf = #{record.fxjf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gcjf != null">
+        gcjf = #{record.gcjf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ztjf != null">
+        ztjf = #{record.ztjf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chjf != null">
+        chjf = #{record.chjf,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update jifen
+    set jifenid = #{record.jifenid,jdbcType=INTEGER},
+      zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      fxjf = #{record.fxjf,jdbcType=DECIMAL},
+      gcjf = #{record.gcjf,jdbcType=DECIMAL},
+      ztjf = #{record.ztjf,jdbcType=DECIMAL},
+      chjf = #{record.chjf,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuyemy.bean.Jifen">
+    update jifen
+    <set>
+      <if test="zhanghao != null">
+        zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="fxjf != null">
+        fxjf = #{fxjf,jdbcType=DECIMAL},
+      </if>
+      <if test="gcjf != null">
+        gcjf = #{gcjf,jdbcType=DECIMAL},
+      </if>
+      <if test="ztjf != null">
+        ztjf = #{ztjf,jdbcType=DECIMAL},
+      </if>
+      <if test="chjf != null">
+        chjf = #{chjf,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where jifenid = #{jifenid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuyemy.bean.Jifen">
+    update jifen
+    set zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      fxjf = #{fxjf,jdbcType=DECIMAL},
+      gcjf = #{gcjf,jdbcType=DECIMAL},
+      ztjf = #{ztjf,jdbcType=DECIMAL},
+      chjf = #{chjf,jdbcType=DECIMAL}
+    where jifenid = #{jifenid,jdbcType=INTEGER}
+  </update>
+</mapper>

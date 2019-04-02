@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuyemy.dao.XiaozuMapper">
+  <resultMap id="BaseResultMap" type="com.wuyemy.bean.Xiaozu">
+    <result column="zid" jdbcType="INTEGER" property="zid" />
+    <result column="zidd" jdbcType="INTEGER" property="zidd" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    zid, zidd, zhanghao
+  </sql>
+  <!--  //查询在相同zid中最大的zidd
+    int selectMaxZidd(); -->
+    <select id="selectMaxZidd" parameterType="com.wuyemy.bean.Xiaozu">
+    select  MAX(xiaozu.kid) FROM xiaozu
+    
+    </select>
+    
+   <!-- //查询当前最大的zid
+    int selectMaxZid(); -->
+    <select id="selectMaxZid" parameterType="com.wuyemy.bean.Xiaozu">
+    	select  MAX(xiaozu.kid) FROM xiaozu
+    	 <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    </select>
+  <select id="selectByExample" parameterType="com.wuyemy.bean.XiaozuExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xiaozu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.wuyemy.bean.XiaozuExample">
+    delete from xiaozu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wuyemy.bean.Xiaozu">
+    insert into xiaozu (zid, zidd, zhanghao
+      )
+    values (#{zid,jdbcType=INTEGER}, #{zidd,jdbcType=INTEGER}, #{zhanghao,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuyemy.bean.Xiaozu">
+    insert into xiaozu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zid != null">
+        zid,
+      </if>
+      <if test="zidd != null">
+        zidd,
+      </if>
+      <if test="zhanghao != null">
+        zhanghao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zid != null">
+        #{zid,jdbcType=INTEGER},
+      </if>
+      <if test="zidd != null">
+        #{zidd,jdbcType=INTEGER},
+      </if>
+      <if test="zhanghao != null">
+        #{zhanghao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wuyemy.bean.XiaozuExample" resultType="java.lang.Long">
+    select count(*) from xiaozu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update xiaozu
+    <set>
+      <if test="record.zid != null">
+        zid = #{record.zid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zidd != null">
+        zidd = #{record.zidd,jdbcType=INTEGER},
+      </if>
+      <if test="record.zhanghao != null">
+        zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update xiaozu
+    set zid = #{record.zid,jdbcType=INTEGER},
+      zidd = #{record.zidd,jdbcType=INTEGER},
+      zhanghao = #{record.zhanghao,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
