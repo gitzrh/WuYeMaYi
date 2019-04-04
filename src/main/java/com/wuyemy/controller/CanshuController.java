@@ -36,4 +36,6 @@ public class CanshuController {
 		 model.addAttribute("yycanshu", page);
 		return "yycanshu";
 	}
+	
+	
 }

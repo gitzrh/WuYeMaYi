@@ -238,6 +238,10 @@ public class XiaozuExample {
             addCriterion("zhanghao =", value, "zhanghao");
             return (Criteria) this;
         }
+        public Criteria andsuozailunshuEqualTo(String value) {
+        	addCriterion("suozailunshu =", value, "suozailunshu");
+        	return (Criteria) this;
+        }
 
         public Criteria andZhanghaoNotEqualTo(String value) {
             addCriterion("zhanghao <>", value, "zhanghao");

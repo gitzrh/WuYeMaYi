@@ -38,7 +38,7 @@
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a href="javascript:;">修改密码</a></dd>
-              <dd><a href="wyehoutaiadmin.jsp">退出</a></dd>
+              <dd><a  href="${APP_PATH }/tuichu">退出</a></dd>
             </dl>
           </li>
          

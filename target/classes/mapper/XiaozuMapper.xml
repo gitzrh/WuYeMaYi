@@ -65,19 +65,20 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    zid, zidd, zhanghao
+    zid, zidd, zhanghao, suozailunshu
   </sql>
-  <!--  //查询在相同zid中最大的zidd
-    int selectMaxZidd(); -->
-    <select id="selectMaxZidd" parameterType="com.wuyemy.bean.Xiaozu">
-    select  MAX(xiaozu.kid) FROM xiaozu
+   <!-- //查询当前最大的zid
+    int selectMaxZid(); -->
+ 
+    <select id="selectMaxZid" parameterType="com.wuyemy.bean.XiaozuExample" resultType="java.lang.Integer">
+    select  MAX(xiaozu.zid) FROM xiaozu
     
     </select>
     
-   <!-- //查询当前最大的zid
-    int selectMaxZid(); -->
-    <select id="selectMaxZid" parameterType="com.wuyemy.bean.Xiaozu">
-    	select  MAX(xiaozu.kid) FROM xiaozu
+    <!--  //查询在相同zid中最大的zidd
+    int selectMaxZidd(); -->
+    <select id="selectMaxZidd" parameterType="com.wuyemy.bean.XiaozuExample" resultType="java.lang.Integer">
+    	select  MAX(xiaozu.zidd) FROM xiaozu
     	 <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -153,6 +154,9 @@
       </if>
       <if test="record.zhanghao != null">
         zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suozailunshu != null">
+        suozailunshu = #{record.suozailunshu,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">

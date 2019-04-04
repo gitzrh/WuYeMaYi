@@ -25,7 +25,7 @@
 
 	$(function(){
 		
-		window.reload();
+		
 		
 		$("#qidong").click(function(){
 			

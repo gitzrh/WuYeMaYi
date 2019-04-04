@@ -98,8 +98,8 @@
 </head>
 
 <body class="bodyHeight" style="background-image: url(Home/img/timg.gif);background-position: center;background-repeat: no-repeat;background-size: 100% 100%;">
-  	<div style='padding-top:374px;text-align: center'>
-      	<img src='Home/img/logo.png'>
+  	<div style='padding-top:164px;text-align: center'>
+      	<img src='Home/img/logo.png' style="width: 747px;">
   	</div>
 
     <!--topTitle -->

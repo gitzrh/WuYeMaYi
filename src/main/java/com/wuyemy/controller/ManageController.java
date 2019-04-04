@@ -1,8 +1,14 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,16 +42,23 @@ public class ManageController {
 			 return Msg.fail().add("login", "错误，请重新输入");
 		 }else{
 			 
-			
-			 return Msg.success();
+			HttpSession session = request.getSession();
+					session.setAttribute("username", username);
+		
+			return Msg.success();
 		
 		 }
 		 
 		 
 	} 
 	@RequestMapping("/toadmin")
-	public String toadmin(){
+	public String toadmin(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
 		
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}
 		return "admin";
 	}
 	
@@ -53,5 +66,11 @@ public class ManageController {
 	public String toshouye(){
 		return "welcome";
 		
+	}
+	@RequestMapping("/tuichu")
+	public void tuichu(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		request.getSession().removeAttribute("username");
+		response.sendRedirect("wyehoutaiadmin.jsp");
 	}
 }

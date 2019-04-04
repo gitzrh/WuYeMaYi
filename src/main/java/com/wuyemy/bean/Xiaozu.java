@@ -7,17 +7,29 @@ public class Xiaozu {
 
     private String zhanghao;
 
+    private Integer suozailunshu;
     
     
     public Xiaozu() {
 		super();
 	}
 
-	public Xiaozu(Integer zid, Integer zidd, String zhanghao) {
+	public Xiaozu(Integer zid, Integer zidd, String zhanghao,Integer suozailunshu) {
 		super();
 		this.zid = zid;
 		this.zidd = zidd;
 		this.zhanghao = zhanghao;
+		this.suozailunshu = suozailunshu;
+	}
+
+	
+	
+	public Integer getSuozailunshu() {
+		return suozailunshu;
+	}
+
+	public void setSuozailunshu(Integer suozailunshu) {
+		this.suozailunshu = suozailunshu;
 	}
 
 	public Integer getZid() {

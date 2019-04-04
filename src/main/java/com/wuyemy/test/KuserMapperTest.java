@@ -42,5 +42,17 @@ public class KuserMapperTest {
 		}
 	}	
 	
-
+	
+	@Test
+	public void test01(){
+		
+		long i = kuserMapper.countByExample(null);
+		if(i<11){
+			kuserMapper.insertSelective(new Kuser("15800012111","张三",null,null,null,dateToStr.DateToStr(new Date()),1));
+		}else if(i==11){
+			
+			System.out.println(i);
+		}
+		
+	}
 }

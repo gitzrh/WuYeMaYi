@@ -7,9 +7,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta name="description" content="">
-<%
-	pageContext.setAttribute("APP_PATH", request.getContextPath());
-	%>
+		<%
+			pageContext.setAttribute("APP_PATH", request.getContextPath());
+		%>
         <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/slick.css" />
         <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/base.css" />
         <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/style.css" />
@@ -114,31 +114,31 @@
         <!--积分-->
         <div style="height: 4.15rem;">
             <div style="padding-left: 0.2rem;"class="jf">
-              <a href='/index.php?s=/Home/Ucenter/zijin_list/type/1.html'>
+              <a href="">
                 <img class="jftp" src="${APP_PATH }/Home/img/fx.png"/>
                 <span class="jfwz1">分享金币</span>
-                <span class="jfwz2">8000.00</span>
+                <span class="jfwz2">${jifen.fxjf }</span>
               </a>
             </div>
             <div style="margin-left: 0; "class="jf">
-              <a href='/index.php?s=/Home/Ucenter/zijin_list/type/2.html'>
+              <a href="">
                 <img class="jftp" src="${APP_PATH }/Home/img/bd.png"/>
                 <span class="jfwz1">在途金币</span>
-                <span class="jfwz2">12000.00</span>
+                <span class="jfwz2">${jifen.ztjf }</span>
               </a>
             </div>
             <div class="jf" style="margin-top: 0;padding-left: 0.2rem; ">
-              <a href='/index.php?s=/Home/Ucenter/zijin_list/type/3.html'>
+              <a href="">
                 <img class="jftp" src="${APP_PATH }/Home/img/gc.png"/>
                 <span class="jfwz1">购车金币</span>
-                <span class="jfwz2">20000.00</span>
+                <span class="jfwz2">${jifen.gcjf }</span>
               </a>
             </div>
             <div  class="jf" style="margin-top: 0;margin-left: 0; ">
-               <a href='/index.php?s=/Home/Ucenter/zijin_list/type/4.html'>
+               <a href="">
                   <img class="jftp" src="${APP_PATH }/Home/img/cj.png"/>
                   <span class="jfwz1">出局金币</span>
-                  <span class="jfwz2">2000.00</span>
+                  <span class="jfwz2">${jifen.chjf }</span>
               </a>
             </div>  
         </div>
@@ -159,30 +159,31 @@
                 <span>推荐列表</span>
             </a>
             <a class="tzym" href="/index.php?s=/Home/Ucenter/jiegou.html">
-              <i class="iconfont icon-tuandui" style="color:#cc0bc6"></i><br>
+                <i class="iconfont icon-tuandui" style="color:#cc0bc6"></i><br>
                 <span>结构管理</span>
             </a>
-            <a class="tzym" href="/index.php?s=/Home/Index/register.html">
-              <i class="iconfont icon-huiyuan-" style="color:green"></i><br>
+            <a class="tzym" href="${APP_PATH }/index.jsp">
+                <i class="iconfont icon-huiyuan-" style="color:green"></i><br>
                 <span>注册会员</span>
             </a>
-          	              <a class="tzym" href="/index.php?s=/Home/Ucenter/yunyingzhongxin.html" style="border-right: none;">
-               <i class="iconfont icon-hehuoren" style="color:blue"></i><br>
+         	 <a class="tzym" href="/index.php?s=/Home/Ucenter/yunyingzhongxin.html" style="border-right: none;">
+                <i class="iconfont icon-hehuoren" style="color:blue"></i><br>
                 <span style='margin-left: 0.15rem'>运营中心</span>
-            	</a>            <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_list/type/1.html">
-              <i class="iconfont icon-zijinzouxiang" style="color:blue"></i><br>
+            </a>            
+            <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_list/type/1.html">
+                <i class="iconfont icon-zijinzouxiang" style="color:blue"></i><br>
                 <span>资金明细</span>
             </a>
           <!--  <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_zhuanhuan.html">
                 <img style='margin-left: 0.35rem;width: 1.5rem;' src="/Public/Home/img/zjzh.png" alt="" /><br>
                 <span>资金转换</span>
             </a>-->
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_tixian.html">
-              <i class="iconfont icon-tixian" style="color:#e6b605"></i><br>
+            <a class="tzym" href="${APP_PATH }/zijintixian">
+                <i class="iconfont icon-tixian" style="color:#e6b605"></i><br>
                 <span>资金提现</span>
             </a>
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/erweima.html">
-               <i class="iconfont icon-erweima" style="color:red"></i><br>
+            <a class="tzym" href="${APP_PATH }/tuiguang">
+                <i class="iconfont icon-erweima" style="color:red"></i><br>
                 <span>推广二维码</span>
             </a>
             <!--<a class="tzym" href="/index.php?s=/Home/Ucenter/jiaoyi_record.html" style="border-right: none;">
@@ -193,18 +194,14 @@
                 <i class="iconfont icon-jilu1" style="color:green"></i><br>
                 <span>在途记录</span>
             </a>
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/user_info.html">
+            <a class="tzym" href="${APP_PATH }/user">
                 <i class="iconfont icon-gerenxinxi" style="color:red"></i><br>
                 <span>个人信息</span>
             </a>
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/edit_password.html" style="border-right: none;">
+            <a class="tzym" href="" style="border-right: none;">
                 <i class="iconfont icon-xiugai" style="color:blue"></i><br>
                 <span >修改密码</span>
             </a>
-            
-        
-            
-            
             
         </div>
         
@@ -225,7 +222,7 @@
                 </li>
         
                 <li class="page-item">
-                    <a href="/index.php?s=/Home/Index/logout.html">
+                    <a href="${APP_PATH }/tuichus">
                         <i class="iconfont icon-person1" style='color:#fff'></i>
                         <p style='color:#fff'>退出</p>
                     </a>

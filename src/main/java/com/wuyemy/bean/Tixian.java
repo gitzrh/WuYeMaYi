@@ -16,11 +16,11 @@ public class Tixian {
 
     private BigDecimal shijidaozhang;
 
-    private Date tixiantime;
+    private String tixiantime;
 
-    private Date jujuetime;
+    private String jujuetime;
 
-    private Date tguotime;
+    private String tguotime;
 
     private String username;
 
@@ -31,8 +31,42 @@ public class Tixian {
     private String yinhangkaid;
 
     private Integer zhuangtaiid;
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Tixian [id=" + id + ", zhanghao=" + zhanghao + ", jinbileixing=" + jinbileixing + ", txjibi=" + txjibi
+				+ ", shouxufei=" + shouxufei + ", shijidaozhang=" + shijidaozhang + ", tixiantime=" + tixiantime
+				+ ", jujuetime=" + jujuetime + ", tguotime=" + tguotime + ", username=" + username + ", yinhangname="
+				+ yinhangname + ", kaihudizhi=" + kaihudizhi + ", yinhangkaid=" + yinhangkaid + ", zhuangtaiid="
+				+ zhuangtaiid + "]";
+	}
+
+	public Tixian() {
+		super();
+	}
+
+	public Tixian(Integer id, String zhanghao, String jinbileixing, BigDecimal txjibi, BigDecimal shouxufei,
+			BigDecimal shijidaozhang, String tixiantime, String jujuetime, String tguotime, String username,
+			String yinhangname, String kaihudizhi, String yinhangkaid, Integer zhuangtaiid) {
+		super();
+		this.id = id;
+		this.zhanghao = zhanghao;
+		this.jinbileixing = jinbileixing;
+		this.txjibi = txjibi;
+		this.shouxufei = shouxufei;
+		this.shijidaozhang = shijidaozhang;
+		this.tixiantime = tixiantime;
+		this.jujuetime = jujuetime;
+		this.tguotime = tguotime;
+		this.username = username;
+		this.yinhangname = yinhangname;
+		this.kaihudizhi = kaihudizhi;
+		this.yinhangkaid = yinhangkaid;
+		this.zhuangtaiid = zhuangtaiid;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -80,27 +114,27 @@ public class Tixian {
         this.shijidaozhang = shijidaozhang;
     }
 
-    public Date getTixiantime() {
+    public String getTixiantime() {
         return tixiantime;
     }
 
-    public void setTixiantime(Date tixiantime) {
+    public void setTixiantime(String tixiantime) {
         this.tixiantime = tixiantime;
     }
 
-    public Date getJujuetime() {
+    public String getJujuetime() {
         return jujuetime;
     }
 
-    public void setJujuetime(Date jujuetime) {
+    public void setJujuetime(String jujuetime) {
         this.jujuetime = jujuetime;
     }
 
-    public Date getTguotime() {
+    public String getTguotime() {
         return tguotime;
     }
 
-    public void setTguotime(Date tguotime) {
+    public void setTguotime(String tguotime) {
         this.tguotime = tguotime;
     }
 
