@@ -130,6 +130,7 @@
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
      left join jifen j on k.`zhanghao` = j.`zhanghao`
     where k.`zhuangtaiid` = 1
+    order by k.`zhucetime` desc
     
   </select>
   <!--  //带状态和积分的查询已激活
@@ -145,6 +146,7 @@
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
     left join jifen j on k.`zhanghao` = j.`zhanghao`
     where k.`zhuangtaiid` != 1
+    order by k.`jihuotime` desc
     
   </select>
   <select id="selectByExample" parameterType="com.wuyemy.bean.KuserExample" resultMap="BaseResultMap">

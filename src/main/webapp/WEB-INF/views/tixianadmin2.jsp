@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户中心-已通过</title>
+<title>用户中心-待激活</title>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
@@ -24,26 +24,30 @@
 <script type="text/javascript">
 
 	$(function(){
-		
-		
-		
-		$("#qidong").click(function(){
+		$(".qidong").click(function(){
 			
 			var ddhh = $(this).parent().parent().find("th:eq(2)").text();
 			var textt = $(this).parent().parent().find("th:eq(1)").text();
+			var tzhanghao = $(this).parent().parent().find("th:eq(3)").text();
+			
+			if(confirm("确定要激活【"+ textt +"】吗？")){
+				
+				
+			
 			$.ajax({
 				url:"${APP_PATH }/qidong",
 				type:"PUT",
-				data:"zhanghao="+ddhh,
+				data:"zhanghao="+ddhh+"&tzhanghao="+tzhanghao,
 				success:function(result){
-					if(confirm("确定要激活【"+ textt +"】吗？")){
+					
 						
 						location.reload();
-					}
+					
+
 				}
 				
 				})
-			
+			}
 		})
 			
 			
@@ -60,7 +64,7 @@
 		<!-- 标题 -->
 		<div class="row">
 			<div class="col-md-12">
-				<h2>用户中心  — 已激活</h2>
+				<h3>提现列表--已通过</h3>
 			</div>
 		</div>
 		<br>
@@ -69,47 +73,40 @@
 			<div class="col-md10">
 				<table class="table table-hover">
 					<tr>
-						<th>UID</th>
-						<th>姓名</th>
-						<th>账号</th>
-						<th>推荐人账号</th>
-						<th>分享积分</th>
-						<th>购车积分</th>
-						<th>在途积分</th>
-						<th>出局积分</th>
-						<th>激活时间</th>
-						<th>运营中心编号</th>
+						<th>TID</th>
+						<th>提现账号</th>
+						<th>金币类型</th>
+						<th>提现金币</th>
+						<th>手续费</th>
+						<th>实际到账</th>
+						<th>申请时间</th>
+						<th>通过时间</th>
+						<th>持卡人姓名</th>
+						<th>银行名字</th>
+						<th>开户地址</th>
+						<th>银行卡号</th>
 						<th>状态</th>
-						<th>操作</th>
+						
 						
 						
 					</tr>
 					<c:forEach items="${pageInfo.list }" var="reca">
 						<tr>
-							<th>${reca.kid }</th>
-							<th>${reca.khname }</th>
+							<th>${reca.id }</th>
 							<th>${reca.zhanghao }</th>
-							<th>${reca.tzhanghao }</th>
-							<th>${reca.jifen.fxjf }</th>
-							<th>${reca.jifen.gcjf }</th>
-							<th>${reca.jifen.ztjf }</th>
-							<th>${reca.jifen.chjf }</th>
-							<th>${reca.jihuotime }</th>
-							<th>${reca.yyzxid }</th>
+							<th>${reca.jinbileixing }</th>
+							<th>${reca.txjibi }</th>
+							<th>${reca.shouxufei }</th>
+							<th>${reca.shijidaozhang }</th>
+							<th>${reca.tixiantime }</th>
+							<th>${reca.tguotime }</th>
+							<th>${reca.username }</th>
+							<th>${reca.yinhangname }</th>
+							<th>${reca.kaihudizhi }</th>
+							<th>${reca.yinhangkaid }</th>
 							<th>${reca.zhuangtai.zhuangtai }</th>
-							<th><button   class="btn btn-primary record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-								编辑
-								</button>
-								<button   class="btn btn-primary record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-								删除
-								</button>
-								<button   class="btn btn-primary record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-								删除
-								</button>
-							</th>
+							
+							
 						</tr>
 					</c:forEach>
 				</table>
@@ -125,9 +122,9 @@
 			<div class="col-md-6">
 				<nav aria-label="Page navigation">
 				<ul class="pagination  kehuhu">
-					<li><a href="${APP_PATH }/yijihuouser?pn=1">首页</a></li>
+					<li><a href="${APP_PATH }/tixianTongg?pn=1">首页</a></li>
 					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${APP_PATH }/yijihuouser?pn=${pageInfo.pageNum-1}"
+						<li><a href="${APP_PATH }/tixianTongg?pn=${pageInfo.pageNum-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
@@ -138,16 +135,16 @@
 							<li class="active"><a href="#">${page_Num }</a></li>
 						</c:if>
 						<c:if test="${page_Num != pageInfo.pageNum }">
-							<li><a href="${APP_PATH }/yijihuouser?pn=${page_Num }">${page_Num }</a></li>
+							<li><a href="${APP_PATH }/tixianTongg?pn=${page_Num }">${page_Num }</a></li>
 						</c:if>
 
 					</c:forEach>
 					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${APP_PATH }/yijihuouser?pn=${pageInfo.pageNum+1 }"
+						<li><a href="${APP_PATH }/tixianTongg?pn=${pageInfo.pageNum+1 }"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:if>
-					<li><a href="${APP_PATH }/yijihuouser?pn=${pageInfo.pages}">末页</a></li>
+					<li><a href="${APP_PATH }/tixianTongg?pn=${pageInfo.pages}">末页</a></li>
 				</ul>
 				
 				</nav>

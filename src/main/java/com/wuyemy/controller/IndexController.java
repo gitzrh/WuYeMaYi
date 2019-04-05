@@ -381,8 +381,8 @@ public class IndexController {
 			map.put("tixians", tixians);
 			return "txjl";
 		}
-		
 		return null;
+		
 	}
 	
 }

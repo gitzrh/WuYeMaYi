@@ -112,7 +112,7 @@
         </div>
         <div style="clear:both"></div>
         <!--积分-->
-        <div style="height: 4.15rem;" class="jinbi">
+        <div style="height: 4.15rem;">
             <div style="padding-left: 0.2rem;"class="jf">
               <a href="">
                 <img class="jftp" src="${APP_PATH }/Home/img/fx.png"/>
@@ -236,17 +236,6 @@
         <script src="${APP_PATH }/Home/js/rem.js"></script>
         <script src="${APP_PATH }/Home/js/swiper.jquery.min.js"></script>
         <script>
-        
-        let iframe = document.getElementById(".jinbi");
-        window.addEventListener('pageshow', function (e) {
-	         if (e.persisted) {
-	          iframe.setAttribute("src", "${APP_PATH }/jinbi");
-	         }
-        })
-        
-        
-        
-        
             $(function() {
                 $('.autoplay').slick({
                   slidesToScroll: 1,

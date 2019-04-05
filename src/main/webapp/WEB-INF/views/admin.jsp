@@ -88,19 +88,19 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="cate.html">
+                        <a _href="${APP_PATH }/tixianShenhe">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>待审核</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="cate.html">
+                        <a _href="${APP_PATH }/tixianTongg">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>已通过</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="cate.html">
+                        <a _href="${APP_PATH }/tixianJuju">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>已拒绝</cite>
                         </a>
