@@ -232,7 +232,9 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("6000");
 		BigDecimal values = new BigDecimal("0");
-		
+			
+		 if (!gcjf.equals("") || !realname1.equals("") || !bankaddress1.equals("") || !bankname1.equals("") || !bankcard1.equals("")) {
+			
 			if (zhanhao != null && gcjf.compareTo(values) == 1) {
 				//拥有总金币
 				BigDecimal decimal = indexService.hqgcjb(zhanhao);
@@ -254,7 +256,9 @@ public class IndexController {
 				}
 				
 			}
-		return null;
+			
+		 }
+		return Msg.fail().add("gcjb", "请填写完整信息!");
 	}
 	
 	/**
@@ -272,22 +276,36 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (zhanhao != null && cjjf.compareTo(value) == 1) {
-			//拥有总金币
-			BigDecimal decimal = indexService.hqcjjb(zhanhao);
-			//提现金币 小于等于 可提现金币
-			if (cjjf.compareTo(decimal) < 1 ) {
-				//剩余金币
-				BigDecimal sycjjb = decimal.subtract(cjjf);
-				indexService.sycj(zhanhao,sycjjb,cjjf,realname2,bankaddress2,bankname2,bankcard2);
-				return Msg.success().add("cjjb", "提现成功!");
-			}else {
-				return Msg.success().add("cjjb", "余额不足!");
+		if (!cjjf.equals("") || !realname2.equals("") || !bankaddress2.equals("") || !bankname2.equals("") || !bankcard2.equals("")) {
+		
+			if (zhanhao != null && cjjf.compareTo(value) == 1) {
+				//拥有总金币
+				BigDecimal decimal = indexService.hqcjjb(zhanhao);
+				//提现金币 小于等于 可提现金币
+				if (cjjf.compareTo(decimal) < 1 ) {
+					//剩余金币
+					BigDecimal sycjjb = decimal.subtract(cjjf);
+					indexService.sycj(zhanhao,sycjjb,cjjf,realname2,bankaddress2,bankname2,bankcard2);
+					return Msg.success().add("cjjb", "提现成功!");
+				}else {
+					return Msg.success().add("cjjb", "余额不足!");
+				}
 			}
 		}
-		return null;
+		return Msg.success().add("cjjb", "请填写完整信息!");
 	}
 	
+	/**
+	 * 提现分享金币
+	 * @param fxjf
+	 * @param realname3
+	 * @param bankaddress3
+	 * @param bankname3
+	 * @param bankcard3
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/txfxjf")
 	@ResponseBody
 	public Msg Txfxjf(@RequestParam("fxjf")BigDecimal fxjf,@RequestParam("realname3")String realname3,
@@ -299,21 +317,23 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (zhanhao != null && fxjf.compareTo(value) == 1) {
-			//拥有总金币
-			BigDecimal decimal = indexService.hqfxjb(zhanhao);
-			//提现金币 小于等于 可提现金币
-			if (fxjf.compareTo(decimal) < 1 ) {
-				//剩余金币
-				BigDecimal syfxjb = decimal.subtract(fxjf);
-				indexService.syfx(zhanhao,syfxjb,fxjf,realname3,bankaddress3,bankname3,bankcard3);
-				return Msg.success().add("fxjf", "提现成功!");
-			}else {
-				return Msg.success().add("fxjf", "余额不足!");
+		if (!fxjf.equals("") || !realname3.equals("") || !bankaddress3.equals("") || !bankname3.equals("") || !bankcard3.equals("")) {
+			if (zhanhao != null && fxjf.compareTo(value) == 1) {
+				//拥有总金币
+				BigDecimal decimal = indexService.hqfxjb(zhanhao);
+				//提现金币 小于等于 可提现金币
+				if (fxjf.compareTo(decimal) < 1 ) {
+					//剩余金币
+					BigDecimal syfxjb = decimal.subtract(fxjf);
+					indexService.syfx(zhanhao,syfxjb,fxjf,realname3,bankaddress3,bankname3,bankcard3);
+					return Msg.success().add("fxjf", "提现成功!");
+				}else {
+					return Msg.success().add("fxjf", "余额不足!");
+				}
 			}
 		}
 		
-		return null;
+		return Msg.success().add("fxjf", "请填写完整信息不足!");
 	}
 
 }
