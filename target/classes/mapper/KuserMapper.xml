@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuyemy.dao.KuserMapper">
+  <resultMap id="BaseResultMap" type="com.wuyemy.bean.Kuser">
+    <id column="kid" jdbcType="INTEGER" property="kid" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="khname" jdbcType="VARCHAR" property="khname" />
+    <result column="tzhanghao" jdbcType="VARCHAR" property="tzhanghao" />
+    <result column="zhucetime" jdbcType="TIMESTAMP" property="zhucetime" />
+    <result column="jihuotime" jdbcType="TIMESTAMP" property="jihuotime" />
+    <result column="dongjietime" jdbcType="TIMESTAMP" property="dongjietime" />
+    <result column="yyzxid" jdbcType="VARCHAR" property="yyzxid" />
+    <result column="shenfenid" jdbcType="VARCHAR" property="shenfenid" />
+    <result column="kpassword" jdbcType="VARCHAR" property="kpassword" />
+    <result column="zhenshishoujihao" jdbcType="VARCHAR" property="zhenshishoujihao" />
+    <result column="zhenshiname" jdbcType="VARCHAR" property="zhenshiname" />
+    <result column="yinhangname" jdbcType="VARCHAR" property="yinhangname" />
+    <result column="yinhangkajao" jdbcType="VARCHAR" property="yinhangkajao" />
+    <result column="kaihudizhi" jdbcType="VARCHAR" property="kaihudizhi" />
+    <result column="zhifubaoid" jdbcType="VARCHAR" property="zhifubaoid" />
+    <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
+  </resultMap>
+  <resultMap id="WithZhuangTaiBaseResultMap" type="com.wuyemy.bean.Kuser">
+    <id column="kid" jdbcType="INTEGER" property="kid" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="khname" jdbcType="VARCHAR" property="khname" />
+    <result column="tzhanghao" jdbcType="VARCHAR" property="tzhanghao" />
+    <result column="zhucetime" jdbcType="TIMESTAMP" property="zhucetime" />
+    <result column="jihuotime" jdbcType="TIMESTAMP" property="jihuotime" />
+    <result column="dongjietime" jdbcType="TIMESTAMP" property="dongjietime" />
+    <result column="yyzxid" jdbcType="VARCHAR" property="yyzxid" />
+    <result column="shenfenid" jdbcType="VARCHAR" property="shenfenid" />
+    <result column="kpassword" jdbcType="VARCHAR" property="kpassword" />
+    <result column="zhenshishoujihao" jdbcType="VARCHAR" property="zhenshishoujihao" />
+    <result column="zhenshiname" jdbcType="VARCHAR" property="zhenshiname" />
+    <result column="yinhangname" jdbcType="VARCHAR" property="yinhangname" />
+    <result column="yinhangkajao" jdbcType="VARCHAR" property="yinhangkajao" />
+    <result column="kaihudizhi" jdbcType="VARCHAR" property="kaihudizhi" />
+    <result column="zhifubaoid" jdbcType="VARCHAR" property="zhifubaoid" />
+    <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
+    <association property="zhuangtai" javaType="com.wuyemy.bean.Zhuangtai">
+    	<id column="zhuangtaiid" property="zhuangtaiid"/>
+    	<result column="zhuangtai" property="zhuangtai"/>
+    </association>
+    <association property="jifen" javaType="com.wuyemy.bean.Jifen">
+    	<id column="zhanghao" property="zhanghao"/>
+    	<result column="fxjf" property="fxjf"/>
+    	<result column="gcjf" property="gcjf"/>
+    	<result column="ztjf" property="ztjf"/>
+    	<result column="chjf" property="chjf"/>
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    kid, zhanghao, khname, tzhanghao, zhucetime, jihuotime, dongjietime, yyzxid, shenfenid, 
+    kpassword, zhenshishoujihao, zhenshiname, yinhangname, yinhangkajao, kaihudizhi, 
+    zhifubaoid, zhuangtaiid
+  </sql>
+  <sql id="Base_Column_List_with_zhuantgtai">
+    k.kid, k.zhanghao, k.khname, k.tzhanghao, k.zhucetime, k.jihuotime, k.dongjietime, k.yyzxid, k.shenfenid, 
+    k.kpassword, k.zhenshishoujihao, k.zhenshiname, k.yinhangname,k.yinhangkajao, k.kaihudizhi, 
+    k.zhifubaoid, k.zhuangtaiid,z.zhuangtai,j.fxjf,j.gcjf,j.ztjf,j.chjf
+  </sql>
+  <!--  List<Kuser> selectByExampleWithZhuangTai(KuserExample example); -->
+  <select id="selectByExampleWithZhuangTai" parameterType="com.wuyemy.bean.KuserExample" 
+  resultMap="WithZhuangTaiBaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuantgtai" />
+    from kuser k
+    left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
+     left join jifen j on k.`zhanghao` = j.`zhanghao`
+    where k.`zhuangtaiid` = 1
+    order by k.`zhucetime` desc
+    
+  </select>
+  <!--  //带状态和积分的查询已激活
+    List<Kuser> selectByExampleWithZhuangTaiAndJf(KuserExample example); -->
+  <select id="selectByExampleWithZhuangTaiAndJf" parameterType="com.wuyemy.bean.KuserExample" 
+  resultMap="WithZhuangTaiBaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuantgtai" />
+    from kuser k
+    left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
+    left join jifen j on k.`zhanghao` = j.`zhanghao`
+    where k.`zhuangtaiid` != 1
+    order by k.`jihuotime` desc
+    
+  </select>
+  <select id="selectByExample" parameterType="com.wuyemy.bean.KuserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kuser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from kuser
+    where kid = #{kid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from kuser
+    where kid = #{kid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wuyemy.bean.KuserExample">
+    delete from kuser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wuyemy.bean.Kuser">
+    insert into kuser (kid, zhanghao, khname, 
+      tzhanghao, zhucetime, jihuotime, 
+      dongjietime, yyzxid, shenfenid, 
+      kpassword, zhenshishoujihao, zhenshiname, 
+      yinhangname, yinhangkajao, kaihudizhi, 
+      zhifubaoid, zhuangtaiid)
+    values (#{kid,jdbcType=INTEGER}, #{zhanghao,jdbcType=VARCHAR}, #{khname,jdbcType=VARCHAR}, 
+      #{tzhanghao,jdbcType=VARCHAR}, #{zhucetime,jdbcType=TIMESTAMP}, #{jihuotime,jdbcType=TIMESTAMP}, 
+      #{dongjietime,jdbcType=TIMESTAMP}, #{yyzxid,jdbcType=VARCHAR}, #{shenfenid,jdbcType=VARCHAR}, 
+      #{kpassword,jdbcType=VARCHAR}, #{zhenshishoujihao,jdbcType=VARCHAR}, #{zhenshiname,jdbcType=VARCHAR}, 
+      #{yinhangname,jdbcType=VARCHAR}, #{yinhangkajao,jdbcType=VARCHAR}, #{kaihudizhi,jdbcType=VARCHAR}, 
+      #{zhifubaoid,jdbcType=VARCHAR}, #{zhuangtaiid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuyemy.bean.Kuser">
+    insert into kuser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kid != null">
+        kid,
+      </if>
+      <if test="zhanghao != null">
+        zhanghao,
+      </if>
+      <if test="khname != null">
+        khname,
+      </if>
+      <if test="tzhanghao != null">
+        tzhanghao,
+      </if>
+      <if test="zhucetime != null">
+        zhucetime,
+      </if>
+      <if test="jihuotime != null">
+        jihuotime,
+      </if>
+      <if test="dongjietime != null">
+        dongjietime,
+      </if>
+      <if test="yyzxid != null">
+        yyzxid,
+      </if>
+      <if test="shenfenid != null">
+        shenfenid,
+      </if>
+      <if test="kpassword != null">
+        kpassword,
+      </if>
+      <if test="zhenshishoujihao != null">
+        zhenshishoujihao,
+      </if>
+      <if test="zhenshiname != null">
+        zhenshiname,
+      </if>
+      <if test="yinhangname != null">
+        yinhangname,
+      </if>
+      <if test="yinhangkajao != null">
+        yinhangkajao,
+      </if>
+      <if test="kaihudizhi != null">
+        kaihudizhi,
+      </if>
+      <if test="zhifubaoid != null">
+        zhifubaoid,
+      </if>
+      <if test="zhuangtaiid != null">
+        zhuangtaiid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kid != null">
+        #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="zhanghao != null">
+        #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="khname != null">
+        #{khname,jdbcType=VARCHAR},
+      </if>
+      <if test="tzhanghao != null">
+        #{tzhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="zhucetime != null">
+        #{zhucetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jihuotime != null">
+        #{jihuotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dongjietime != null">
+        #{dongjietime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yyzxid != null">
+        #{yyzxid,jdbcType=VARCHAR},
+      </if>
+      <if test="shenfenid != null">
+        #{shenfenid,jdbcType=VARCHAR},
+      </if>
+      <if test="kpassword != null">
+        #{kpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="zhenshishoujihao != null">
+        #{zhenshishoujihao,jdbcType=VARCHAR},
+      </if>
+      <if test="zhenshiname != null">
+        #{zhenshiname,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangname != null">
+        #{yinhangname,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangkajao != null">
+        #{yinhangkajao,jdbcType=VARCHAR},
+      </if>
+      <if test="kaihudizhi != null">
+        #{kaihudizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifubaoid != null">
+        #{zhifubaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuangtaiid != null">
+        #{zhuangtaiid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wuyemy.bean.KuserExample" resultType="java.lang.Long">
+    select count(*) from kuser
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update kuser
+    <set>
+      <if test="record.kid != null">
+        kid = #{record.kid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zhanghao != null">
+        zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.khname != null">
+        khname = #{record.khname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tzhanghao != null">
+        tzhanghao = #{record.tzhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhucetime != null">
+        zhucetime = #{record.zhucetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jihuotime != null">
+        jihuotime = #{record.jihuotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dongjietime != null">
+        dongjietime = #{record.dongjietime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yyzxid != null">
+        yyzxid = #{record.yyzxid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenfenid != null">
+        shenfenid = #{record.shenfenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kpassword != null">
+        kpassword = #{record.kpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhenshishoujihao != null">
+        zhenshishoujihao = #{record.zhenshishoujihao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhenshiname != null">
+        zhenshiname = #{record.zhenshiname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yinhangname != null">
+        yinhangname = #{record.yinhangname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yinhangkajao != null">
+        yinhangkajao = #{record.yinhangkajao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kaihudizhi != null">
+        kaihudizhi = #{record.kaihudizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhifubaoid != null">
+        zhifubaoid = #{record.zhifubaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhuangtaiid != null">
+        zhuangtaiid = #{record.zhuangtaiid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update kuser
+    set kid = #{record.kid,jdbcType=INTEGER},
+      zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      khname = #{record.khname,jdbcType=VARCHAR},
+      tzhanghao = #{record.tzhanghao,jdbcType=VARCHAR},
+      zhucetime = #{record.zhucetime,jdbcType=TIMESTAMP},
+      jihuotime = #{record.jihuotime,jdbcType=TIMESTAMP},
+      dongjietime = #{record.dongjietime,jdbcType=TIMESTAMP},
+      yyzxid = #{record.yyzxid,jdbcType=VARCHAR},
+      shenfenid = #{record.shenfenid,jdbcType=VARCHAR},
+      kpassword = #{record.kpassword,jdbcType=VARCHAR},
+      zhenshishoujihao = #{record.zhenshishoujihao,jdbcType=VARCHAR},
+      zhenshiname = #{record.zhenshiname,jdbcType=VARCHAR},
+      yinhangname = #{record.yinhangname,jdbcType=VARCHAR},
+      yinhangkajao = #{record.yinhangkajao,jdbcType=VARCHAR},
+      kaihudizhi = #{record.kaihudizhi,jdbcType=VARCHAR},
+      zhifubaoid = #{record.zhifubaoid,jdbcType=VARCHAR},
+      zhuangtaiid = #{record.zhuangtaiid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuyemy.bean.Kuser">
+    update kuser
+    <set>
+      <if test="zhanghao != null">
+        zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="khname != null">
+        khname = #{khname,jdbcType=VARCHAR},
+      </if>
+      <if test="tzhanghao != null">
+        tzhanghao = #{tzhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="zhucetime != null">
+        zhucetime = #{zhucetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jihuotime != null">
+        jihuotime = #{jihuotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dongjietime != null">
+        dongjietime = #{dongjietime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yyzxid != null">
+        yyzxid = #{yyzxid,jdbcType=VARCHAR},
+      </if>
+      <if test="shenfenid != null">
+        shenfenid = #{shenfenid,jdbcType=VARCHAR},
+      </if>
+      <if test="kpassword != null">
+        kpassword = #{kpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="zhenshishoujihao != null">
+        zhenshishoujihao = #{zhenshishoujihao,jdbcType=VARCHAR},
+      </if>
+      <if test="zhenshiname != null">
+        zhenshiname = #{zhenshiname,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangname != null">
+        yinhangname = #{yinhangname,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangkajao != null">
+        yinhangkajao = #{yinhangkajao,jdbcType=VARCHAR},
+      </if>
+      <if test="kaihudizhi != null">
+        kaihudizhi = #{kaihudizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifubaoid != null">
+        zhifubaoid = #{zhifubaoid,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuangtaiid != null">
+        zhuangtaiid = #{zhuangtaiid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuyemy.bean.Kuser">
+    update kuser
+    set zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      khname = #{khname,jdbcType=VARCHAR},
+      tzhanghao = #{tzhanghao,jdbcType=VARCHAR},
+      zhucetime = #{zhucetime,jdbcType=TIMESTAMP},
+      jihuotime = #{jihuotime,jdbcType=TIMESTAMP},
+      dongjietime = #{dongjietime,jdbcType=TIMESTAMP},
+      yyzxid = #{yyzxid,jdbcType=VARCHAR},
+      shenfenid = #{shenfenid,jdbcType=VARCHAR},
+      kpassword = #{kpassword,jdbcType=VARCHAR},
+      zhenshishoujihao = #{zhenshishoujihao,jdbcType=VARCHAR},
+      zhenshiname = #{zhenshiname,jdbcType=VARCHAR},
+      yinhangname = #{yinhangname,jdbcType=VARCHAR},
+      yinhangkajao = #{yinhangkajao,jdbcType=VARCHAR},
+      kaihudizhi = #{kaihudizhi,jdbcType=VARCHAR},
+      zhifubaoid = #{zhifubaoid,jdbcType=VARCHAR},
+      zhuangtaiid = #{zhuangtaiid,jdbcType=INTEGER}
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+</mapper>

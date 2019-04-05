@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuyemy.dao.TixianMapper">
+  <resultMap id="BaseResultMap" type="com.wuyemy.bean.Tixian">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="jinbileixing" jdbcType="VARCHAR" property="jinbileixing" />
+    <result column="txjibi" jdbcType="DECIMAL" property="txjibi" />
+    <result column="shouxufei" jdbcType="DECIMAL" property="shouxufei" />
+    <result column="shijidaozhang" jdbcType="DECIMAL" property="shijidaozhang" />
+    <result column="tixiantime" jdbcType="TIMESTAMP" property="tixiantime" />
+    <result column="jujuetime" jdbcType="TIMESTAMP" property="jujuetime" />
+    <result column="tguotime" jdbcType="TIMESTAMP" property="tguotime" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="yinhangname" jdbcType="VARCHAR" property="yinhangname" />
+    <result column="kaihudizhi" jdbcType="VARCHAR" property="kaihudizhi" />
+    <result column="yinhangkaid" jdbcType="VARCHAR" property="yinhangkaid" />
+    <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
+  </resultMap>
+  <resultMap id="BaseResultMapwithZhuangtai" type="com.wuyemy.bean.Tixian">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="jinbileixing" jdbcType="VARCHAR" property="jinbileixing" />
+    <result column="txjibi" jdbcType="DECIMAL" property="txjibi" />
+    <result column="shouxufei" jdbcType="DECIMAL" property="shouxufei" />
+    <result column="shijidaozhang" jdbcType="DECIMAL" property="shijidaozhang" />
+    <result column="tixiantime" jdbcType="TIMESTAMP" property="tixiantime" />
+    <result column="jujuetime" jdbcType="TIMESTAMP" property="jujuetime" />
+    <result column="tguotime" jdbcType="TIMESTAMP" property="tguotime" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="yinhangname" jdbcType="VARCHAR" property="yinhangname" />
+    <result column="kaihudizhi" jdbcType="VARCHAR" property="kaihudizhi" />
+    <result column="yinhangkaid" jdbcType="VARCHAR" property="yinhangkaid" />
+    <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
+    <association property="zhuangtai" javaType="com.wuyemy.bean.Zhuangtai">
+    	<id column="zhuangtaiid" property="zhuangtaiid"/>
+    	<result column="zhuangtai" property="zhuangtai"/>
+    </association>
+    
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, zhanghao, jinbileixing, txjibi, shouxufei, shijidaozhang, tixiantime, jujuetime, 
+    tguotime, username, yinhangname, kaihudizhi, yinhangkaid, zhuangtaiid
+  </sql>
+  <sql id="Base_Column_List_with_zhuangtai">
+    t.id, t.zhanghao, t.jinbileixing, t.txjibi, t.shouxufei, t.shijidaozhang, t.tixiantime, t.jujuetime, 
+    t.tguotime, t.username, t.yinhangname, t.kaihudizhi,t.yinhangkaid, t.zhuangtaiid ,z.zhuangtai
+  </sql>
+   <!-- //关联状态查询
+    List<Tixian> selectByExamplewithZhuangtai(TixianExample example); -->
+  <select id="selectByExamplewithZhuangtai" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMapwithZhuangtai">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuangtai" />
+    from tixian t 
+    left join zhuangtai z on t.`zhuangtaiid` = z.`zhuangtaiid` 
+      where t.`zhuangtaiid` = 5 
+    order by t.`tixiantime` desc
+    
+  </select>
+  <select id="selectByExamplewithZhuangtai6" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMapwithZhuangtai">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuangtai" />
+    from tixian t 
+    left join zhuangtai z on t.`zhuangtaiid` = z.`zhuangtaiid` 
+      where t.`zhuangtaiid` = 6 
+    order by t.`tguotime` desc
+    
+  </select>
+  <select id="selectByExamplewithZhuangtai7" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMapwithZhuangtai">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuangtai" />
+    from tixian t 
+    left join zhuangtai z on t.`zhuangtaiid` = z.`zhuangtaiid` 
+      where t.`zhuangtaiid` = 7 
+    order by t.`jujuetime` desc
+    
+  </select>
+  <select id="selectByExample" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tixian
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tixian
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tixian
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wuyemy.bean.TixianExample">
+    delete from tixian
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wuyemy.bean.Tixian">
+    insert into tixian (id, zhanghao, jinbileixing, 
+      txjibi, shouxufei, shijidaozhang, 
+      tixiantime, jujuetime, tguotime, 
+      username, yinhangname, kaihudizhi, 
+      yinhangkaid, zhuangtaiid)
+    values (#{id,jdbcType=INTEGER}, #{zhanghao,jdbcType=VARCHAR}, #{jinbileixing,jdbcType=VARCHAR}, 
+      #{txjibi,jdbcType=DECIMAL}, #{shouxufei,jdbcType=DECIMAL}, #{shijidaozhang,jdbcType=DECIMAL}, 
+      #{tixiantime,jdbcType=TIMESTAMP}, #{jujuetime,jdbcType=TIMESTAMP}, #{tguotime,jdbcType=TIMESTAMP}, 
+      #{username,jdbcType=VARCHAR}, #{yinhangname,jdbcType=VARCHAR}, #{kaihudizhi,jdbcType=VARCHAR}, 
+      #{yinhangkaid,jdbcType=VARCHAR}, #{zhuangtaiid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuyemy.bean.Tixian">
+    insert into tixian
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="zhanghao != null">
+        zhanghao,
+      </if>
+      <if test="jinbileixing != null">
+        jinbileixing,
+      </if>
+      <if test="txjibi != null">
+        txjibi,
+      </if>
+      <if test="shouxufei != null">
+        shouxufei,
+      </if>
+      <if test="shijidaozhang != null">
+        shijidaozhang,
+      </if>
+      <if test="tixiantime != null">
+        tixiantime,
+      </if>
+      <if test="jujuetime != null">
+        jujuetime,
+      </if>
+      <if test="tguotime != null">
+        tguotime,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="yinhangname != null">
+        yinhangname,
+      </if>
+      <if test="kaihudizhi != null">
+        kaihudizhi,
+      </if>
+      <if test="yinhangkaid != null">
+        yinhangkaid,
+      </if>
+      <if test="zhuangtaiid != null">
+        zhuangtaiid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="zhanghao != null">
+        #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="jinbileixing != null">
+        #{jinbileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="txjibi != null">
+        #{txjibi,jdbcType=DECIMAL},
+      </if>
+      <if test="shouxufei != null">
+        #{shouxufei,jdbcType=DECIMAL},
+      </if>
+      <if test="shijidaozhang != null">
+        #{shijidaozhang,jdbcType=DECIMAL},
+      </if>
+      <if test="tixiantime != null">
+        #{tixiantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jujuetime != null">
+        #{jujuetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tguotime != null">
+        #{tguotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangname != null">
+        #{yinhangname,jdbcType=VARCHAR},
+      </if>
+      <if test="kaihudizhi != null">
+        #{kaihudizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangkaid != null">
+        #{yinhangkaid,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuangtaiid != null">
+        #{zhuangtaiid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wuyemy.bean.TixianExample" resultType="java.lang.Long">
+    select count(*) from tixian
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tixian
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.zhanghao != null">
+        zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jinbileixing != null">
+        jinbileixing = #{record.jinbileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txjibi != null">
+        txjibi = #{record.txjibi,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shouxufei != null">
+        shouxufei = #{record.shouxufei,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shijidaozhang != null">
+        shijidaozhang = #{record.shijidaozhang,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tixiantime != null">
+        tixiantime = #{record.tixiantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jujuetime != null">
+        jujuetime = #{record.jujuetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tguotime != null">
+        tguotime = #{record.tguotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yinhangname != null">
+        yinhangname = #{record.yinhangname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kaihudizhi != null">
+        kaihudizhi = #{record.kaihudizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yinhangkaid != null">
+        yinhangkaid = #{record.yinhangkaid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhuangtaiid != null">
+        zhuangtaiid = #{record.zhuangtaiid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tixian
+    set id = #{record.id,jdbcType=INTEGER},
+      zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      jinbileixing = #{record.jinbileixing,jdbcType=VARCHAR},
+      txjibi = #{record.txjibi,jdbcType=DECIMAL},
+      shouxufei = #{record.shouxufei,jdbcType=DECIMAL},
+      shijidaozhang = #{record.shijidaozhang,jdbcType=DECIMAL},
+      tixiantime = #{record.tixiantime,jdbcType=TIMESTAMP},
+      jujuetime = #{record.jujuetime,jdbcType=TIMESTAMP},
+      tguotime = #{record.tguotime,jdbcType=TIMESTAMP},
+      username = #{record.username,jdbcType=VARCHAR},
+      yinhangname = #{record.yinhangname,jdbcType=VARCHAR},
+      kaihudizhi = #{record.kaihudizhi,jdbcType=VARCHAR},
+      yinhangkaid = #{record.yinhangkaid,jdbcType=VARCHAR},
+      zhuangtaiid = #{record.zhuangtaiid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuyemy.bean.Tixian">
+    update tixian
+    <set>
+      <if test="zhanghao != null">
+        zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="jinbileixing != null">
+        jinbileixing = #{jinbileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="txjibi != null">
+        txjibi = #{txjibi,jdbcType=DECIMAL},
+      </if>
+      <if test="shouxufei != null">
+        shouxufei = #{shouxufei,jdbcType=DECIMAL},
+      </if>
+      <if test="shijidaozhang != null">
+        shijidaozhang = #{shijidaozhang,jdbcType=DECIMAL},
+      </if>
+      <if test="tixiantime != null">
+        tixiantime = #{tixiantime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jujuetime != null">
+        jujuetime = #{jujuetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tguotime != null">
+        tguotime = #{tguotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangname != null">
+        yinhangname = #{yinhangname,jdbcType=VARCHAR},
+      </if>
+      <if test="kaihudizhi != null">
+        kaihudizhi = #{kaihudizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="yinhangkaid != null">
+        yinhangkaid = #{yinhangkaid,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuangtaiid != null">
+        zhuangtaiid = #{zhuangtaiid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuyemy.bean.Tixian">
+    update tixian
+    set zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      jinbileixing = #{jinbileixing,jdbcType=VARCHAR},
+      txjibi = #{txjibi,jdbcType=DECIMAL},
+      shouxufei = #{shouxufei,jdbcType=DECIMAL},
+      shijidaozhang = #{shijidaozhang,jdbcType=DECIMAL},
+      tixiantime = #{tixiantime,jdbcType=TIMESTAMP},
+      jujuetime = #{jujuetime,jdbcType=TIMESTAMP},
+      tguotime = #{tguotime,jdbcType=TIMESTAMP},
+      username = #{username,jdbcType=VARCHAR},
+      yinhangname = #{yinhangname,jdbcType=VARCHAR},
+      kaihudizhi = #{kaihudizhi,jdbcType=VARCHAR},
+      yinhangkaid = #{yinhangkaid,jdbcType=VARCHAR},
+      zhuangtaiid = #{zhuangtaiid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

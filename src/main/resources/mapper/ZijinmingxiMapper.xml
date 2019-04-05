@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuyemy.dao.ZijinmingxiMapper">
+  <resultMap id="BaseResultMap" type="com.wuyemy.bean.Zijinmingxi">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="jinbishu" jdbcType="DECIMAL" property="jinbishu" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="jinbileixing" jdbcType="VARCHAR" property="jinbileixing" />
+    <result column="biandonleix" jdbcType="VARCHAR" property="biandonleix" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, jinbishu, zhanghao, jinbileixing, biandonleix, time
+  </sql>
+  <select id="selectByExample" parameterType="com.wuyemy.bean.ZijinmingxiExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zijinmingxi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zijinmingxi
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from zijinmingxi
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wuyemy.bean.ZijinmingxiExample">
+    delete from zijinmingxi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wuyemy.bean.Zijinmingxi">
+    insert into zijinmingxi (id, jinbishu, zhanghao, 
+      jinbileixing, biandonleix, time
+      )
+    values (#{id,jdbcType=BIGINT}, #{jinbishu,jdbcType=DECIMAL}, #{zhanghao,jdbcType=VARCHAR}, 
+      #{jinbileixing,jdbcType=VARCHAR}, #{biandonleix,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuyemy.bean.Zijinmingxi">
+    insert into zijinmingxi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="jinbishu != null">
+        jinbishu,
+      </if>
+      <if test="zhanghao != null">
+        zhanghao,
+      </if>
+      <if test="jinbileixing != null">
+        jinbileixing,
+      </if>
+      <if test="biandonleix != null">
+        biandonleix,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="jinbishu != null">
+        #{jinbishu,jdbcType=DECIMAL},
+      </if>
+      <if test="zhanghao != null">
+        #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="jinbileixing != null">
+        #{jinbileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="biandonleix != null">
+        #{biandonleix,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wuyemy.bean.ZijinmingxiExample" resultType="java.lang.Long">
+    select count(*) from zijinmingxi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update zijinmingxi
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.jinbishu != null">
+        jinbishu = #{record.jinbishu,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhanghao != null">
+        zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jinbileixing != null">
+        jinbileixing = #{record.jinbileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.biandonleix != null">
+        biandonleix = #{record.biandonleix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update zijinmingxi
+    set id = #{record.id,jdbcType=BIGINT},
+      jinbishu = #{record.jinbishu,jdbcType=DECIMAL},
+      zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
+      jinbileixing = #{record.jinbileixing,jdbcType=VARCHAR},
+      biandonleix = #{record.biandonleix,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuyemy.bean.Zijinmingxi">
+    update zijinmingxi
+    <set>
+      <if test="jinbishu != null">
+        jinbishu = #{jinbishu,jdbcType=DECIMAL},
+      </if>
+      <if test="zhanghao != null">
+        zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="jinbileixing != null">
+        jinbileixing = #{jinbileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="biandonleix != null">
+        biandonleix = #{biandonleix,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuyemy.bean.Zijinmingxi">
+    update zijinmingxi
+    set jinbishu = #{jinbishu,jdbcType=DECIMAL},
+      zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      jinbileixing = #{jinbileixing,jdbcType=VARCHAR},
+      biandonleix = #{biandonleix,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
