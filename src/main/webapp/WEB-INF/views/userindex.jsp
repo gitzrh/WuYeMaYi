@@ -170,7 +170,7 @@
                 <i class="iconfont icon-hehuoren" style="color:blue"></i><br>
                 <span style='margin-left: 0.15rem'>运营中心</span>
             </a>            
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_list/type/1.html">
+            <a class="tzym" href="${APP_PATH }/zijinmingxi">
                 <i class="iconfont icon-zijinzouxiang" style="color:blue"></i><br>
                 <span>资金明细</span>
             </a>
@@ -190,9 +190,9 @@
                 <i class="iconfont icon-jiaoyisuo" style="color:green"></i><br>
                 <span>交易管理</span>
             </a>-->
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/zaitu.html" style="border-right: none;">
+            <a class="tzym" href="${APP_PATH }/tixianjilu" style="border-right: none;">
                 <i class="iconfont icon-jilu1" style="color:green"></i><br>
-                <span>在途记录</span>
+                <span>提现记录</span>
             </a>
             <a class="tzym" href="${APP_PATH }/user">
                 <i class="iconfont icon-gerenxinxi" style="color:red"></i><br>

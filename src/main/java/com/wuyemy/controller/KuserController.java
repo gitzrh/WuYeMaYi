@@ -100,6 +100,7 @@ public class KuserController {
 				model.addAttribute("pageInfo", page);
 		return "adminUserYijiho";
 	}
+	
 	@RequestMapping("/loginUser")
 	@ResponseBody
 	public Msg loginUser(@RequestParam("zhanghao")String zhanghao,
@@ -114,7 +115,9 @@ public class KuserController {
 		    	 return Msg.fail().add("login", "请输入账号");
 		    	 
 		     }else{
-		     
+		    	 if(kuseer.size()==0){
+		    		 return Msg.fail().add("login", "该账号不存在") ;
+		    	 }else{
 		    	 long j = kuseer.get(0).getZhuangtaiid();
 		     if(j==1){
 		    	 
@@ -145,7 +148,7 @@ public class KuserController {
 		 }
 		}
 	}
-		     }	
+		     }}	
 	}
 	
 }

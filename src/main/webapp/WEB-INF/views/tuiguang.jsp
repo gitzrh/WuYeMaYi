@@ -46,7 +46,7 @@
 	<script>
 	
 		$(".backButton").click(function(){
-            window.location.href="/index.php?s=/Home/Shop/index.html";
+            window.location.href="${APP_PATH }/toUserShou";
         })
         
         window.onload = function(){
@@ -54,7 +54,6 @@
 		}
 		
 		function test(){
-			alert("a");
 			$.ajax({
 				url:"${APP_PATH }/shanchut",
 				type:"GET",
