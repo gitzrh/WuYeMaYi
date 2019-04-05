@@ -32,8 +32,39 @@ public class Tixian {
 
     private Integer zhuangtaiid;
     
+    private Zhuangtai zhuangtai;
+    
 
-    @Override
+    public Tixian(Integer id, String zhanghao, String jinbileixing, BigDecimal txjibi, BigDecimal shouxufei,
+			BigDecimal shijidaozhang, String tixiantime, String jujuetime, String tguotime, String username,
+			String yinhangname, String kaihudizhi, String yinhangkaid, Integer zhuangtaiid, Zhuangtai zhuangtai) {
+		super();
+		this.id = id;
+		this.zhanghao = zhanghao;
+		this.jinbileixing = jinbileixing;
+		this.txjibi = txjibi;
+		this.shouxufei = shouxufei;
+		this.shijidaozhang = shijidaozhang;
+		this.tixiantime = tixiantime;
+		this.jujuetime = jujuetime;
+		this.tguotime = tguotime;
+		this.username = username;
+		this.yinhangname = yinhangname;
+		this.kaihudizhi = kaihudizhi;
+		this.yinhangkaid = yinhangkaid;
+		this.zhuangtaiid = zhuangtaiid;
+		this.zhuangtai = zhuangtai;
+	}
+
+	public Zhuangtai getZhuangtai() {
+		return zhuangtai;
+	}
+
+	public void setZhuangtai(Zhuangtai zhuangtai) {
+		this.zhuangtai = zhuangtai;
+	}
+
+	@Override
 	public String toString() {
 		return "Tixian [id=" + id + ", zhanghao=" + zhanghao + ", jinbileixing=" + jinbileixing + ", txjibi=" + txjibi
 				+ ", shouxufei=" + shouxufei + ", shijidaozhang=" + shijidaozhang + ", tixiantime=" + tixiantime

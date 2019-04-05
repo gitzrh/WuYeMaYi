@@ -23,6 +23,8 @@ public interface KuserMapper {
     //带状态和积分的查询已激活
     List<Kuser> selectByExampleWithZhuangTaiAndJf(KuserExample example);
    
+    
+    
 
     Kuser selectByPrimaryKey(Integer kid);
 

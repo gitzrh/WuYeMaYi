@@ -17,6 +17,27 @@
     <result column="yinhangkaid" jdbcType="VARCHAR" property="yinhangkaid" />
     <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
   </resultMap>
+  <resultMap id="BaseResultMapwithZhuangtai" type="com.wuyemy.bean.Tixian">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="jinbileixing" jdbcType="VARCHAR" property="jinbileixing" />
+    <result column="txjibi" jdbcType="DECIMAL" property="txjibi" />
+    <result column="shouxufei" jdbcType="DECIMAL" property="shouxufei" />
+    <result column="shijidaozhang" jdbcType="DECIMAL" property="shijidaozhang" />
+    <result column="tixiantime" jdbcType="TIMESTAMP" property="tixiantime" />
+    <result column="jujuetime" jdbcType="TIMESTAMP" property="jujuetime" />
+    <result column="tguotime" jdbcType="TIMESTAMP" property="tguotime" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="yinhangname" jdbcType="VARCHAR" property="yinhangname" />
+    <result column="kaihudizhi" jdbcType="VARCHAR" property="kaihudizhi" />
+    <result column="yinhangkaid" jdbcType="VARCHAR" property="yinhangkaid" />
+    <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
+    <association property="zhuangtai" javaType="com.wuyemy.bean.Zhuangtai">
+    	<id column="zhuangtaiid" property="zhuangtaiid"/>
+    	<result column="zhuangtai" property="zhuangtai"/>
+    </association>
+    
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -79,6 +100,48 @@
     id, zhanghao, jinbileixing, txjibi, shouxufei, shijidaozhang, tixiantime, jujuetime, 
     tguotime, username, yinhangname, kaihudizhi, yinhangkaid, zhuangtaiid
   </sql>
+  <sql id="Base_Column_List_with_zhuangtai">
+    t.id, t.zhanghao, t.jinbileixing, t.txjibi, t.shouxufei, t.shijidaozhang, t.tixiantime, t.jujuetime, 
+    t.tguotime, t.username, t.yinhangname, t.kaihudizhi,t.yinhangkaid, t.zhuangtaiid ,z.zhuangtai
+  </sql>
+   <!-- //关联状态查询
+    List<Tixian> selectByExamplewithZhuangtai(TixianExample example); -->
+  <select id="selectByExamplewithZhuangtai" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMapwithZhuangtai">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuangtai" />
+    from tixian t 
+    left join zhuangtai z on t.`zhuangtaiid` = z.`zhuangtaiid` 
+      where t.`zhuangtaiid` = 5 
+    order by t.`tixiantime` desc
+    
+  </select>
+  <select id="selectByExamplewithZhuangtai6" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMapwithZhuangtai">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuangtai" />
+    from tixian t 
+    left join zhuangtai z on t.`zhuangtaiid` = z.`zhuangtaiid` 
+      where t.`zhuangtaiid` = 6 
+    order by t.`tguotime` desc
+    
+  </select>
+  <select id="selectByExamplewithZhuangtai7" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMapwithZhuangtai">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List_with_zhuangtai" />
+    from tixian t 
+    left join zhuangtai z on t.`zhuangtaiid` = z.`zhuangtaiid` 
+      where t.`zhuangtaiid` = 7 
+    order by t.`jujuetime` desc
+    
+  </select>
   <select id="selectByExample" parameterType="com.wuyemy.bean.TixianExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
