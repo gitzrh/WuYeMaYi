@@ -153,7 +153,11 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
+<<<<<<< HEAD
       order by ${orderByClause}
+=======
+      order by ${orderByClause} desc
+>>>>>>> branch 'master' of https://github.com/gitzrh/WuYeMaYi.git
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

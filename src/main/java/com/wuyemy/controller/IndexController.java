@@ -2,6 +2,7 @@ package com.wuyemy.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
 import com.wuyemy.bean.Kuser;
+import com.wuyemy.bean.Tixian;
 import com.wuyemy.service.IndexService;
 import com.wuyemy.until.QRCodeUtil;
 
@@ -332,8 +334,55 @@ public class IndexController {
 				}
 			}
 		}
-		
 		return Msg.success().add("fxjf", "请填写完整信息不足!");
 	}
 
+	/**
+	 * 查询资金明细
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/zijinmingxi")
+	public String Zijinmingxi(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+		HttpSession session = request.getSession();
+		String zhanhao = (String) session.getAttribute("zhanghao");
+		
+		if (zhanhao != null) {
+			//查询所有分享金币
+			List<com.wuyemy.bean.Zijinmingxi> zijinfxs = indexService.syfxjb(zhanhao);
+			map.put("zijinfxs", zijinfxs);
+			//查询所有出局金币
+			List<com.wuyemy.bean.Zijinmingxi> zijincjs = indexService.sycjjb(zhanhao);
+			map.put("zijincjs", zijincjs);
+			//查询所有购车金币
+			List<com.wuyemy.bean.Zijinmingxi> zijingcs = indexService.sygcjb(zhanhao);
+			map.put("zijingcs", zijingcs);
+			//查询所有在途金币
+			List<com.wuyemy.bean.Zijinmingxi> zijinzts = indexService.syztjb(zhanhao);
+			map.put("zijinzts", zijinzts);
+			return "zijinmingxi";
+		}
+		return null;
+	}
+	
+	/**
+	 * 查询提现记录
+	 * @return
+	 */
+	@RequestMapping("/tixianjilu")
+	public String tixianjilu(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+		HttpSession session = request.getSession();
+		String zhanhao = (String) session.getAttribute("zhanghao");
+		
+		if (zhanhao != null) {
+			List<Tixian> tixians = indexService.txjl(zhanhao);
+			map.put("tixians", tixians);
+			return "txjl";
+		}
+		return null;
+		
+	}
+	
 }

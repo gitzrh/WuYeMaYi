@@ -46,6 +46,7 @@
 	<script>
 	
 		$(".backButton").click(function(){
+<<<<<<< HEAD
             window.location.href="/index.php?s=/Home/Shop/index.html";
         })
         
@@ -55,6 +56,16 @@
 		
 		function test(){
 			alert("a");
+=======
+            window.location.href="${APP_PATH }/toUserShou";
+        })
+        
+        window.onload = function(){
+			setTimeout(test,3000);//1000毫秒=1秒后执行test方法
+		}
+		
+		function test(){
+>>>>>>> branch 'master' of https://github.com/gitzrh/WuYeMaYi.git
 			$.ajax({
 				url:"${APP_PATH }/shanchut",
 				type:"GET",

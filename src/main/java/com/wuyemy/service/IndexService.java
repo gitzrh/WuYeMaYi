@@ -11,16 +11,19 @@ import org.springframework.stereotype.Service;
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
 import com.wuyemy.bean.JifenExample;
+import com.wuyemy.bean.JifenExample.Criteria;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Tixian;
-import com.wuyemy.bean.JifenExample.Criteria;
+import com.wuyemy.bean.TixianExample;
+import com.wuyemy.bean.Zijinmingxi;
+import com.wuyemy.bean.ZijinmingxiExample;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.TixianMapper;
+import com.wuyemy.dao.ZijinmingxiMapper;
 import com.wuyemy.until.DateToString;
-import com.wuyemy.until.EncodingTool;
 
 @Service
 public class IndexService {
@@ -33,6 +36,8 @@ public class IndexService {
 	private CanshuMapper canshuMapper;
 	@Autowired
 	private TixianMapper tixianMapper;
+	@Autowired
+	private ZijinmingxiMapper zijinmingxiMapper;
 	
 	private DateToString dateToStr;
 	/**
@@ -265,6 +270,55 @@ public class IndexService {
 		
 		Tixian tixian = new Tixian(null, zhanhao, "分享金币", fxjf, shouxufei, shijidaozhang, dateToStr.DateToStr(new Date()), null, null, realname3, bankname3, bankaddress3, bankcard3, 5);
 		tixianMapper.insertSelective(tixian);
+	}
+
+	public List<Zijinmingxi> syfxjb(String zhanhao) {
+		ZijinmingxiExample example = new ZijinmingxiExample();
+		com.wuyemy.bean.ZijinmingxiExample.Criteria createCriteria = example.createCriteria();
+		example.setOrderByClause("time");
+		createCriteria.andZhanghaoEqualTo(zhanhao);
+		createCriteria.andJinbileixingEqualTo("分享金币");
+		List<Zijinmingxi> selectByExample = zijinmingxiMapper.selectByExample(example);
+		return selectByExample;
+	}
+
+	public List<Zijinmingxi> sycjjb(String zhanhao) {
+		ZijinmingxiExample example = new ZijinmingxiExample();
+		com.wuyemy.bean.ZijinmingxiExample.Criteria createCriteria = example.createCriteria();
+		example.setOrderByClause("time");
+		createCriteria.andZhanghaoEqualTo(zhanhao);
+		createCriteria.andJinbileixingEqualTo("出局金币");
+		List<Zijinmingxi> selectByExample = zijinmingxiMapper.selectByExample(example);
+		return selectByExample;
+	}
+
+	public List<Zijinmingxi> sygcjb(String zhanhao) {
+		ZijinmingxiExample example = new ZijinmingxiExample();
+		com.wuyemy.bean.ZijinmingxiExample.Criteria createCriteria = example.createCriteria();
+		example.setOrderByClause("time");
+		createCriteria.andZhanghaoEqualTo(zhanhao);
+		createCriteria.andJinbileixingEqualTo("购车金币");
+		List<Zijinmingxi> selectByExample = zijinmingxiMapper.selectByExample(example);
+		return selectByExample;
+	}
+
+	public List<Zijinmingxi> syztjb(String zhanhao) {
+		ZijinmingxiExample example = new ZijinmingxiExample();
+		com.wuyemy.bean.ZijinmingxiExample.Criteria createCriteria = example.createCriteria();
+		example.setOrderByClause("time");
+		createCriteria.andZhanghaoEqualTo(zhanhao);
+		createCriteria.andJinbileixingEqualTo("在途金币");
+		List<Zijinmingxi> selectByExample = zijinmingxiMapper.selectByExample(example);
+		return selectByExample;
+	}
+
+	public List<Tixian> txjl(String zhanhao) {
+		TixianExample example = new TixianExample();
+		com.wuyemy.bean.TixianExample.Criteria createCriteria = example.createCriteria();
+		example.setOrderByClause("tixiantime");
+		createCriteria.andZhanghaoEqualTo(zhanhao);
+		List<Tixian> selectByExample = tixianMapper.selectByExample(example);
+		return selectByExample;
 	}
 
 
