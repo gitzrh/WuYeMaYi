@@ -10,7 +10,7 @@ public interface ZijinmingxiMapper {
 
     int deleteByExample(ZijinmingxiExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Zijinmingxi record);
 
@@ -18,7 +18,7 @@ public interface ZijinmingxiMapper {
 
     List<Zijinmingxi> selectByExample(ZijinmingxiExample example);
 
-    Zijinmingxi selectByPrimaryKey(Integer id);
+    Zijinmingxi selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Zijinmingxi record, @Param("example") ZijinmingxiExample example);
 

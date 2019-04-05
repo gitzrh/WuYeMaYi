@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wuyemy.dao.ZijinmingxiMapper">
   <resultMap id="BaseResultMap" type="com.wuyemy.bean.Zijinmingxi">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="jinbishu" jdbcType="DECIMAL" property="jinbishu" />
     <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
-    <result column="jinbileixing" jdbcType="INTEGER" property="jinbileixing" />
-    <result column="biandonleix" jdbcType="INTEGER" property="biandonleix" />
+    <result column="jinbileixing" jdbcType="VARCHAR" property="jinbileixing" />
+    <result column="biandonleix" jdbcType="VARCHAR" property="biandonleix" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, zhanghao, jinbileixing, biandonleix, time
+    id, jinbishu, zhanghao, jinbileixing, biandonleix, time
   </sql>
   <select id="selectByExample" parameterType="com.wuyemy.bean.ZijinmingxiExample" resultMap="BaseResultMap">
     select
@@ -83,15 +84,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from zijinmingxi
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from zijinmingxi
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.wuyemy.bean.ZijinmingxiExample">
     delete from zijinmingxi
@@ -100,16 +101,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wuyemy.bean.Zijinmingxi">
-    insert into zijinmingxi (id, zhanghao, jinbileixing, 
-      biandonleix, time)
-    values (#{id,jdbcType=INTEGER}, #{zhanghao,jdbcType=VARCHAR}, #{jinbileixing,jdbcType=INTEGER}, 
-      #{biandonleix,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP})
+    insert into zijinmingxi (id, jinbishu, zhanghao, 
+      jinbileixing, biandonleix, time
+      )
+    values (#{id,jdbcType=BIGINT}, #{jinbishu,jdbcType=DECIMAL}, #{zhanghao,jdbcType=VARCHAR}, 
+      #{jinbileixing,jdbcType=VARCHAR}, #{biandonleix,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.wuyemy.bean.Zijinmingxi">
     insert into zijinmingxi
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="jinbishu != null">
+        jinbishu,
       </if>
       <if test="zhanghao != null">
         zhanghao,
@@ -126,16 +132,19 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="jinbishu != null">
+        #{jinbishu,jdbcType=DECIMAL},
       </if>
       <if test="zhanghao != null">
         #{zhanghao,jdbcType=VARCHAR},
       </if>
       <if test="jinbileixing != null">
-        #{jinbileixing,jdbcType=INTEGER},
+        #{jinbileixing,jdbcType=VARCHAR},
       </if>
       <if test="biandonleix != null">
-        #{biandonleix,jdbcType=INTEGER},
+        #{biandonleix,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
         #{time,jdbcType=TIMESTAMP},
@@ -152,16 +161,19 @@
     update zijinmingxi
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.jinbishu != null">
+        jinbishu = #{record.jinbishu,jdbcType=DECIMAL},
       </if>
       <if test="record.zhanghao != null">
         zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
       </if>
       <if test="record.jinbileixing != null">
-        jinbileixing = #{record.jinbileixing,jdbcType=INTEGER},
+        jinbileixing = #{record.jinbileixing,jdbcType=VARCHAR},
       </if>
       <if test="record.biandonleix != null">
-        biandonleix = #{record.biandonleix,jdbcType=INTEGER},
+        biandonleix = #{record.biandonleix,jdbcType=VARCHAR},
       </if>
       <if test="record.time != null">
         time = #{record.time,jdbcType=TIMESTAMP},
@@ -173,10 +185,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update zijinmingxi
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=BIGINT},
+      jinbishu = #{record.jinbishu,jdbcType=DECIMAL},
       zhanghao = #{record.zhanghao,jdbcType=VARCHAR},
-      jinbileixing = #{record.jinbileixing,jdbcType=INTEGER},
-      biandonleix = #{record.biandonleix,jdbcType=INTEGER},
+      jinbileixing = #{record.jinbileixing,jdbcType=VARCHAR},
+      biandonleix = #{record.biandonleix,jdbcType=VARCHAR},
       time = #{record.time,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -185,27 +198,31 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.wuyemy.bean.Zijinmingxi">
     update zijinmingxi
     <set>
+      <if test="jinbishu != null">
+        jinbishu = #{jinbishu,jdbcType=DECIMAL},
+      </if>
       <if test="zhanghao != null">
         zhanghao = #{zhanghao,jdbcType=VARCHAR},
       </if>
       <if test="jinbileixing != null">
-        jinbileixing = #{jinbileixing,jdbcType=INTEGER},
+        jinbileixing = #{jinbileixing,jdbcType=VARCHAR},
       </if>
       <if test="biandonleix != null">
-        biandonleix = #{biandonleix,jdbcType=INTEGER},
+        biandonleix = #{biandonleix,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
         time = #{time,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wuyemy.bean.Zijinmingxi">
     update zijinmingxi
-    set zhanghao = #{zhanghao,jdbcType=VARCHAR},
-      jinbileixing = #{jinbileixing,jdbcType=INTEGER},
-      biandonleix = #{biandonleix,jdbcType=INTEGER},
+    set jinbishu = #{jinbishu,jdbcType=DECIMAL},
+      zhanghao = #{zhanghao,jdbcType=VARCHAR},
+      jinbileixing = #{jinbileixing,jdbcType=VARCHAR},
+      biandonleix = #{biandonleix,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

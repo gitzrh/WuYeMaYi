@@ -49,7 +49,7 @@
 	<!--交易1-->
 	<div class="selectedDiv selected_1" style="">
 		<!--交易记录 END-->
-		<form action="#" method="post" id="myform">
+		<form action="#" method="post" id="myform" class="selected1">
 			<div class="messageDidsplayDiv">
 				<div class="leftMessage">会员帐号:</div>
 				<input type="text" placeholder="${kuser.zhanghao }" class="rightMessage" readonly="">
@@ -69,26 +69,16 @@
 				<div class="leftMessage">身份证号:</div>
 				<input type="text" placeholder="${kuser.shenfenid }" name="identity_card" id="identity_card" class="rightMessage">
 			</div>
-			<div class="etermineButton" id="infobutton">
+			<div class="etermineButton infobutton" id="infobutton">
 				确认
 			</div>
-			<div class="messageDidsplayDiv"></div>
-			<div class="messageDidsplayDiv"></div>
-			<div class="messageDidsplayDiv"></div>
-			<div class="messageDidsplayDiv"></div>
-			<div class="messageDidsplayDiv"></div>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="leftMessage" style="color:red">${sessionScope.ok }</div>
 		</form>
 		
 	</div>
 	<!--交21-->
 	<div class="selectedDiv selected_2" style="display: none;">
 		<!--交易记录 END-->
-		<form action="#" method="post" id="myformT">
+		<form action="#" method="post" id="myformT" class="selected2">
 			<div class="messageDidsplayDiv">
 				<div class="leftMessage">开户姓名:</div>
 				<input type="text" placeholder="${kuser.zhenshiname }" id="realname" name="${kuser.zhenshiname }" class="rightMessage">
@@ -125,22 +115,49 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="leftMessage" style="color:red">${sessionScope.yhok }</div>
+			<div class="leftMessage yinhang" style="color:red"></div>
 		</form>
 	</div>
 
 
 	<script>
+		
+		function myalert1(str) {
+		  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+		  $('.selected1').append(div)
+		  $('.layui').html(str);
+		  $('.layui').show();
+		  setTimeout(function() {
+		    $('.layui').hide();
+		    $('.layui').remove();
+		  }, 2000)
+		}
+		
+		function myalert2(str) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.selected2').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 2000)
+			}
 	
-		$("#infobutton").click(function(){
+	
+		$(".infobutton").click(function(){
 			var phone = $("#phone").val();
 			var identity_card = $("#identity_card").val();
 			$.ajax({
         	    url:"${APP_PATH }/updatePhCa",
         	    type: "GET",
         	    data:"phone="+phone+"&card="+identity_card,
-        	    success:function(res){
-        	    	
+        	    success:function(result){
+        	    	var code = result.code;
+        	    	if (code == 100) {
+        	    		myalert1(result.extent.ok);
+        	    		window.location.href="${APP_PATH }/toUserShou";
+					}
         	    }
         	})
 		})
@@ -181,8 +198,12 @@
         	    url:"${APP_PATH }/updateyh",
         	    type: "POST",
         	    data: "realname="+realname+"&bankname="+bank_name+"&bankcard="+bank_card+"&kaihuaddress="+kaihu_address+"&alipay="+alipay,
-        	    success: function (res) {
-        	        
+        	    success: function (result) {
+        	    	var code = result.code;
+        	    	if (code == 100) {
+        	    		myalert2(result.extent.yhok);
+        	    		window.location.href="${APP_PATH }/toUserShou";
+					}
         	    }
         	})
 		})

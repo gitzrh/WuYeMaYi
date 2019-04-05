@@ -115,53 +115,113 @@ public class ZijinmingxiExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuIsNull() {
+            addCriterion("jinbishu is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuIsNotNull() {
+            addCriterion("jinbishu is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuEqualTo(Long value) {
+            addCriterion("jinbishu =", value, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuNotEqualTo(Long value) {
+            addCriterion("jinbishu <>", value, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuGreaterThan(Long value) {
+            addCriterion("jinbishu >", value, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuGreaterThanOrEqualTo(Long value) {
+            addCriterion("jinbishu >=", value, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuLessThan(Long value) {
+            addCriterion("jinbishu <", value, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuLessThanOrEqualTo(Long value) {
+            addCriterion("jinbishu <=", value, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuIn(List<Long> values) {
+            addCriterion("jinbishu in", values, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuNotIn(List<Long> values) {
+            addCriterion("jinbishu not in", values, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuBetween(Long value1, Long value2) {
+            addCriterion("jinbishu between", value1, value2, "jinbishu");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbishuNotBetween(Long value1, Long value2) {
+            addCriterion("jinbishu not between", value1, value2, "jinbishu");
             return (Criteria) this;
         }
 
@@ -245,52 +305,62 @@ public class ZijinmingxiExample {
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingEqualTo(Integer value) {
+        public Criteria andJinbileixingEqualTo(String value) {
             addCriterion("jinbileixing =", value, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingNotEqualTo(Integer value) {
+        public Criteria andJinbileixingNotEqualTo(String value) {
             addCriterion("jinbileixing <>", value, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingGreaterThan(Integer value) {
+        public Criteria andJinbileixingGreaterThan(String value) {
             addCriterion("jinbileixing >", value, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingGreaterThanOrEqualTo(Integer value) {
+        public Criteria andJinbileixingGreaterThanOrEqualTo(String value) {
             addCriterion("jinbileixing >=", value, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingLessThan(Integer value) {
+        public Criteria andJinbileixingLessThan(String value) {
             addCriterion("jinbileixing <", value, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingLessThanOrEqualTo(Integer value) {
+        public Criteria andJinbileixingLessThanOrEqualTo(String value) {
             addCriterion("jinbileixing <=", value, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingIn(List<Integer> values) {
+        public Criteria andJinbileixingLike(String value) {
+            addCriterion("jinbileixing like", value, "jinbileixing");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbileixingNotLike(String value) {
+            addCriterion("jinbileixing not like", value, "jinbileixing");
+            return (Criteria) this;
+        }
+
+        public Criteria andJinbileixingIn(List<String> values) {
             addCriterion("jinbileixing in", values, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingNotIn(List<Integer> values) {
+        public Criteria andJinbileixingNotIn(List<String> values) {
             addCriterion("jinbileixing not in", values, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingBetween(Integer value1, Integer value2) {
+        public Criteria andJinbileixingBetween(String value1, String value2) {
             addCriterion("jinbileixing between", value1, value2, "jinbileixing");
             return (Criteria) this;
         }
 
-        public Criteria andJinbileixingNotBetween(Integer value1, Integer value2) {
+        public Criteria andJinbileixingNotBetween(String value1, String value2) {
             addCriterion("jinbileixing not between", value1, value2, "jinbileixing");
             return (Criteria) this;
         }
@@ -305,52 +375,62 @@ public class ZijinmingxiExample {
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixEqualTo(Integer value) {
+        public Criteria andBiandonleixEqualTo(String value) {
             addCriterion("biandonleix =", value, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixNotEqualTo(Integer value) {
+        public Criteria andBiandonleixNotEqualTo(String value) {
             addCriterion("biandonleix <>", value, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixGreaterThan(Integer value) {
+        public Criteria andBiandonleixGreaterThan(String value) {
             addCriterion("biandonleix >", value, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixGreaterThanOrEqualTo(Integer value) {
+        public Criteria andBiandonleixGreaterThanOrEqualTo(String value) {
             addCriterion("biandonleix >=", value, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixLessThan(Integer value) {
+        public Criteria andBiandonleixLessThan(String value) {
             addCriterion("biandonleix <", value, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixLessThanOrEqualTo(Integer value) {
+        public Criteria andBiandonleixLessThanOrEqualTo(String value) {
             addCriterion("biandonleix <=", value, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixIn(List<Integer> values) {
+        public Criteria andBiandonleixLike(String value) {
+            addCriterion("biandonleix like", value, "biandonleix");
+            return (Criteria) this;
+        }
+
+        public Criteria andBiandonleixNotLike(String value) {
+            addCriterion("biandonleix not like", value, "biandonleix");
+            return (Criteria) this;
+        }
+
+        public Criteria andBiandonleixIn(List<String> values) {
             addCriterion("biandonleix in", values, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixNotIn(List<Integer> values) {
+        public Criteria andBiandonleixNotIn(List<String> values) {
             addCriterion("biandonleix not in", values, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixBetween(Integer value1, Integer value2) {
+        public Criteria andBiandonleixBetween(String value1, String value2) {
             addCriterion("biandonleix between", value1, value2, "biandonleix");
             return (Criteria) this;
         }
 
-        public Criteria andBiandonleixNotBetween(Integer value1, Integer value2) {
+        public Criteria andBiandonleixNotBetween(String value1, String value2) {
             addCriterion("biandonleix not between", value1, value2, "biandonleix");
             return (Criteria) this;
         }
