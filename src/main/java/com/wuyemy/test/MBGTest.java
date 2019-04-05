@@ -17,7 +17,6 @@ public class MBGTest {
  
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
-		//╪стьеДжцнд╪Ч
 		File configFile = new File("mbg.xml"); 
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);

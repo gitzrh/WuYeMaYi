@@ -100,7 +100,16 @@
 							<th><button   class="btn btn-primary record_get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								编辑
-								</button></th>
+								</button>
+								<button   class="btn btn-primary record_get_model_btn btn-sm">
+								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								删除
+								</button>
+								<button   class="btn btn-primary record_get_model_btn btn-sm">
+								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								删除
+								</button>
+							</th>
 						</tr>
 					</c:forEach>
 				</table>

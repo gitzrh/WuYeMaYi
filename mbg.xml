@@ -40,22 +40,7 @@
     </javaClientGenerator>
 	
 	<!-- table指定表生成策略 -->
-    <table tableName="biandong" domainObjectName="Biandong"></table>
-    <table tableName="canshu" domainObjectName="Canshu"></table>
-    <table tableName="jifen" domainObjectName="Jifen"></table>
-    <table tableName="jinbilx" domainObjectName="Jinbilx"></table>
-    <table tableName="kuser" domainObjectName="Kuser"></table>
-    <table tableName="lunbotu" domainObjectName="Lunbotu"></table>
-    <table tableName="manage" domainObjectName="Manage"></table>
-    <table tableName="sdjilu" domainObjectName="Sdjilu"></table>
-    <table tableName="tixian" domainObjectName="Tixian"></table>
-    <table tableName="xiaozu" domainObjectName="Xiaozu"></table>
-    <table tableName="yyzx" domainObjectName="Yyzx"></table>
-    <table tableName="yyzxlvcanshu" domainObjectName="Yyzxlvcanshu"></table>
-    <table tableName="yyzxsq" domainObjectName="Yyzxsq"></table>
-    <table tableName="zhuangtai" domainObjectName="Zhuangtai"></table>
     <table tableName="zijinmingxi" domainObjectName="Zijinmingxi"></table>
-    <table tableName="zixunguanli" domainObjectName="Zixunguanli"></table>
     
   </context>
 </generatorConfiguration>

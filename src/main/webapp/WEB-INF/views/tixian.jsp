@@ -81,25 +81,25 @@
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">真实户名:</div>
-			<input type="text" value="${zkuser.zhenshiname }" readonly="readonly" id="realname2" class="rightMessage">
+			<input type="text" value="${zkuser.zhenshiname }" readonly="readonly" name="realname2" class="rightMessage">
 
 		</div>
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">银行名称:</div>
-			<input type="text" value="${zkuser.yinhangname }" readonly="readonly" id="bank_name2" class="rightMessage">
+			<input type="text" value="${zkuser.yinhangname }" readonly="readonly" name="bank_name2" class="rightMessage">
 
 		</div>
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">开户地址:</div>
-			<input type="text" value="${zkuser.kaihudizhi }" readonly="readonly" id="bank_address2" class="rightMessage">
+			<input type="text" value="${zkuser.kaihudizhi }" readonly="readonly" name="bank_address2" class="rightMessage">
 
 		</div>
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">银行卡号:</div>
-			<input type="text" value="${zkuser.yinhangkajao }" readonly="readonly" id="bank_card2" class="rightMessage">
+			<input type="text" value="${zkuser.yinhangkajao }" readonly="readonly" name="bank_card2" class="rightMessage">
 
 		</div>
 		<!---->
@@ -122,25 +122,25 @@
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">真实户名:</div>
-			<input type="text" value="${zkuser.zhenshiname }" readonly="readonly" id="realname3" class="rightMessage">
+			<input type="text" value="${zkuser.zhenshiname }" readonly="readonly" name="realname" class="rightMessage">
 
 		</div>
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">银行名称:</div>
-			<input type="text" value="${zkuser.yinhangname }" readonly="readonly" id="bank_name3" class="rightMessage">
+			<input type="text" value="${zkuser.yinhangname }" readonly="readonly" name="bank_name" class="rightMessage">
 
 		</div>
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">开户地址:</div>
-			<input type="text" value="${zkuser.kaihudizhi }" readonly="readonly" id="bank_address3" class="rightMessage">
+			<input type="text" value="${zkuser.kaihudizhi }" readonly="readonly" name="bank_address" class="rightMessage">
 
 		</div>
 		<!---->
 		<div class="messageDidsplayDiv">
 			<div class="leftMessage">银行卡号:</div>
-			<input type="text" value="${zkuser.yinhangkajao }" readonly="readonly" id="bank_card3" class="rightMessage">
+			<input type="text" value="${zkuser.yinhangkajao }" readonly="readonly" name="bank_card" class="rightMessage">
 
 		</div>
 		<!---->
@@ -151,7 +151,7 @@
 		</div>
 
 		<!--确认按钮-->
-		<div class="etermineButton fxbtn" id="fxbtn">
+		<div class="etermineButton" id="fxbtn">
 			确认
 		</div>
 
@@ -190,17 +190,6 @@
 			    $('.layui').remove();
 			  }, 2000)
 			}
-		
-		function myalert3(str) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.selected_3').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 2000)
-			}
 	
 		
 		$(".gcbtn").click(function(){
@@ -217,7 +206,6 @@
         	    	var code = result.code;
         	    	if (code == 100) {
         	    		myalert1(result.extent.gcjb);
-        	    		window.location.href="${APP_PATH }/toUserShou";
 					}
         	    	if(code == 200){
 						myalert1(result.extent.gcjb);
@@ -240,11 +228,10 @@
         	    success:function(result){
         	    	var code = result.code;
         	    	if (code == 100) {
-        	    		myalert2(result.extent.cjjb);
-        	    		window.location.href="${APP_PATH }/toUserShou";
+        	    		myalert2(result.extent.gcjb);
 					}
         	    	if(code == 200){
-						myalert2(result.extent.cjjb);
+						myalert2(result.extent.gcjb);
 					}
         	    }
         	});
@@ -253,29 +240,20 @@
 		
 		$(".fxbtn").click(function(){
 			var fxjf = $("#fx_jf").val();
-			var realname3 = $("#realname3").val();
-			var bankname3 = $("#bank_name3").val();
-			var bankaddress3 = $("#bank_address3").val();
-			var bankcard3 = $("#bank_card3").val();
 			$.ajax({
-        	    url:"${APP_PATH }/txfxjf",
+        	    url:"/index.php?s=/Home/Ucenter/zijin_tixian.html",
         	    type: "POST",
-        	    data: "fxjf="+fxjf+"&realname3="+realname3+"&bankname3="+bankname3+"&bankaddress3="+bankaddress3+"&bankcard3="+bankcard3,
+        	    data: {fx_jf:fx_jf},
         	    success: function (result) {
-        	    	var code = result.code;
-        	    	if (code == 100) {
-        	    		myalert3(result.extent.fxjf);
-        	    		window.location.href="${APP_PATH }/toUserShou";
-					}
-        	    	if(code == 200){
-						myalert3(result.extent.fxjf);
-					}
+        	        
         	    }
         	})
 		})
 		
 		$('.backButton').click(function(){
-        	window.location.href="${APP_PATH }/toUserShou";
+        	window.location.href="/index.php?s=/Home/Shop/index.html";
+        	// window.location.href="Title.htm";
+        	// window.history.back();
     	})
 	})
 	</script>

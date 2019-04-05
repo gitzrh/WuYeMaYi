@@ -15,16 +15,19 @@ import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.XiaozuExample;
+import com.wuyemy.bean.Zijinmingxi;
 import com.wuyemy.controller.Msg;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.XiaozuMapper;
+import com.wuyemy.dao.ZijinmingxiMapper;
 import com.wuyemy.until.DateToString;
 
 @Service
 public class KuserService {
 
+	
 	@Autowired
 	private KuserMapper kuserMapper;
 	private DateToString dateToStr;
@@ -37,6 +40,8 @@ public class KuserService {
 	
 	@Autowired
 	private CanshuMapper canshuMapper;
+	@Autowired
+	private ZijinmingxiMapper zijinmingxiMapper;
 	
 	public void insertKuser(String zhanghao, String khname, String tzhanghao,String zhucetime, String yyzxid, String kpassword, int zhuangtaiid) {
 		Kuser kuser = new Kuser(zhanghao, khname, tzhanghao, yyzxid,kpassword, zhucetime, zhuangtaiid);
@@ -546,7 +551,9 @@ public class KuserService {
 		Jifen jife = new Jifen();
 		jife.setChjf(chuju);
 		jifenMapper.updateByExampleSelective(jife, example);
+		
 		kuserService.chujuzengjiacishu(zhanghao);
+		kuserService.addChujuJinbiWitnZjmxTal(zhanghao);
 	
 	}
 	//根据账号增加推荐人的分享和购车金币
@@ -572,6 +579,8 @@ public class KuserService {
 		 jifen.setFxjf(fxjf);
 		 jifen.setGcjf(gcjb);
 		 jifenMapper.updateByExampleSelective(jifen, example);
+		 kuserService.addFxJinbiWitnZjmxTal(tzhanghao);
+		 kuserService.addGCJinbiWitnZjmxTal(tzhanghao);
 		}
 	//根据账号获取分享金币数
 	public BigDecimal getfxjb(String zhanghao){
@@ -649,51 +658,7 @@ public class KuserService {
 		 xiaozuMapper.updateByExampleSelective(xiaozu, exampl);
 		
 		 
-		/* 
-		 //获取推荐人账号
-		List<Kuser> tzhanghaos = kuserService.getTzhanghao(zhanghao);
-		 String tzhanghao = tzhanghaos.get(0).getTzhanghao();
-		 
 		
-		 
-		 //获取推荐人的在途余额和购车分享余额
-		 JifenExample example = new JifenExample();
-		 JifenExample.Criteria criteria = example.createCriteria();
-		 criteria.andZhanghaoEqualTo(tzhanghao);
-		 
-		 List<Jifen> list = jifenMapper.selectByExample(example);
-		 
-		 BigDecimal ztjf = list.get(0).getZtjf();
-		 
-		 BigDecimal gcjf = list.get(0).getGcjf();
-		 
-		 BigDecimal fxjf = list.get(0).getFxjf();
-		 
-		 
-		
-		 
-		 
-		 if(chujucs<2){
-			 BigDecimal fxjb = null;
-			 fxjb = fxjf.add(fXcanshu);
-			 BigDecimal ztjb = null;
-			 ztjb = ztjf.add(zTcanshu);
-			 Jifen jife = new Jifen();
-			 jife.setZtjf(ztjb);
-			 
-			 jife.setFxjf(fxjb);
-			 jifenMapper.updateByExample(jife, example);
-		 }else{
-			 BigDecimal fxjb = null;
-			 fxjb = fxjf.add(fXcanshu);
-			 BigDecimal gcjb = null;
-			 gcjb = ztjf.add(gCcanshu);
-			 Jifen jife = new Jifen();
-			 jife.setFxjf(fxjb);
-			 jife.setGcjf(gcjb);
-			 jifenMapper.updateByExample(jife, example);
-		 }
-		 */
 		}
 	//出局的人推荐人不为空就给推荐人增加积分	  	 
 	public void addTUserZtOrGcAndFx(String zhanghao){
@@ -741,6 +706,8 @@ public class KuserService {
 			 jife.setFxjf(fxjb);
 			 jife.setZtjf(ztjb);
 			 jifenMapper.updateByExampleSelective(jife, example);
+			 kuserService.addFxJinbiWitnZjmxTal(tzhanghao);
+			 kuserService.addZaituJinbiWitnZjmxTal(tzhanghao);
 		 }else{
 			 BigDecimal fxjb = null;
 			 fxjb = fxjf.add(fXcanshu);
@@ -750,7 +717,39 @@ public class KuserService {
 			 jife.setFxjf(fxjb);
 			 jife.setGcjf(gcjb);
 			 jifenMapper.updateByExampleSelective(jife, example);
+			 kuserService.addFxJinbiWitnZjmxTal(tzhanghao);
+			 kuserService.addGCJinbiWitnZjmxTal(tzhanghao);
 		 }
+	}
+	
+	
+	//插入资金明细表增加出局金币记录
+	public void addChujuJinbiWitnZjmxTal(String zhanghao){
+		
+		
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getCHjucanshu(), "出局金币","增加", dateToStr.DateToStr(new Date()));
+		 zijinmingxiMapper.insertSelective(zijinmingxi);
+	}
+	//插入资金明细表增加分享金币记录
+	public void addFxJinbiWitnZjmxTal(String zhanghao){
+		
+		
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getFXcanshu(), "分享金币","增加", dateToStr.DateToStr(new Date()));
+		zijinmingxiMapper.insertSelective(zijinmingxi);
+	}
+	//插入资金明细表增加购车金币记录
+	public void addGCJinbiWitnZjmxTal(String zhanghao){
+		
+		
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getGCcanshu(), "购车金币","增加", dateToStr.DateToStr(new Date()));
+		zijinmingxiMapper.insertSelective(zijinmingxi);
+	}
+	//插入资金明细表增加在途金币记录
+	public void addZaituJinbiWitnZjmxTal(String zhanghao){
+		
+		
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getZTcanshu(), "在途金币","增加", dateToStr.DateToStr(new Date()));
+		zijinmingxiMapper.insertSelective(zijinmingxi);
 	}
 	 
 		 

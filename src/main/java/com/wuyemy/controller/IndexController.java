@@ -51,7 +51,6 @@ public class IndexController {
 		return null;
 	}
 	
-	
 	/**
 	 * 获取个人信息
 	 * @param request
@@ -79,24 +78,24 @@ public class IndexController {
 	 * 修改基本信息
 	 * @return
 	 */
-	@RequestMapping("/updatePhCa")
-	@ResponseBody
-	public Msg OneUser(@RequestParam("phone")String phone,@RequestParam("card")String card,
+	@RequestMapping("updatePhCa")
+	public String OneUser(@RequestParam("phone")String phone,@RequestParam("card")String card,
 			              HttpServletRequest request, HttpServletResponse response){
 		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
+		session.removeAttribute("yhok");
 		
 		if (zhanghao != null) {
 			if (!phone.equals("") && !card.equals("")) {
 				indexService.oneUser(zhanghao,phone,card);
-				return Msg.success().add("ok", "保存完成!");
+				session.setAttribute("ok", "保存完成!");
 			}else if (!phone.equals("") && card.equals("")) {
 				indexService.TwoUser(zhanghao,phone);
-				return Msg.success().add("ok", "保存完成!");
+				session.setAttribute("ok", "保存完成!");
 			}else if (phone.equals("") && !card.equals("")) {
 				indexService.ThreeUser(zhanghao,card);
-				return Msg.success().add("ok", "保存完成!");
+				session.setAttribute("ok", "保存完成!");
 			}
 			
 		}
@@ -109,19 +108,16 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping("/updateyh")
-	@ResponseBody
-	public Msg Updateyh(@RequestParam("realname")String realname,@RequestParam("bankname")String bankname,
+	public String Updateyh(@RequestParam("realname")String realname,@RequestParam("bankname")String bankname,
 			@RequestParam("bankcard")String bankcard,@RequestParam("kaihuaddress")String kaihuaddress,
 			@RequestParam("alipay")String alipay, HttpServletRequest request, HttpServletResponse response){
 		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
+		session.removeAttribute("ok");
 		
-		if (zhanghao != null) {
-			indexService.OneYh(realname, bankname, bankcard, kaihuaddress, alipay, zhanghao);
-			return Msg.success().add("yhok", "保存完成!");
-		}
-		
+		indexService.OneYh(realname, bankname, bankcard, kaihuaddress, alipay, zhanghao);
+		session.setAttribute("yhok", "保存完成!");
 		
 		return null;
 	}
@@ -210,17 +206,6 @@ public class IndexController {
 		return "tixian";
 	}
 	
-	/**
-	 * 提现购车金币
-	 * @param gcjf
-	 * @param realname1
-	 * @param bankaddress1
-	 * @param bankname1
-	 * @param bankcard1
-	 * @param request
-	 * @param response
-	 * @return
-	 */
 	@RequestMapping("/txgcjb")
 	@ResponseBody
 	public Msg Txgcjb(@RequestParam("gcjf")BigDecimal gcjf,@RequestParam("realname1")String realname1,
@@ -231,18 +216,16 @@ public class IndexController {
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
 		BigDecimal value = new BigDecimal("6000");
-		BigDecimal values = new BigDecimal("0");
 		
-			if (zhanhao != null && gcjf.compareTo(values) == 1) {
+			if (zhanhao != null) {
 				//拥有总金币
 				BigDecimal decimal = indexService.hqgcjb(zhanhao);
 				//拥有金币大于6000,可提现
 				if (decimal.compareTo(value) == 1) {
 					//可提现金币
 					BigDecimal shiji = decimal.subtract(value);
-					//提现金币 小于等于 可提现金币
+					//提现金币 大于等于 可提现金币
 					if (gcjf.compareTo(shiji) < 1) {
-						//剩余金币
 						BigDecimal sygcjb = decimal.subtract(gcjf);
 						indexService.sygc(zhanhao,sygcjb,gcjf,realname1,bankaddress1,bankname1,bankcard1);
 						return Msg.success().add("gcjb", "提现成功!");
@@ -250,11 +233,12 @@ public class IndexController {
 						return Msg.fail().add("gcjb", "余额不足!");
 					}
 				}else {
+					System.out.println("hhghhh");
 					return Msg.fail().add("gcjb", "余额不足!");
 				}
 				
 			}
-		return null;
+		return Msg.success();
 	}
 	
 	/**
@@ -266,54 +250,8 @@ public class IndexController {
 	public Msg Txcjjf(@RequestParam("cjjf")BigDecimal cjjf,@RequestParam("realname2")String realname2,
 			@RequestParam("bankaddress2")String bankaddress2,@RequestParam("bankname2")String bankname2,
 			@RequestParam("bankcard2")String bankcard2,HttpServletRequest request, HttpServletResponse response){
-		
-		HttpSession session = request.getSession();
-		String zhanhao = (String) session.getAttribute("zhanghao");
-		
-		BigDecimal value = new BigDecimal("0");
-		
-		if (zhanhao != null && cjjf.compareTo(value) == 1) {
-			//拥有总金币
-			BigDecimal decimal = indexService.hqcjjb(zhanhao);
-			//提现金币 小于等于 可提现金币
-			if (cjjf.compareTo(decimal) < 1 ) {
-				//剩余金币
-				BigDecimal sycjjb = decimal.subtract(cjjf);
-				indexService.sycj(zhanhao,sycjjb,cjjf,realname2,bankaddress2,bankname2,bankcard2);
-				return Msg.success().add("cjjb", "提现成功!");
-			}else {
-				return Msg.success().add("cjjb", "余额不足!");
-			}
-		}
 		return null;
-	}
-	
-	@RequestMapping("/txfxjf")
-	@ResponseBody
-	public Msg Txfxjf(@RequestParam("fxjf")BigDecimal fxjf,@RequestParam("realname3")String realname3,
-			@RequestParam("bankaddress3")String bankaddress3,@RequestParam("bankname3")String bankname3,
-			@RequestParam("bankcard3")String bankcard3,HttpServletRequest request, HttpServletResponse response){
 		
-		HttpSession session = request.getSession();
-		String zhanhao = (String) session.getAttribute("zhanghao");
-		
-		BigDecimal value = new BigDecimal("0");
-		
-		if (zhanhao != null && fxjf.compareTo(value) == 1) {
-			//拥有总金币
-			BigDecimal decimal = indexService.hqfxjb(zhanhao);
-			//提现金币 小于等于 可提现金币
-			if (fxjf.compareTo(decimal) < 1 ) {
-				//剩余金币
-				BigDecimal syfxjb = decimal.subtract(fxjf);
-				indexService.syfx(zhanhao,syfxjb,fxjf,realname3,bankaddress3,bankname3,bankcard3);
-				return Msg.success().add("fxjf", "提现成功!");
-			}else {
-				return Msg.success().add("fxjf", "余额不足!");
-			}
-		}
-		
-		return null;
 	}
 
 }
