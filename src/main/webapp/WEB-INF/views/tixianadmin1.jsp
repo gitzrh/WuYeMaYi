@@ -51,10 +51,34 @@
 		})
 			
 		
+		$(".jujue").click(function(){
+			var ddhh = $(this).parent().parent().find("th:eq(0)").text();
+			var textt = $(this).parent().parent().find("th:eq(7)").text();
 			
-		
+			var zhanghao = $(this).parent().parent().find("th:eq(1)").text();
+			var jibileixing = $(this).parent().parent().find("th:eq(2)").text();
+			var jibbishu = $(this).parent().parent().find("th:eq(3)").text();
 			
+			if(confirm("确定拒绝【"+ textt +"】的提现吗？")){
+				
+				
+				
+				$.ajax({
+					url:"${APP_PATH }/jujuetixian",
+					type:"PUT",
+					data:"id="+ddhh+"&zhanghao="+zhanghao+"&jibileixing="+jibileixing+"&jibbishu="+jibbishu,
+					success:function(result){
+						
+							
+							location.reload();
+						
+
+					}
+					
+					})
+				}
 		
+		})
 	})
 </script>		
 </head>

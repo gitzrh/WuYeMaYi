@@ -1,5 +1,6 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
@@ -60,8 +61,13 @@ public class KuserController {
 	
 	@RequestMapping("/getallwei")
 	public String getAllweijihuo(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
-			HttpServletRequest request, HttpServletResponse response,Model model){
+			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
 		
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
 		// 在查询之前只需要调用，传入页码，以及每页的大小
@@ -89,8 +95,14 @@ public class KuserController {
 	}
 	@RequestMapping("/yijihuouser")
 	public String getyijihuoUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
-			HttpServletRequest request, HttpServletResponse response,Model model){
-		// 这不是一个分页查询；
+			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
+		
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}// 这不是一个分页查询；
 				// 引入PageHelper分页插件
 				// 在查询之前只需要调用，传入页码，以及每页的大小
 				PageHelper.startPage(pn, 50);
@@ -100,7 +112,6 @@ public class KuserController {
 				model.addAttribute("pageInfo", page);
 		return "adminUserYijiho";
 	}
-	
 	@RequestMapping("/loginUser")
 	@ResponseBody
 	public Msg loginUser(@RequestParam("zhanghao")String zhanghao,

@@ -14,8 +14,25 @@ public class Yyzxlvcanshu {
     private Integer zhituinum;
 
     private BigDecimal zhekoubili;
+    
+    
 
-    public Integer getId() {
+    public Yyzxlvcanshu( String lvname, Integer fulijin, Integer zongnum, Integer zhituinum,
+			BigDecimal zhekoubili) {
+		super();
+	
+		this.lvname = lvname;
+		this.fulijin = fulijin;
+		this.zongnum = zongnum;
+		this.zhituinum = zhituinum;
+		this.zhekoubili = zhekoubili;
+	}
+
+	public Yyzxlvcanshu() {
+		super();
+	}
+
+	public Integer getId() {
         return id;
     }
 

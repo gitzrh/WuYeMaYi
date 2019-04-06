@@ -1,12 +1,12 @@
 package com.wuyemy.service;
 
 import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
@@ -16,7 +16,6 @@ import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.XiaozuExample;
 import com.wuyemy.bean.Zijinmingxi;
-import com.wuyemy.controller.Msg;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
@@ -751,7 +750,74 @@ public class KuserService {
 		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getZTcanshu(), "在途金币","增加", dateToStr.DateToStr(new Date()));
 		zijinmingxiMapper.insertSelective(zijinmingxi);
 	}
-	 
+
+	//修改用户名字和密码
+	public void updateUserXinxi(String zhanghao, String name, String password) {
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andZhanghaoEqualTo(zhanghao);
+		Kuser kuser = new Kuser();
+		kuser.setKhname(name);
+		if(password.equals("")){
+			
+			kuserMapper.updateByExampleSelective(kuser, example);
+		}else{
+			kuser.setKpassword(password);
+			kuserMapper.updateByExampleSelective(kuser, example);
+		
+		}
+	}
+
+	//推荐人删除后推荐人为空
+	public void updateTzhanghao(String zhanghao) {
+	
+		kuserService.deleteUserXiaozuTab(zhanghao);
+		kuserService.deleteUser(zhanghao);
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andTzhanghaoEqualTo(zhanghao);
+		Kuser kuser = new Kuser();
+		kuser.setTzhanghao("");
+		
+		kuserMapper.updateByExampleSelective(kuser, example);
+	}
+	 //从kuser表删除改用户
+	public void deleteUser(String zhanghao){
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andZhanghaoEqualTo(zhanghao);
+		
+		kuserMapper.deleteByExample(example);
+	}
+	//从xiaozu表删除此账号
+	public void deleteUserXiaozuTab(String zhanghao){
+		
+		
+		
+		//获取账号的zid
+		List<Xiaozu> xiaozid = kuserService.getxiaozid(zhanghao);
+		int zid = xiaozid.get(0).getZid();
+		int zidd = xiaozid.get(0).getZidd();
+		
+		int countxzid = (int) kuserService.getcountxzid(zid);
+		
+		
+		XiaozuExample example = new XiaozuExample();
+		XiaozuExample.Criteria criteria = example.createCriteria();
+		criteria.andZhanghaoEqualTo(zhanghao); 
+		
+		if(countxzid==zidd){
+			xiaozuMapper.deleteByExample(example);
+			
+		}else{
+			
+			
+		}
+		
+		
+			
+	}
+	
 		 
 }
 	

@@ -45,9 +45,11 @@
 	
 	<script>
 	
-		$(".backButton").click(function(){
+		
+		function test(){
+			alert("a");
             window.location.href="${APP_PATH }/toUserShou";
-        })
+        }
         
         window.onload = function(){
 			setTimeout(test,3000);//1000毫秒=1秒后执行test方法

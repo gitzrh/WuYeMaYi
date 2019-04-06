@@ -1,5 +1,7 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +28,14 @@ public class TixianController {
 
 	@RequestMapping("/tixianShenhe")
 	public String toTixianShenhe(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
-			HttpServletRequest request, HttpServletResponse response,Model model){
+			HttpServletRequest request, HttpServletResponse response,Model model) throws IOException{
+		
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}
 				// 这不是一个分页查询；
 				// 引入PageHelper分页插件
 				// 在查询之前只需要调用，传入页码，以及每页的大小
@@ -44,7 +53,15 @@ public class TixianController {
 	}
 	@RequestMapping("/tixianTongg")
 	public String toTixianTongg(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
-			HttpServletRequest request, HttpServletResponse response,Model model){
+			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
+		
+		
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
 		// 在查询之前只需要调用，传入页码，以及每页的大小
@@ -62,7 +79,13 @@ public class TixianController {
 	}
 	@RequestMapping("/tixianJuju")
 	public String toTixianJujue(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
-			HttpServletRequest request, HttpServletResponse response,Model model){
+			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
 		// 在查询之前只需要调用，传入页码，以及每页的大小
@@ -84,6 +107,17 @@ public class TixianController {
 	public Msg tongguotixian(@RequestParam("id")Integer id){
 		
 		tixianService.tongguo(id);
+		return Msg.success();
+	}
+	
+	@RequestMapping("/jujuetixian")
+	@ResponseBody
+	public Msg jujuetixian(@RequestParam("id")Integer id,@RequestParam("zhanghao")String zhanghao,
+			@RequestParam("jibileixing")String jibileixing,@RequestParam("jibbishu")BigDecimal jibbishu){
+		
+		tixianService.jujue(id,zhanghao,jibileixing,jibbishu);
+		
+		
 		return Msg.success();
 	}
 	
