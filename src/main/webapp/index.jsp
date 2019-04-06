@@ -121,8 +121,9 @@
 			</div>
         </div>
         <div class="etermineButton" id="dl" style="background:rgba(0,0,0,0);margin-top: 150px;">
-            登录
+            	登录
         </div>
+        <p class="foget-psw"><a href="${APP_PATH }/forgetpassword" style="color:#fff">忘记密码?</a></p>
        
       <div style='margin-top:240px;text-align:center;'><span style='color:#fff;display:inline-block;font-size: 4rem;'> 五叶蚂蚁好车</span></div>
     </form>

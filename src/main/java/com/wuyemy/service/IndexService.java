@@ -2,6 +2,7 @@ package com.wuyemy.service;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -319,6 +320,33 @@ public class IndexService {
 		createCriteria.andZhanghaoEqualTo(zhanhao);
 		List<Tixian> selectByExample = tixianMapper.selectByExample(example);
 		return selectByExample;
+	}
+
+	public List<Kuser> tjlb(String zhanhao) {
+		
+		List<Kuser> kusers = new ArrayList<>();
+		
+		
+		List<Kuser> selectByExampleALL = kuserMapper.selectByExampleALL(zhanhao);
+		
+		for (Kuser kuser : selectByExampleALL) {
+			Kuser kus = new Kuser();
+			
+			KuserExample example = new KuserExample();
+			com.wuyemy.bean.KuserExample.Criteria createCriteria = example.createCriteria();
+			createCriteria.andTzhanghaoEqualTo(kuser.getZhanghao());
+			long countByExample = kuserMapper.countByExample(example);
+			
+			kus.setJihuotime(kuser.getJihuotime());
+			kus.setZhanghao(kuser.getZhanghao());
+			kus.setZhenshiname(kuser.getZhenshiname());
+			kus.setZhenshishoujihao(kuser.getZhenshishoujihao());
+			kus.setTjrs(countByExample);
+			kus.setSuozailunshu(kuser.getSuozailunshu());
+			kusers.add(kus);
+		}
+		
+		return kusers;
 	}
 
 

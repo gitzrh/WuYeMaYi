@@ -1,7 +1,6 @@
 package com.wuyemy.bean;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class Tixian {
     private Integer id;

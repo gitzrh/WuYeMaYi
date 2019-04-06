@@ -50,7 +50,7 @@
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
-				<div class="details_MessageRow" style="">
+				<div class="details_MessageRow">
 					<!--一条信息-->
 					<span class="details_LeftMessage">
 						分享金币 用途：

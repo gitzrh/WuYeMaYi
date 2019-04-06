@@ -2,6 +2,7 @@ package com.wuyemy.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -382,7 +383,30 @@ public class IndexController {
 			return "txjl";
 		}
 		return null;
+	}
+	
+	/**
+	 * 查询被推荐人
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/tjlb")
+	public String Tjlb(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
 		
+		HttpSession session = request.getSession();
+		String zhanhao = (String) session.getAttribute("zhanghao");
+		
+		if (zhanhao != null) {
+			//详细信息
+			List<Kuser> kusers = indexService.tjlb(zhanhao);
+			Collections.reverse(kusers);
+			map.put("tjkusers", kusers);
+			return "tjlb";
+		}
+		
+		return null;
 	}
 	
 }

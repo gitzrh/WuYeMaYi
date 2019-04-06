@@ -154,7 +154,7 @@
         <div style="clear:both"></div>
         <!--跳转页面-->
         <div style="background-color: #FFFFFF;height: 7.2rem; margin-top: 0.3rem; padding-bottom: 2.2rem;">
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/tuijian_list.html">
+            <a class="tzym" href="${APP_PATH }/tjlb">
                 <i class="iconfont icon-liebiao" style="color:red"></i><br>
                 <span>推荐列表</span>
             </a>
@@ -162,7 +162,7 @@
                 <i class="iconfont icon-tuandui" style="color:#cc0bc6"></i><br>
                 <span>结构管理</span>
             </a>
-            <a class="tzym" href="${APP_PATH }/index.jsp">
+            <a class="tzym" href="${APP_PATH }/register.jsp">
                 <i class="iconfont icon-huiyuan-" style="color:green"></i><br>
                 <span>注册会员</span>
             </a>
@@ -198,7 +198,7 @@
                 <i class="iconfont icon-gerenxinxi" style="color:red"></i><br>
                 <span>个人信息</span>
             </a>
-            <a class="tzym" href="" style="border-right: none;">
+            <a class="tzym" href="${APP_PATH }/updatepassword" style="border-right: none;">
                 <i class="iconfont icon-xiugai" style="color:blue"></i><br>
                 <span >修改密码</span>
             </a>

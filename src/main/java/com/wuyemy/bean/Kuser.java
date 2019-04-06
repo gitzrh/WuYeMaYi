@@ -40,9 +40,32 @@ public class Kuser {
     private Zhuangtai zhuangtai;
     
     private Jifen jifen;
-
     
-    public Jifen getJifen() {
+    private Integer suozailunshu;
+
+    private long tjrs;
+    
+    public long getTjrs() {
+		return tjrs;
+	}
+
+
+	public void setTjrs(long tjrs) {
+		this.tjrs = tjrs;
+	}
+
+
+	public Integer getSuozailunshu() {
+		return suozailunshu;
+	}
+
+
+	public void setSuozailunshu(Integer suozailunshu) {
+		this.suozailunshu = suozailunshu;
+	}
+
+
+	public Jifen getJifen() {
 		return jifen;
 	}
 

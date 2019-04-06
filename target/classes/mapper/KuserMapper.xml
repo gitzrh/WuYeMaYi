@@ -20,6 +20,28 @@
     <result column="zhifubaoid" jdbcType="VARCHAR" property="zhifubaoid" />
     <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
   </resultMap>
+  
+  <resultMap id="BaseResultMapALL" type="com.wuyemy.bean.Kuser">
+    <id column="kid" jdbcType="INTEGER" property="kid" />
+    <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
+    <result column="khname" jdbcType="VARCHAR" property="khname" />
+    <result column="tzhanghao" jdbcType="VARCHAR" property="tzhanghao" />
+    <result column="zhucetime" jdbcType="TIMESTAMP" property="zhucetime" />
+    <result column="jihuotime" jdbcType="TIMESTAMP" property="jihuotime" />
+    <result column="dongjietime" jdbcType="TIMESTAMP" property="dongjietime" />
+    <result column="yyzxid" jdbcType="VARCHAR" property="yyzxid" />
+    <result column="shenfenid" jdbcType="VARCHAR" property="shenfenid" />
+    <result column="kpassword" jdbcType="VARCHAR" property="kpassword" />
+    <result column="zhenshishoujihao" jdbcType="VARCHAR" property="zhenshishoujihao" />
+    <result column="zhenshiname" jdbcType="VARCHAR" property="zhenshiname" />
+    <result column="yinhangname" jdbcType="VARCHAR" property="yinhangname" />
+    <result column="yinhangkajao" jdbcType="VARCHAR" property="yinhangkajao" />
+    <result column="kaihudizhi" jdbcType="VARCHAR" property="kaihudizhi" />
+    <result column="zhifubaoid" jdbcType="VARCHAR" property="zhifubaoid" />
+    <result column="zhuangtaiid" jdbcType="INTEGER" property="zhuangtaiid" />
+    <result column="suozailunshu" jdbcType="INTEGER" property="suozailunshu" />
+  </resultMap>
+  
   <resultMap id="WithZhuangTaiBaseResultMap" type="com.wuyemy.bean.Kuser">
     <id column="kid" jdbcType="INTEGER" property="kid" />
     <result column="zhanghao" jdbcType="VARCHAR" property="zhanghao" />
@@ -118,6 +140,22 @@
     k.kpassword, k.zhenshishoujihao, k.zhenshiname, k.yinhangname,k.yinhangkajao, k.kaihudizhi, 
     k.zhifubaoid, k.zhuangtaiid,z.zhuangtai,j.fxjf,j.gcjf,j.ztjf,j.chjf
   </sql>
+  
+  <sql id="Base_Column_ListALL">
+    k.kid, k.zhanghao, k.khname, k.tzhanghao, k.zhucetime, k.jihuotime, k.dongjietime, k.yyzxid, k.shenfenid, 
+    k.kpassword, k.zhenshishoujihao, k.zhenshiname, k.yinhangname,k.yinhangkajao, k.kaihudizhi, 
+    k.zhifubaoid, k.zhuangtaiid,x.suozailunshu 
+  </sql>
+  
+  <!-- //查询信息加所在轮数List<Kuser> selectByExampleALL(String zhanghao); -->
+  <select id="selectByExampleALL" parameterType="com.wuyemy.bean.KuserExample" resultMap="BaseResultMapALL">
+  		select 
+    	<include refid="Base_Column_ListALL" />
+    	from kuser k,xiaozu x
+    	where k.tzhanghao = #{zhanghao } and k.zhuangtaiid=2 and k.zhanghao = x.zhanghao
+    	order by k.zhucetime desc;
+  </select>
+  
   <!--  List<Kuser> selectByExampleWithZhuangTai(KuserExample example); -->
   <select id="selectByExampleWithZhuangTai" parameterType="com.wuyemy.bean.KuserExample" 
   resultMap="WithZhuangTaiBaseResultMap">
