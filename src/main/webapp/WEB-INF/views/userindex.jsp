@@ -170,31 +170,6 @@
                 <i class="iconfont icon-hehuoren" style="color:blue"></i><br>
                 <span style='margin-left: 0.15rem'>运营中心</span>
             </a>            
-<<<<<<< HEAD
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_list/type/1.html">
-                <i class="iconfont icon-zijinzouxiang" style="color:blue"></i><br>
-                <span>资金明细</span>
-            </a>
-          <!--  <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_zhuanhuan.html">
-                <img style='margin-left: 0.35rem;width: 1.5rem;' src="/Public/Home/img/zjzh.png" alt="" /><br>
-                <span>资金转换</span>
-            </a>-->
-            <a class="tzym" href="${APP_PATH }/zijintixian">
-                <i class="iconfont icon-tixian" style="color:#e6b605"></i><br>
-                <span>资金提现</span>
-            </a>
-            <a class="tzym" href="${APP_PATH }/tuiguang">
-                <i class="iconfont icon-erweima" style="color:red"></i><br>
-                <span>推广二维码</span>
-            </a>
-            <!--<a class="tzym" href="/index.php?s=/Home/Ucenter/jiaoyi_record.html" style="border-right: none;">
-                <i class="iconfont icon-jiaoyisuo" style="color:green"></i><br>
-                <span>交易管理</span>
-            </a>-->
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/zaitu.html" style="border-right: none;">
-                <i class="iconfont icon-jilu1" style="color:green"></i><br>
-                <span>在途记录</span>
-=======
             <a class="tzym" href="${APP_PATH }/zijinmingxi">
                 <i class="iconfont icon-zijinzouxiang" style="color:blue"></i><br>
                 <span>资金明细</span>
@@ -218,7 +193,6 @@
             <a class="tzym" href="${APP_PATH }/tixianjilu" style="border-right: none;">
                 <i class="iconfont icon-jilu1" style="color:green"></i><br>
                 <span>提现记录</span>
->>>>>>> branch 'master' of https://github.com/gitzrh/WuYeMaYi.git
             </a>
             <a class="tzym" href="${APP_PATH }/user">
                 <i class="iconfont icon-gerenxinxi" style="color:red"></i><br>

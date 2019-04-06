@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户中心-待激活</title>
+<title>扣除积分记录</title>
+
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
@@ -21,50 +22,14 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-	$(function(){
-		$(".qidong").click(function(){
-			
-			var ddhh = $(this).parent().parent().find("th:eq(2)").text();
-			var textt = $(this).parent().parent().find("th:eq(1)").text();
-			var tzhanghao = $(this).parent().parent().find("th:eq(3)").text();
-			
-			if(confirm("确定要激活【"+ textt +"】吗？")){
-				
-				
-			
-			$.ajax({
-				url:"${APP_PATH }/qidong",
-				type:"PUT",
-				data:"zhanghao="+ddhh+"&tzhanghao="+tzhanghao,
-				success:function(result){
-					
-						
-						location.reload();
-					
-
-				}
-				
-				})
-			}
-		})
-			
-			
-		
-			
-		
-	})
-</script>		
 </head>
 <body>
-
 <!-- 搭建显示页面 -->
 	<div class="container-fluid">
 		<!-- 标题 -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3>提现列表--已拒绝</h3>
+				<h2>扣除记录</h2>
 			</div>
 		</div>
 		<br>
@@ -73,38 +38,24 @@
 			<div class="col-md10">
 				<table class="table table-hover">
 					<tr>
-						<th>TID</th>
-						<th>提现账号</th>
+						<th>ID</th>
+						<th>账号</th>
 						<th>金币类型</th>
-						<th>提现金币</th>
-						<th>手续费</th>
-						<th>实际到账</th>
-						<th>申请时间</th>
-						<th>拒绝时间</th>
-						<th>持卡人姓名</th>
-						<th>银行名字</th>
-						<th>开户地址</th>
-						<th>银行卡号</th>
-						<th>状态</th>
+						<th>金币数量</th>
+						<th>扣除时间</th>
+						
 						
 						
 					</tr>
 					<c:forEach items="${pageInfo.list }" var="reca">
 						<tr>
+						
 							<th>${reca.id }</th>
 							<th>${reca.zhanghao }</th>
 							<th>${reca.jinbileixing }</th>
-							<th>${reca.txjibi }</th>
-							<th>${reca.shouxufei }</th>
-							<th>${reca.shijidaozhang }</th>
-							<th>${reca.tixiantime }</th>
-							<th>${reca.jujuetime }</th>
+							<th>${reca.jinbishu }</th>
+							<th>${reca.time }</th>
 							
-							<th>${reca.username }</th>
-							<th>${reca.yinhangname }</th>
-							<th>${reca.kaihudizhi }</th>
-							<th>${reca.yinhangkaid }</th>
-							<th>${reca.zhuangtai.zhuangtai }</th>
 							
 						</tr>
 					</c:forEach>
@@ -121,9 +72,9 @@
 			<div class="col-md-6">
 				<nav aria-label="Page navigation">
 				<ul class="pagination  kehuhu">
-					<li><a href="${APP_PATH }/tixianJuju?pn=1">首页</a></li>
+					<li><a href="${APP_PATH }/tokoujil?pn=1">首页</a></li>
 					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${APP_PATH }/tixianJuju?pn=${pageInfo.pageNum-1}"
+						<li><a href="${APP_PATH }/tokoujil?pn=${pageInfo.pageNum-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
@@ -134,16 +85,16 @@
 							<li class="active"><a href="#">${page_Num }</a></li>
 						</c:if>
 						<c:if test="${page_Num != pageInfo.pageNum }">
-							<li><a href="${APP_PATH }/tixianJuju?pn=${page_Num }">${page_Num }</a></li>
+							<li><a href="${APP_PATH }/tokoujil?pn=${page_Num }">${page_Num }</a></li>
 						</c:if>
 
 					</c:forEach>
 					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${APP_PATH }/tixianJuju?pn=${pageInfo.pageNum+1 }"
+						<li><a href="${APP_PATH }/tokoujil?pn=${pageInfo.pageNum+1 }"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:if>
-					<li><a href="${APP_PATH }/tixianJuju?pn=${pageInfo.pages}">末页</a></li>
+					<li><a href="${APP_PATH }/tokoujil?pn=${pageInfo.pages}">末页</a></li>
 				</ul>
 				
 				</nav>
@@ -152,6 +103,9 @@
 		
 	</div>
 	
+
+
+
 
 
 </body>

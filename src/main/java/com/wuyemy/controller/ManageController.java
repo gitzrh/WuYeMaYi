@@ -63,7 +63,12 @@ public class ManageController {
 	}
 	
 	@RequestMapping("/tushouye")
-	public String toshouye(){
+	public String toshouye(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		if(session==null){
+			
+			response.sendRedirect("wyehoutaiadmin.jsp");
+		}
 		return "welcome";
 		
 	}

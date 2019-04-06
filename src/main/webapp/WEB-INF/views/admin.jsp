@@ -128,22 +128,7 @@
                     </li >
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe726;</i>
-                    <cite>购车记录</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="admin-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>购车记录</cite>
-                        </a>
-                    </li >
-                    
-                </ul>
-            </li>
+            
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6ce;</i>
@@ -151,14 +136,9 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
+                    
                     <li>
-                        <a _href="echarts1.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>手动增加</cite>
-                        </a>
-                    </li >     
-                    <li>
-                        <a _href="echarts1.html">
+                        <a _href="${APP_PATH }/tokoujil">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>手动扣除</cite>
                         </a>
