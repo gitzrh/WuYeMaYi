@@ -92,4 +92,24 @@ public class Yyzx {
     public void setDizhi(String dizhi) {
         this.dizhi = dizhi == null ? null : dizhi.trim();
     }
+
+	public Yyzx(Integer yyzxid, String yyzhanghao, String yyname, String yybianhao, Integer yyzxlvid,
+			BigDecimal yyjinbi, Integer yynum, Integer ztnum, String dizhi) {
+		super();
+		this.yyzxid = yyzxid;
+		this.yyzhanghao = yyzhanghao;
+		this.yyname = yyname;
+		this.yybianhao = yybianhao;
+		this.yyzxlvid = yyzxlvid;
+		this.yyjinbi = yyjinbi;
+		this.yynum = yynum;
+		this.ztnum = ztnum;
+		this.dizhi = dizhi;
+	}
+
+	public Yyzx() {
+		super();
+	}
+    
+    
 }

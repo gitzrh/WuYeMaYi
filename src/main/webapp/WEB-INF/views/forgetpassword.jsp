@@ -78,7 +78,7 @@
 				myalert6("手机号不能为空!");
 				return;
 			}
-			alert(phone)
+
 			$.ajax({
 				url:"${APP_PATH}/huoquphone",
 				type:"GET",
@@ -100,11 +100,10 @@
                 	            window.clearInterval(InterValObj);//停止计时器
                 	            $(".huoquphone").removeAttr("disabled");//启用按钮
                 	            $(".huoquphone").css("background-color", "");
-                	            $(".verification_phone").attr("name",""); //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
                 	            $(".huoquphone").attr("value","获取");
                 	        }else {
-                	        	curCount--;
                 	        	$(".huoquphone").attr("value",curCount+"s");
+                	        	curCount--;
                 	        	setTimeout(SetRemainTime, 1000);
                 	        }
                 	    }
@@ -231,17 +230,10 @@
 				return;
 			}
 			
-			var verification3 = $.trim($(".verification_phone").val());
-			var name = $.trim($(".verification_phone").attr("name"));
-			if (verification3 != name) {
-				myalert5("手机验证码错误!");
-				return;
-			}
-			
 			$.ajax({
 				url:"${APP_PATH}/forgetpass",
 				type:"GET",
-				data: "verification1="+verification1+"&password="+password+"&phone="+phone,
+				data: "verification1="+verification1+"&password="+password+"&phone="+phone+"&verification2="+verification2,
 				success:function(result){
 					var code = result.code;
         	    	if (code == 100) {
@@ -249,13 +241,31 @@
         	    		window.location.href="${APP_PATH }/index.jsp";
 					}
         	    	if (code == 200) {
-        	    		if (result.extent.fphone == null && result.extent.attribute != null) {
+        	    		if (result.extent.fphone == null && result.extent.attribute != null && result.extent.verification == null) {
+        	    			//验证码
         	    			myalert4(result.extent.attribute);
-						}else if (result.extent.fphone != null && result.extent.attribute == null) {
+						}else if (result.extent.fphone != null && result.extent.attribute == null && result.extent.verification == null) {
+							//手机号
 							myalert6(result.extent.fphone);
-						}else if (result.extent.fphone != null && result.extent.attribute != null) {
+						}else if (result.extent.fphone == null && result.extent.attribute == null && result.extent.verification != null) {
+							//手机验证码
+							myalert5(result.extent.verification);
+						}else if (result.extent.fphone != null && result.extent.attribute != null && result.extent.verification == null) {
+							//验证码  手机号
+							myalert6(result.extent.fphone);
 							myalert4(result.extent.attribute);
+						}else if (result.extent.fphone != null && result.extent.attribute == null && result.extent.verification != null) {
+							//手机号  手机验证码
 							myalert6(result.extent.fphone);
+							myalert5(result.extent.verification);
+						}else if (result.extent.fphone == null && result.extent.attribute != null && result.extent.verification != null) {
+							//验证码  手机验证码
+							myalert4(result.extent.attribute);
+							myalert5(result.extent.verification);
+						}else if (result.extent.fphone != null && result.extent.attribute != null && result.extent.verification != null) {
+							myalert6(result.extent.fphone);
+							myalert4(result.extent.attribute);
+							myalert5(result.extent.verification);
 						}
 					}
 				}

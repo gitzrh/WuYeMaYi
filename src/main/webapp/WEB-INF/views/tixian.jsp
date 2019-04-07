@@ -160,7 +160,6 @@
 	
 	<!-- 购车积分提现 -->
 	<form action="#" class="selectedDiv selected_4" style="display: none;" method="post" id="myformD">
-
 		<span style="color:#FFF;text-align:center;display:block;font-size:3.5rem;margin-top:5%;">敬请期待!</span>
 	</form>
 

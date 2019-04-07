@@ -13,9 +13,9 @@ public class Yyzxsq {
 
     private String dizhi;
 
-    private Date sqtime;
+    private String sqtime;
 
-    private Date tgtime;
+    private String tgtime;
 
     private String beizhu;
 
@@ -61,19 +61,19 @@ public class Yyzxsq {
         this.dizhi = dizhi == null ? null : dizhi.trim();
     }
 
-    public Date getSqtime() {
+    public String getSqtime() {
         return sqtime;
     }
 
-    public void setSqtime(Date sqtime) {
+    public void setSqtime(String sqtime) {
         this.sqtime = sqtime;
     }
 
-    public Date getTgtime() {
+    public String getTgtime() {
         return tgtime;
     }
 
-    public void setTgtime(Date tgtime) {
+    public void setTgtime(String tgtime) {
         this.tgtime = tgtime;
     }
 
@@ -92,4 +92,27 @@ public class Yyzxsq {
     public void setZhaungtaiid(Integer zhaungtaiid) {
         this.zhaungtaiid = zhaungtaiid;
     }
+
+	public Yyzxsq(Integer id, String sqzhanghao, String sqname, String sqdianhua, String dizhi, String sqtime,
+			String tgtime, String beizhu, Integer zhaungtaiid) {
+		super();
+		this.id = id;
+		this.sqzhanghao = sqzhanghao;
+		this.sqname = sqname;
+		this.sqdianhua = sqdianhua;
+		this.dizhi = dizhi;
+		this.sqtime = sqtime;
+		this.tgtime = tgtime;
+		this.beizhu = beizhu;
+		this.zhaungtaiid = zhaungtaiid;
+	}
+
+	public Yyzxsq() {
+		super();
+	}
+
+	
+	
+    
+    
 }
