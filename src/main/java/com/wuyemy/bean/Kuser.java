@@ -45,7 +45,20 @@ public class Kuser {
 
     private long tjrs;
     
-    public long getTjrs() {
+    private String tname;
+    
+    
+    public String getTname() {
+		return tname;
+	}
+
+
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
+
+
+	public long getTjrs() {
 		return tjrs;
 	}
 

@@ -30,7 +30,9 @@ public class IndexController {
 	private IndexService indexService;
 	
 	/**
-	 * 获取各种金币数并转向页面
+	 * 获取各种金币数
+	 * 运营中心状态
+	 * 转向页面
 	 * @param request
 	 * @param response
 	 * @param map
@@ -42,11 +44,20 @@ public class IndexController {
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
-			
-			session.removeAttribute("ok");
-			session.removeAttribute("yhok");
-			
 			Jifen jifen = indexService.jinbi(zhanghao);
+			long l = indexService.yyzt(zhanghao);
+			int i = indexService.yyztid(zhanghao);
+			
+			if (l == 1 && i == 1) {
+				map.put("yyztid", 1);
+			}else if (l == 1 && i == 2) {
+				map.put("yyztid", 2);
+			}else if (l == 1 && i == 3) {
+				map.put("yyztid", 3);
+			}else if (l == 0) {
+				map.put("yyztid", 0);
+			}
+			
 			map.put("jifen", jifen);
 			return "userindex";
 		}

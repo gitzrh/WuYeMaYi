@@ -1,112 +1,115 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <meta name="description" content="">
-		<%
-			pageContext.setAttribute("APP_PATH", request.getContextPath());
-		%>
-        <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/slick.css" />
-        <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/base.css" />
-        <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/all.css" />
-        <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/swiper.min.css" />
-        <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/iconfont/iconfont.css" />
-      <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/font/iconfont.css" />
-        <title>首页</title>
-        <style>
-            *{
-				margin: 0;
-				padding: 0;
-			}
-			.jf{
-				width: 46%;
-				height: 1.5rem; 
-				margin: 2%; 
-				float:left;
-				padding-bottom: 0.2rem;
-				position: relative; 
-				background-color: #FFFFFF;
-			}
-			.jftp{
-				width: 1rem; 
-				margin-top: 0.35rem;
-				margin-left: 0.3rem;
-			}
-			.jfwz1{
-				font-size: 0.5rem;
-				margin-left: 0.5rem;
-				color: #2e2e40;
-				/*font-family: "黑体";*/
-			}
-			.jfwz2{
-				font-size: 0.4rem;
-				position: absolute;
-				top: 1rem;
-				left: 2.2rem;
-				color：#656565;
-			}
-			.xgzxy{
-				margin-left: 0.3rem;
-				/*background-color: red;*/
-				width: 77%;
-				height:1.5rem;
-				display:inline-block;
-				border-left: 0.05rem solid #CCCCCC;
-				margin-top: 0.25rem;
-				overflow: hidden;
-			}
-			.xgzxy span{
-				font-size: 0.32rem;
-				margin-left: 0.3rem;
-				color: #A9A9A9;
-			}
-			.xgzxy img{
-				width: 1.2rem;
-				margin-left: 0.1rem;
-			}
-			.tzym{
-				width: 22.5%;
-				margin-left: 2%;
-				margin-top:0.5rem;
-				float:left;
-				border-right: 0.02rem solid #CCCCCC;
-				text-align: center;
-			}
-			.tzym span{
-				font-size: 0.4rem; 
-				/*margin-left: 0.35rem;*/
-				color:#2e2e40;
-			}
-			a{
-				display: inline-block;
-			}
-		.iconfont{
-			font-size: 30px;
-			color: #2e2e40;
-		}
-        </style>
-    </head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<%
+pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/slick.css" />
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/base.css" />
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/all.css" />
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/swiper.min.css" />
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/iconfont/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/font/iconfont.css" />
+<title>首页</title>
+<style>
+			          *{
+					margin: 0;
+					padding: 0;
+				}
+				.jf{
+					width: 46%;
+					height: 1.5rem; 
+					margin: 2%; 
+					float:left;
+					padding-bottom: 0.2rem;
+					position: relative; 
+					background-color: #FFFFFF;
+				}
+				.jftp{
+					width: 1rem; 
+					margin-top: 0.35rem;
+					margin-left: 0.3rem;
+				}
+				.jfwz1{
+					font-size: 0.5rem;
+					margin-left: 0.5rem;
+					color: #2e2e40;
+					/*font-family: "黑体";*/
+				}
+				.jfwz2{
+					font-size: 0.4rem;
+					position: absolute;
+					top: 1rem;
+					left: 2.2rem;
+					color：#656565;
+				}
+				.xgzxy{
+					margin-left: 0.3rem;
+					/*background-color: red;*/
+					width: 77%;
+					height:1.5rem;
+					display:inline-block;
+					border-left: 0.05rem solid #CCCCCC;
+					margin-top: 0.25rem;
+					overflow: hidden;
+				}
+				.xgzxy span{
+					font-size: 0.32rem;
+					margin-left: 0.3rem;
+					color: #A9A9A9;
+				}
+				.xgzxy img{
+					width: 1.2rem;
+					margin-left: 0.1rem;
+				}
+				.tzym{
+					width: 22.5%;
+					margin-left: 2%;
+					margin-top:0.5rem;
+					float:left;
+					border-right: 0.02rem solid #CCCCCC;
+					text-align: center;
+				}
+				.tzym span{
+					font-size: 0.4rem; 
+					/*margin-left: 0.35rem;*/
+					color:#2e2e40;
+				}
+				a{
+					display: inline-block;
+				}
+				.iconfont{
+					font-size: 30px;
+					color: #2e2e40;
+				}
+</style>
+</head>
     <body style="background-color: #f2f2f2;">
         <!--头部图片-->
         <!--<img style="width: 100%" src="img/tou.jpg"/>-->
         <!--轮播图-->
         <div class="banner swiper-container">
             <div class="swiper-wrapper">
-                
                 <div class="swiper-slide">
-                        <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31599c9ac.png" alt="" style="height:203px;"></a>
-                    </div><div class="swiper-slide">
-                        <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e317c1e746.png" alt="" style="height:203px;"></a>
-                    </div><div class="swiper-slide">
-                        <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31944f305.png" alt="" style="height:203px;"></a>
-                    </div><div class="swiper-slide">
-                        <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31a7aa6e2.png" alt="" style="height:203px;"></a>
-                    </div>                
+                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31599c9ac.png" alt="" style="height:203px;"></a>
+                </div>
+                <div class="swiper-slide">
+                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e317c1e746.png" alt="" style="height:203px;"></a>
+                </div>
+                <div class="swiper-slide">
+                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31944f305.png" alt="" style="height:203px;"></a>
+                </div>
+                <div class="swiper-slide">
+                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31a7aa6e2.png" alt="" style="height:203px;"></a>
+                </div>                
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -148,7 +151,8 @@
             <img src="${APP_PATH }/Home/img/xgzx.png" style="margin-top: -1rem;width: 1.3rem;margin-left:0.35rem;display:inline-block;" />
             <div class="xgzxy" >
                 <div>
-                    <p style="margin-left: 0.2rem;"><a href="/index.php?s=/Home/Shop/news_detail/id/1.html" style="margin-top: -3px"><img src="${APP_PATH }/Home/img/zx.png"/><span>五叶蚂蚁好车，让寒冷的冬天变得激情澎湃，豪车梦离你还会远么？</span></a></p>                </div>
+                    <p style="margin-left: 0.2rem;"><a href="/index.php?s=/Home/Shop/news_detail/id/1.html" style="margin-top: -3px"><img src="${APP_PATH }/Home/img/zx.png"/><span>五叶蚂蚁好车，让寒冷的冬天变得激情澎湃，豪车梦离你还会远么？</span></a></p>
+                </div>
             </div>
         </div>
         <div style="clear:both"></div>
@@ -158,7 +162,8 @@
                 <i class="iconfont icon-liebiao" style="color:red"></i><br>
                 <span>推荐列表</span>
             </a>
-            <a class="tzym" href="/index.php?s=/Home/Ucenter/jiegou.html">
+            
+            <a class="tzym" href="${APP_PATH }/jggl">
                 <i class="iconfont icon-tuandui" style="color:#cc0bc6"></i><br>
                 <span>结构管理</span>
             </a>
@@ -166,18 +171,36 @@
                 <i class="iconfont icon-huiyuan-" style="color:green"></i><br>
                 <span>注册会员</span>
             </a>
-         	 <a class="tzym" href="/index.php?s=/Home/Ucenter/yunyingzhongxin.html" style="border-right: none;">
-                <i class="iconfont icon-hehuoren" style="color:blue"></i><br>
-                <span style='margin-left: 0.15rem'>运营中心</span>
-            </a>            
+            
+            <c:if test="${yyztid == 0 }">
+				<a class="tzym" href="${APP_PATH }/hhrsq" style="border-right: none;">
+                	<i class="iconfont icon-hehuoren" style="color:blue"></i><br>
+                	<span style='margin-left: 0.15rem'>合伙人申请</span>
+            	</a> 
+			</c:if>
+			<c:if test="${yyztid == 1 }">
+				<a class="tzym" href="${APP_PATH }/yyzx" style="border-right: none;">
+                	<i class="iconfont icon-hehuoren" style="color:blue"></i><br>
+                	<span style='margin-left: 0.15rem'>运营中心</span>
+                </a> 
+			</c:if>
+			<c:if test="${yyztid == 2 }">
+				<a class="tzym" href="${APP_PATH }/hhds" style="border-right: none;">
+                	<i class="iconfont icon-hehuoren" style="color:blue"></i><br>
+                	<span style='margin-left: 0.15rem'>合伙人申请</span>
+                </a> 
+			</c:if>
+			<c:if test="${yyztid == 3 }">
+				<a class="tzym" href="${APP_PATH }/hhjj" style="border-right: none;">
+                	<i class="iconfont icon-hehuoren" style="color:blue"></i><br>
+                	<span style='margin-left: 0.15rem'>合伙人申请</span>
+                </a> 
+			</c:if>
+         	           
             <a class="tzym" href="${APP_PATH }/zijinmingxi">
                 <i class="iconfont icon-zijinzouxiang" style="color:blue"></i><br>
                 <span>资金明细</span>
             </a>
-          <!--  <a class="tzym" href="/index.php?s=/Home/Ucenter/zijin_zhuanhuan.html">
-                <img style='margin-left: 0.35rem;width: 1.5rem;' src="/Public/Home/img/zjzh.png" alt="" /><br>
-                <span>资金转换</span>
-            </a>-->
             <a class="tzym" href="${APP_PATH }/zijintixian">
                 <i class="iconfont icon-tixian" style="color:#e6b605"></i><br>
                 <span>资金提现</span>
@@ -186,10 +209,6 @@
                 <i class="iconfont icon-erweima" style="color:red"></i><br>
                 <span>推广二维码</span>
             </a>
-            <!--<a class="tzym" href="/index.php?s=/Home/Ucenter/jiaoyi_record.html" style="border-right: none;">
-                <i class="iconfont icon-jiaoyisuo" style="color:green"></i><br>
-                <span>交易管理</span>
-            </a>-->
             <a class="tzym" href="${APP_PATH }/tixianjilu" style="border-right: none;">
                 <i class="iconfont icon-jilu1" style="color:green"></i><br>
                 <span>提现记录</span>

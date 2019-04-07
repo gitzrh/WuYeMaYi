@@ -94,11 +94,10 @@
                 	            window.clearInterval(InterValObj);//停止计时器
                 	            $(".huoquphone").removeAttr("disabled");//启用按钮
                 	            $(".huoquphone").css("background-color", "");
-                	            $(".verification_phone").attr("name",""); //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
                 	            $(".huoquphone").attr("value","获取");
                 	        }else {
-                	        	curCount--;
                 	        	$(".huoquphone").attr("value",curCount+"s");
+                	        	curCount--;
                 	        	setTimeout(SetRemainTime, 1000);
                 	        }
                 	    }
@@ -207,17 +206,11 @@
 				return;
 			}
 			
-			var verification3 = $.trim($(".verification_phone").val());
-			var name = $.trim($(".verification_phone").attr("name"));
-			if (verification3 != name) {
-				myalert5("手机验证码错误!");
-				return;
-			}
 			
 			$.ajax({
 				url:"${APP_PATH}/updatepass",
 				type:"GET",
-				data: "verification1="+verification1+"&password="+password,
+				data: "verification1="+verification1+"&password="+password+"&verification2="+verification2,
 				success:function(result){
 					var code = result.code;
         	    	if (code == 100) {
@@ -225,7 +218,14 @@
         	    		window.location.href="${APP_PATH }/toUserShou";
 					}
         	    	if (code == 200) {
-        	    		myalert4("验证码错误!");
+        	    		if (result.extent.verification == null && result.extent.attribute != null) {
+        	    			myalert4(result.extent.attribute);
+						}else if (result.extent.verification != null && result.extent.attribute == null) {
+							myalert5(result.extent.verification);
+						}else if (result.extent.verification != null && result.extent.attribute != null) {
+							myalert4(result.extent.verification);
+							myalert5(result.extent.attribute);
+						}
 					}
 				}
 			})

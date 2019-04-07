@@ -17,12 +17,15 @@ import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Tixian;
 import com.wuyemy.bean.TixianExample;
+import com.wuyemy.bean.Yyzxsq;
+import com.wuyemy.bean.YyzxsqExample;
 import com.wuyemy.bean.Zijinmingxi;
 import com.wuyemy.bean.ZijinmingxiExample;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.TixianMapper;
+import com.wuyemy.dao.YyzxsqMapper;
 import com.wuyemy.dao.ZijinmingxiMapper;
 import com.wuyemy.until.DateToString;
 
@@ -39,6 +42,8 @@ public class IndexService {
 	private TixianMapper tixianMapper;
 	@Autowired
 	private ZijinmingxiMapper zijinmingxiMapper;
+	@Autowired
+	private YyzxsqMapper yyzxsqMapper;
 	
 	private DateToString dateToStr;
 	/**
@@ -347,6 +352,28 @@ public class IndexService {
 		}
 		
 		return kusers;
+	}
+
+	public long yyzt(String zhanghao) {
+		YyzxsqExample example = new YyzxsqExample();
+		com.wuyemy.bean.YyzxsqExample.Criteria createCriteria = example.createCriteria();
+		createCriteria.andSqzhanghaoEqualTo(zhanghao);
+		long countByExample = yyzxsqMapper.countByExample(example);
+		return countByExample;
+	}
+
+	public int yyztid(String zhanghao) {
+		YyzxsqExample example = new YyzxsqExample();
+		com.wuyemy.bean.YyzxsqExample.Criteria createCriteria = example.createCriteria();
+		createCriteria.andSqzhanghaoEqualTo(zhanghao);
+		List<Yyzxsq> selectByExample = yyzxsqMapper.selectByExample(example);
+		
+		for (Yyzxsq yyzxsq : selectByExample) {
+			Integer zhaungtaiid = yyzxsq.getZhaungtaiid();
+			return zhaungtaiid;
+		}
+		
+		return 0;
 	}
 
 
