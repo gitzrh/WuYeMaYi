@@ -50,8 +50,30 @@
 			}
 		})
 			
+		//删除	
+		$(".chuanchu").click(function(){
+			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
+			var textt = $(this).parent().parent().find("th:eq(1)").text();
+			if(confirm("确定要删除【"+ textt +"】吗？")){
+				
+				$.ajax({
+					url:"${APP_PATH }/shanchuwei",
+					type:"POST",
+					data:"zhanghao="+zhanghao,
+					success:function(result){
+						
+							
+							location.reload();
+						
+
+					}
+					
+					})
+				
+				
+			}
 			
-		
+		})
 			
 		
 	})
@@ -91,10 +113,17 @@
 							<th>${reca.tzhanghao }</th>
 							<th>${reca.zhucetime }</th>
 							<th>${reca.zhuangtai.zhuangtai }</th>
-							<th><button  id="qidong" class="btn qidong btn-primary record_get_model_btn btn-sm">
+							<th>
+								<button  id="qidong" class="btn qidong btn-primary record_get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								启动
-								</button></th>
+								</button>
+								<button   class=" chuanchu btn btn-danger record_get_model_btn btn-sm">
+								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								删除
+								</button>
+								
+							</th>
 						</tr>
 					</c:forEach>
 				</table>

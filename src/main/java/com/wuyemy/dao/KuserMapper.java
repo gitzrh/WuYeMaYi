@@ -22,6 +22,8 @@ public interface KuserMapper {
     
     //带状态和积分的查询已激活
     List<Kuser> selectByExampleWithZhuangTaiAndJf(KuserExample example);
+    //带状态和积分的查询查找
+    Kuser selectByExampleAndJf(String zhanghao);
    
     //查询信息加所在轮数
     List<Kuser> selectByExampleALL(String zhanghao);

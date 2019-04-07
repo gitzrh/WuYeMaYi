@@ -94,7 +94,7 @@
 				var leix = $('#danxuanks input:radio:checked').val();
 				var zhanghao = $("#zhanghaos_input").val();
 				var num = $("#addnum_upd_input").val();
-				
+				alert(zhanghao);
 				$.ajax({
 					url:"${APP_PATH }/addjifen",
 					type:"PUT",
@@ -108,7 +108,7 @@
 			})
 			
 		})
-		
+		//更改用户信息
 		$(".updatexinxi").click(function(){
 			$("#zhanghaoss_input").hide();
 			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
@@ -137,8 +137,87 @@
 		 })
 		
 		})
-		
+		//查看该账号信息
+		$("#chakan1").click(function(){
+			var zhanghao = $.trim($("#chakan2").val());
 			
+			
+							$("#selectxixi").modal({
+								backdrop:"static"
+							});
+				
+			$.ajax({
+					url:"${APP_PATH }/chazhaoone",
+					type:"GET",
+					data:"zhanghao="+zhanghao,
+					success:function(result){
+						var code = result.code;
+						
+						if (code == 100) {
+							var kid =result.extent.pageInfo.kid;
+							var kname =result.extent.pageInfo.khname;
+							var zhanghao=result.extent.pageInfo.zhanghao;
+							var tzhanghao =result.extent.pageInfo.tzhanghao;
+							var fxjf =result.extent.pageInfo.jifen.fxjf;
+							var gcjf =result.extent.pageInfo.jifen.gcjf;
+							var ztjf =result.extent.pageInfo.jifen.ztjf;
+							var chjf =result.extent.pageInfo.jifen.chjf;
+							var jihuotime =result.extent.pageInfo.jihuotime;
+							var yyzxid =result.extent.pageInfo.yyzxid;
+							var zhuangtai =result.extent.pageInfo.zhuangtai.zhuangtai;
+							
+							
+							$("#a1").val(kid);
+							$("#a2").val(kname);
+							$("#a3").val(zhanghao);
+							$("#a4").val(tzhanghao);
+							$("#a5").val(fxjf);
+							$("#a6").val(gcjf);
+							$("#a7").val(ztjf);
+							$("#a8").val(chjf);
+							$("#a9").val(jihuotime);
+							$("#a10").val(yyzxid);
+							$("#a11").val(zhuangtai);
+							
+						/* 	var kids = $("<th></th>").append(kid);
+							var knames = $("<th></th>").append(kname);
+							var zhanghaos = $("<th></th>").append(zhanghao);
+							var tzhanghaos = $("<th></th>").append(tzhanghao);
+							var fxjfs = $("<th></th>").append(fxjf);
+							var gcjfs = $("<th></th>").append(gcjf);
+							var ztjfs = $("<th></th>").append(ztjf);
+							var chjfs = $("<th></th>").append(chjf);
+							var jihuotimes = $("<th></th>").append(jihuotime);
+							var yyzxids = $("<th></th>").append(yyzxid);
+							var zhuangtais = $("<th></th>").append(zhuangtai);
+							
+							
+							
+							$("<tr></tr>").addClass("tabllll")
+							  .append(kids)
+							  .append(knames)
+				              .append(zhanghaos)
+				              .append(tzhanghaos)
+				              .append(fxjfs)
+				              .append(gcjfs)
+				              .append(ztjfs)
+				              .append(chjfs)
+				              .append(jihuotimes)
+				              .append(yyzxids)
+				              .append(zhuangtais);
+						      
+								 */
+								
+							
+						}
+						
+						
+					}
+					
+				})
+				
+			
+		})	
 		
 	})
 </script>		
@@ -146,7 +225,106 @@
 <body>
 
 
-<!-- 编辑用户信息模态框 -->
+
+<!-- 查看 -->
+<div class="modal fade" id="selectxixi" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">查看用户信息</h4>
+      </div>
+      <div class="modal-body">
+       	<form class="form-horizontal">
+		 
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">UID</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a1" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">名字</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a2" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">账号</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a3" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">推荐人账号</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a4" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">分享积分</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a5" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">购车积分</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a6" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">在途积分</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a7" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">出局积分</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a8" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">激活时间</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a9" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">运营中心</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a10" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">状态</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a11" >
+		    </div>
+		  </div>	
+		 
+		 </form>
+       		   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 修改 -->
 <div class="modal fade" id="updatexixi" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -281,9 +459,9 @@
 		</div>
 		<div class="col-md-2 col-lg-6">
 		    <div class="input-group">
-		      <input type="text" class="form-control so_text" placeholder="请输入要查看的账号">
+		      <input type="text" id="chakan2"  class="form-control so_text" placeholder="请输入要查看的账号">
 		      <span class="input-group-btn">
-		        <button class="btn btn-default so_so" type="button">查看</button>
+		        <button class="btn btn-default"  id="chakan1" type="button">查看</button>
 		      </span>
 		    </div>
 		  </div>
@@ -309,19 +487,19 @@
 						
 					</tr>
 					<c:forEach items="${pageInfo.list }" var="reca">
-						<tr>
-							<th>${reca.kid }</th>
-							<th>${reca.khname }</th>
-							<th>${reca.zhanghao }</th>
-							<th>${reca.tzhanghao }</th>
-							<th>${reca.jifen.fxjf }</th>
-							<th>${reca.jifen.gcjf }</th>
-							<th>${reca.jifen.ztjf }</th>
-							<th>${reca.jifen.chjf }</th>
-							<th>${reca.jihuotime }</th>
-							<th>${reca.yyzxid }</th>
-							<th>${reca.zhuangtai.zhuangtai }</th>
-							<th><button   class="btn btn-primary  updatexinxi get_model_btn btn-sm">
+						<tr class="tabllll">
+							<th id="kid">${reca.kid }</th>
+							<th id="khname">${reca.khname }</th>
+							<th id="zhanghao">${reca.zhanghao }</th>
+							<th id="tzhanghao">${reca.tzhanghao }</th>
+							<th id="fxjf">${reca.jifen.fxjf }</th>
+							<th id="gcjf">${reca.jifen.gcjf }</th>
+							<th id="ztjf">${reca.jifen.ztjf }</th>
+							<th id="chjf">${reca.jifen.chjf }</th>
+							<th id="jihuotime">${reca.jihuotime }</th>
+							<th id="yyzxid">${reca.yyzxid }</th>
+							<th id="zhuangtai">${reca.zhuangtai.zhuangtai }</th>
+							<th id="caozuo"><button   class="btn btn-primary  updatexinxi get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								编辑
 								</button>
@@ -349,7 +527,7 @@
 		</div>
 
 		<!-- 显示分页信息 -->
-		<div class="row">
+		<div class="row ljljlj">
 			<!--分页文字信息  -->
 			<div class="col-md-6">当前 ${pageInfo.pageNum }页,总${pageInfo.pages }
 				页,总 ${pageInfo.total } 条记录</div>

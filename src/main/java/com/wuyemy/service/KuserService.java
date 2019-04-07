@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
@@ -16,6 +18,7 @@ import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.XiaozuExample;
 import com.wuyemy.bean.Zijinmingxi;
+import com.wuyemy.controller.Msg;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
@@ -789,7 +792,7 @@ public class KuserService {
 		
 		kuserMapper.deleteByExample(example);
 	}
-	//从xiaozu表删除此账号
+	//从xiaozu表删除此账号且后边的前进一位
 	public void deleteUserXiaozuTab(String zhanghao){
 		
 		
@@ -810,6 +813,69 @@ public class KuserService {
 			xiaozuMapper.deleteByExample(example);
 			
 		}else{
+			int i = countxzid-zidd;
+			if(i==1){
+				List<Xiaozu> zhanghaos1 = kuserService.getxzzhanghao(zid, zidd+1);
+				String zhanghao1 = zhanghaos1.get(0).getZhanghao();
+				xiaozuMapper.deleteByExample(example);
+				kuserService.update1zid(zid, zidd+1-1, zhanghao1);
+								
+			}else if(i==2){
+				List<Xiaozu> zhanghaos1 = kuserService.getxzzhanghao(zid, zidd+1);
+				String zhanghao1 = zhanghaos1.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos2 = kuserService.getxzzhanghao(zid, zidd+2);
+				String zhanghao2 = zhanghaos2.get(0).getZhanghao();
+				
+				xiaozuMapper.deleteByExample(example);
+				kuserService.update1zid(zid, zidd+1-1, zhanghao1);
+				kuserService.update1zid(zid, zidd+2-1, zhanghao2);
+				
+			}else if(i==3){
+				List<Xiaozu> zhanghaos1 = kuserService.getxzzhanghao(zid, zidd+1);
+				String zhanghao1 = zhanghaos1.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos2 = kuserService.getxzzhanghao(zid, zidd+2);
+				String zhanghao2 = zhanghaos2.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos3 = kuserService.getxzzhanghao(zid, zidd+3);
+				String zhanghao3 = zhanghaos3.get(0).getZhanghao();
+				xiaozuMapper.deleteByExample(example);
+				kuserService.update1zid(zid, zidd+1-1, zhanghao1);
+				kuserService.update1zid(zid, zidd+2-1, zhanghao2);
+				kuserService.update1zid(zid, zidd+3-1, zhanghao3);
+				
+			}else if(i==4){
+				List<Xiaozu> zhanghaos1 = kuserService.getxzzhanghao(zid, zidd+1);
+				String zhanghao1 = zhanghaos1.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos2 = kuserService.getxzzhanghao(zid, zidd+2);
+				String zhanghao2 = zhanghaos2.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos3 = kuserService.getxzzhanghao(zid, zidd+3);
+				String zhanghao3 = zhanghaos3.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos4 = kuserService.getxzzhanghao(zid, zidd+4);
+				String zhanghao4 = zhanghaos4.get(0).getZhanghao();
+				xiaozuMapper.deleteByExample(example);
+				kuserService.update1zid(zid, zidd+1-1, zhanghao1);
+				kuserService.update1zid(zid, zidd+2-1, zhanghao2);
+				kuserService.update1zid(zid, zidd+3-1, zhanghao3);
+				kuserService.update1zid(zid, zidd+4-1, zhanghao4);
+				
+			}else if(i==5){
+				List<Xiaozu> zhanghaos1 = kuserService.getxzzhanghao(zid, zidd+1);
+				String zhanghao1 = zhanghaos1.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos2 = kuserService.getxzzhanghao(zid, zidd+2);
+				String zhanghao2 = zhanghaos2.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos3 = kuserService.getxzzhanghao(zid, zidd+3);
+				String zhanghao3 = zhanghaos3.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos4 = kuserService.getxzzhanghao(zid, zidd+4);
+				String zhanghao4 = zhanghaos4.get(0).getZhanghao();
+				List<Xiaozu> zhanghaos5 = kuserService.getxzzhanghao(zid, zidd+5);
+				String zhanghao5 = zhanghaos5.get(0).getZhanghao();
+				xiaozuMapper.deleteByExample(example);
+				kuserService.update1zid(zid, zidd+1-1, zhanghao1);
+				kuserService.update1zid(zid, zidd+2-1, zhanghao2);
+				kuserService.update1zid(zid, zidd+3-1, zhanghao3);
+				kuserService.update1zid(zid, zidd+4-1, zhanghao4);
+				kuserService.update1zid(zid, zidd+5-1, zhanghao5);
+				
+			}
 			
 			
 		}
@@ -817,6 +883,17 @@ public class KuserService {
 		
 			
 	}
+
+
+	public Kuser getoneuser(String zhanghao) {
+		
+		return kuserMapper.selectByExampleAndJf(zhanghao);
+		
+	}
+
+
+	
+	
 	
 		 
 }

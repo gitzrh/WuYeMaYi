@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -160,6 +161,22 @@ public class KuserController {
 		}
 	}
 		     }}	
+	}
+	
+	@RequestMapping("/shanchuwei")
+	@ResponseBody
+	public Msg shanchuUser(@RequestParam("zhanghao")String zhanghao){
+		
+		kuserService.deleteUser(zhanghao); 
+		return Msg.success();
+	}
+	@RequestMapping("/chazhaoone")
+	@ResponseBody
+	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao){
+		
+		Kuser kuser = kuserService.getoneuser(zhanghao);
+		
+		return Msg.success().add("pageInfo",kuser );
 	}
 	
 }

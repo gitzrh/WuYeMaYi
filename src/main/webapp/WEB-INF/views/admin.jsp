@@ -168,7 +168,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="unicode.html">
+                        <a _href="${APP_PATH }/yysqyem">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>申请管理</cite>
                         </a>
