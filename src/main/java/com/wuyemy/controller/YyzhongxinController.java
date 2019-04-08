@@ -1,6 +1,5 @@
 package com.wuyemy.controller;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ import com.wuyemy.bean.JifenZonghe;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.Yyzx;
 import com.wuyemy.bean.Yyzxsq;
-import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.service.KuserService;
 import com.wuyemy.service.YyzhongxinService;
 
@@ -170,9 +168,8 @@ String session  = (String) request.getSession().getAttribute("username");
 	@RequestMapping("/shouyeyeye")
 	@ResponseBody
 	public Msg toshouyewe(){
-		 kuserService.getwelome();
-		
-		return Msg.success().add("numm","");
+		JifenZonghe jifenZonghe = kuserService.getwelome();
+		return Msg.success().add("numm",jifenZonghe);
 	}
 	
 	

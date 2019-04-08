@@ -23,10 +23,14 @@
 		   url:"${APP_PATH }/shouyeyeye",
 			type:"GET",
 			success:function(result){
-										
-					
-				
-
+			    if (result.code == 100) {
+					$(".num").text(result.extent.numm.num);
+					$(".zjzs").text(result.extent.numm.zjzs);
+					$(".gcnum").text(result.extent.numm.gcnum);
+					$(".fxnum").text(result.extent.numm.fxnum);
+					$(".zainum").text(result.extent.numm.zainum);
+					$(".cjnum").text(result.extent.numm.cjnum);
+				}					
 			}
 		   
 		   
@@ -41,7 +45,8 @@
     <body >
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">五叶蚂蚁好车
-            <span class="x-red">欢迎管理员</span>!</blockquote>
+            <span class="x-red">欢迎管理员!</span>
+        </blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
@@ -55,21 +60,24 @@
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>会员数</h3>
                                                 <p>
-                                                    <cite >66</cite></p>
+                                                    <cite class="num"></cite>
+                                                </p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>缴纳资金总数</h3>
                                                 <p>
-                                                    <cite>12</cite></p>
+                                                    <cite class="zjzs"></cite>
+                                                 </p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>购车积分待使用</h3>
                                                 <p>
-                                                    <cite>99</cite></p>
+                                                    <cite class="gcnum"></cite>
+                                                </p>
                                             </a>
                                         </li>
                                         
@@ -77,7 +85,8 @@
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>分享积分待使用</h3>
                                                 <p>
-                                                    <cite>67</cite></p>
+                                                    <cite class="fxnum"></cite>
+                                                </p>
                                             </a>
                                         </li>
                                         
@@ -85,7 +94,8 @@
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>在途积分待使用</h3>
                                                 <p>
-                                                    <cite>6766</cite></p>
+                                                    <cite class="zainum"></cite>
+                                                </p>
                                             </a>
                                         </li>
                                       
@@ -93,7 +103,8 @@
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>出局积分待使用</h3>
                                                 <p>
-                                                    <cite>6766</cite></p>
+                                                    <cite class="cjnum"></cite>
+                                                </p>
                                             </a>
                                         </li>
                                         
@@ -105,7 +116,7 @@
                 </div>
             </div>
         </fieldset>
-        
+       </div>
         
         
        

@@ -947,20 +947,26 @@ public class KuserService {
 	}
 
 
-	public void getwelome() {
+	public JifenZonghe getwelome() {
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
 		criteria.andZhuangtaiidEqualTo(2);
 		long renshu = kuserMapper.countByExample(example);
-		
+		long l = renshu*9980;
 		BigDecimal selectjifeFXzonghe = jifenMapper.selectjifeFXzonghe();
 		BigDecimal selectjifeGCzonghe = jifenMapper.selectjifeGCzonghe();
 		BigDecimal selectjifeZTzonghe = jifenMapper.selectjifeZTzonghe();
 		BigDecimal selectjifeCJzonghe = jifenMapper.selectjifeCJzonghe();
 		
+		JifenZonghe jifenZonghe = new JifenZonghe();
+		jifenZonghe.setNum(renshu);
+		jifenZonghe.setZjzs(l);
+		jifenZonghe.setFxnum(selectjifeFXzonghe);
+		jifenZonghe.setGcnum(selectjifeGCzonghe);
+		jifenZonghe.setCjnum(selectjifeCJzonghe);
+		jifenZonghe.setZainum(selectjifeZTzonghe);
 		
-		
-		return ;
+		return jifenZonghe;
 	}
 	
 	

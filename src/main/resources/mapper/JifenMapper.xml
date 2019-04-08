@@ -84,19 +84,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectjifeFXzonghe" parameterType="com.wuyemy.bean.Jifen" resultMap="java.math.BigDecimal">
+  <select id="selectjifeFXzonghe" parameterType="com.wuyemy.bean.Jifen" resultType="java.math.BigDecimal">
   		  select sum(fxjf)
 		from jifen
   </select>
-  <select id="selectjifeGCzonghe" parameterType="com.wuyemy.bean.Jifen" resultMap="java.math.BigDecimal">
+  <select id="selectjifeGCzonghe" parameterType="com.wuyemy.bean.Jifen" resultType="java.math.BigDecimal">
   		  select sum(gcjf)
 		from jifen
   </select>
-  <select id="selectjifeZTzonghe" parameterType="com.wuyemy.bean.Jifen" resultMap="java.math.BigDecimal">
+  <select id="selectjifeZTzonghe" parameterType="com.wuyemy.bean.Jifen" resultType="java.math.BigDecimal">
   		  select  sum(ztjf)
 		from jifen
   </select>
-  <select id="selectjifeCJzonghe" parameterType="com.wuyemy.bean.Jifen" resultMap="java.math.BigDecimal">
+  <select id="selectjifeCJzonghe" parameterType="com.wuyemy.bean.Jifen" resultType="java.math.BigDecimal">
   		  select  sum(chjf)
 		from jifen
   </select>
