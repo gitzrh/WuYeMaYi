@@ -120,7 +120,11 @@
         </div>
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">推荐会员:</div>
+<<<<<<< HEAD
             <input type="text"  value="${param.tzhanghao }" name="tzhanghao" id="tzhanghao" class="rightMessage">
+=======
+            <input type="text" value="${param.tzhanghao }" name="tzhanghao" id="tzhanghao" class="rightMessage">
+>>>>>>> branch 'master' of https://github.com/gitzrh/WuYeMaYi.git
         </div>
       
       	<div class="messageDidsplayDiv">

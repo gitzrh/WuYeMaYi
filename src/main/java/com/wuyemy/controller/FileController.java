@@ -41,6 +41,7 @@ public class FileController {
 		int shunxu = 1;
 		fileService.sctpdz(imageUrl,thumbImageUrl,shunxu);
 		
+		response.sendRedirect("lunbotugl");
 	}
 	
 	@RequestMapping("/deletetp")
