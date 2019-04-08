@@ -148,14 +148,22 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6b4;</i>
-                    <cite>轮播图</cite>
+                    <cite>讯息管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="unicode.html">
+                        <a _href="${APP_PATH }/lunbotugl">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>轮播图</cite>
+                            <cite>轮播图管理</cite>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="${APP_PATH }/zixungl">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>资讯管理</cite>
                         </a>
                     </li>
                 </ul>

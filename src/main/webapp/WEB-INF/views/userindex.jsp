@@ -98,18 +98,11 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
         <!--轮播图-->
         <div class="banner swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31599c9ac.png" alt="" style="height:203px;"></a>
-                </div>
-                <div class="swiper-slide">
-                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e317c1e746.png" alt="" style="height:203px;"></a>
-                </div>
-                <div class="swiper-slide">
-                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31944f305.png" alt="" style="height:203px;"></a>
-                </div>
-                <div class="swiper-slide">
-                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${APP_PATH }/Picture/5c0e31a7aa6e2.png" alt="" style="height:203px;"></a>
-                </div>                
+            	<c:forEach items="${lunbotus }" var="reca">
+	                <div class="swiper-slide">
+	                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${reca.image }" alt="" style="height:203px;"></a>
+	                </div>
+                 </c:forEach>            
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -146,16 +139,25 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
             </div>  
         </div>
         <div style="clear:both"></div>
+        
         <!--相关资讯-->
         <div style="width: 100%;height: 2rem; background: #FFFFFF;">
             <img src="${APP_PATH }/Home/img/xgzx.png" style="margin-top: -1rem;width: 1.3rem;margin-left:0.35rem;display:inline-block;" />
-            <div class="xgzxy" >
-                <div>
-                    <p style="margin-left: 0.2rem;"><a href="/index.php?s=/Home/Shop/news_detail/id/1.html" style="margin-top: -3px"><img src="${APP_PATH }/Home/img/zx.png"/><span>五叶蚂蚁好车，让寒冷的冬天变得激情澎湃，豪车梦离你还会远么？</span></a></p>
-                </div>
-            </div>
+            <c:forEach items="${zixunguanlis }" var="reca">
+	            <div class="xgzxy" >
+	                <div>
+	                    <p style="margin-left: 0.2rem;">
+		                    <a href="${APP_PATH }/zxxq?id=${reca.id }" style="margin-top: -3px">
+		                    	<img src="${APP_PATH }/Home/img/zx.png"/>
+		                    	<span>${reca.head }</span>
+		                    </a>
+	                    </p>
+	                </div>
+	            </div>
+            </c:forEach>
         </div>
         <div style="clear:both"></div>
+        
         <!--跳转页面-->
         <div style="background-color: #FFFFFF;height: 7.2rem; margin-top: 0.3rem; padding-bottom: 2.2rem;">
             <a class="tzym" href="${APP_PATH }/tjlb">

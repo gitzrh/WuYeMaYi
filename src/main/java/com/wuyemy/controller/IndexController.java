@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
 import com.wuyemy.bean.Kuser;
+import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Tixian;
+import com.wuyemy.bean.Zixunguanli;
 import com.wuyemy.service.IndexService;
 import com.wuyemy.until.QRCodeUtil;
 
@@ -32,6 +34,8 @@ public class IndexController {
 	/**
 	 * 获取各种金币数
 	 * 运营中心状态
+	 * 图片
+	 * 资讯
 	 * 转向页面
 	 * @param request
 	 * @param response
@@ -48,6 +52,7 @@ public class IndexController {
 			long l = indexService.yyzt(zhanghao);
 			int i = indexService.yyztid(zhanghao);
 			
+			//运营中心状态
 			if (l == 1 && i == 1) {
 				map.put("yyztid", 1);
 			}else if (l == 1 && i == 2) {
@@ -57,6 +62,14 @@ public class IndexController {
 			}else if (l == 0) {
 				map.put("yyztid", 0);
 			}
+			
+			//图片
+			List<Lunbotu> lunbotus = indexService.hqtp();
+			map.put("lunbotus", lunbotus);
+			
+			//资讯
+			List<Zixunguanli> zixunguanlis = indexService.syzy();
+			map.put("zixunguanlis", zixunguanlis);
 			
 			map.put("jifen", jifen);
 			return "userindex";
@@ -165,8 +178,11 @@ public class IndexController {
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
+		//获取运营id
+		String yyid = indexService.selectyyid(zhanhao);
+		
 		QRCodeUtil codeUtil = new QRCodeUtil();
-		codeUtil.QRCode(zhanhao,request,response);
+		codeUtil.QRCode(zhanhao,yyid,request,response);
 		//codeUtil.main(null);
 		map.put("erzhang", zhanhao);
 		
@@ -416,7 +432,6 @@ public class IndexController {
 			map.put("tjkusers", kusers);
 			return "tjlb";
 		}
-		
 		return null;
 	}
 	

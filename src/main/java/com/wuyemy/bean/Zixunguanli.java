@@ -30,4 +30,17 @@ public class Zixunguanli {
     public void setText(String text) {
         this.text = text == null ? null : text.trim();
     }
+
+	public Zixunguanli(Integer id, String head, String text) {
+		super();
+		this.id = id;
+		this.head = head;
+		this.text = text;
+	}
+
+	public Zixunguanli() {
+		super();
+	}
+    
+    
 }

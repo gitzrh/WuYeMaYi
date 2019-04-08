@@ -14,10 +14,10 @@ import com.google.zxing.common.BitMatrix;
 
 public class QRCodeUtil  {
 	
-	public void QRCode(String i,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void QRCode(String zhanghao,String yyid,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		MultiFormatWriter writer = new MultiFormatWriter();
-		String contents = "http://wuye.krylai.com/?zhanghao="+i;
+		String contents = "http://wuye.krylai.com/?tzhanghao="+zhanghao+"&yyzxid="+yyid;
 		int width = 300;
 		int height = 300;
 		HashMap<EncodeHintType, Object> hints = new HashMap<>();
@@ -26,7 +26,13 @@ public class QRCodeUtil  {
 		
         String realPath = request.getSession().getServletContext().getRealPath("/");
         
-		MatrixToImageWriter.writeToPath(bitMatrix, "png", new File(realPath+"add/"+i+".png").toPath());
+        //如果目录不存在则创建目录
+		File uploadFile=new File(realPath+"/add");
+		if(!uploadFile.exists()){
+			uploadFile.mkdirs();
+		}
+        
+		MatrixToImageWriter.writeToPath(bitMatrix, "png", new File(realPath+"add/"+zhanghao+".png").toPath());
 	}
 
 }

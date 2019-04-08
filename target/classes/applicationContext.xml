@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-<!-- Spring的配置文件,主要配置和业务逻辑有关的 -->
+	<!-- Spring的配置文件,主要配置和业务逻辑有关的 -->
 	<!-- Spring配置文件的核心点（数据源、与mybatis的整合，事务控制） -->
 	
 	<!-- 扫描包 -->
@@ -25,6 +25,14 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 		<constructor-arg name="executorType" value="BATCH"></constructor-arg>
+	</bean>
+	
+	<!-- 配置上传图片  -->
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置默认编码 -->  
+        <property name="defaultEncoding" value="utf-8"></property>  
+        <!-- 上传图片最大大小5M-->   
+        <property name="maxUploadSize" value="5242440"></property>  
 	</bean>
 	
 	<!-- =================================数据源===================================== -->

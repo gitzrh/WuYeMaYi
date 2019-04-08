@@ -15,18 +15,22 @@ import com.wuyemy.bean.JifenExample;
 import com.wuyemy.bean.JifenExample.Criteria;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
+import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Tixian;
 import com.wuyemy.bean.TixianExample;
 import com.wuyemy.bean.Yyzxsq;
 import com.wuyemy.bean.YyzxsqExample;
 import com.wuyemy.bean.Zijinmingxi;
 import com.wuyemy.bean.ZijinmingxiExample;
+import com.wuyemy.bean.Zixunguanli;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
+import com.wuyemy.dao.LunbotuMapper;
 import com.wuyemy.dao.TixianMapper;
 import com.wuyemy.dao.YyzxsqMapper;
 import com.wuyemy.dao.ZijinmingxiMapper;
+import com.wuyemy.dao.ZixunguanliMapper;
 import com.wuyemy.until.DateToString;
 
 @Service
@@ -44,6 +48,10 @@ public class IndexService {
 	private ZijinmingxiMapper zijinmingxiMapper;
 	@Autowired
 	private YyzxsqMapper yyzxsqMapper;
+	@Autowired
+	private LunbotuMapper lunbotuMapper;
+	@Autowired
+	private ZixunguanliMapper zixunguanliMapper;
 	
 	private DateToString dateToStr;
 	/**
@@ -374,6 +382,30 @@ public class IndexService {
 		}
 		
 		return 0;
+	}
+
+	public List<Lunbotu> hqtp() {
+		List<Lunbotu> selectByExample = lunbotuMapper.selectByExample(null);
+		return selectByExample;
+	}
+
+	public List<Zixunguanli> syzy() {
+		List<Zixunguanli> selectByExample = zixunguanliMapper.selectByExample(null);
+		return selectByExample;
+	}
+
+	public String selectyyid(String zhanhao) {
+		KuserExample example = new KuserExample();
+		com.wuyemy.bean.KuserExample.Criteria createCriteria = example.createCriteria();
+		createCriteria.andZhanghaoEqualTo(zhanhao);
+		List<Kuser> selectByExample = kuserMapper.selectByExample(example);
+		
+		for (Kuser kuser : selectByExample) {
+			String yyzxid = kuser.getYyzxid();
+			return yyzxid;
+		}
+		
+		return null;
 	}
 
 
