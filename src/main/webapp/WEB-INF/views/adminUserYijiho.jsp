@@ -26,6 +26,47 @@
 	$(function(){
 		
 		
+		 $("#fabhui").click(function(){
+			 location.reload();
+		 })
+		 //修改运营中心编号
+		 $(".xiugaiyyzxid").click(function(){
+				$("#zhangdaoo_input").hide();
+			 var zhhh = $(this).parent().parent().find("th:eq(2)").text();
+			 var yyid = $(this).parent().parent().find("th:eq(9)").text();
+			 
+				$("#updateyybiaohao").modal({
+					backdrop:"static"
+				});
+			 
+			 $("#zhangdaoo_input").val(zhhh);
+			 $("#oldbianhao_upd_input").val(yyid);
+				
+			 var zhanghaos = $("#zhangdaoo_input").val();
+			 
+			 $(".qdyybian").click(function(){
+			var bianhao = $("#newbianhao_upd_input").val();
+			 $.ajax({
+					url:"${APP_PATH }/updatebinhao",
+					type:"PUT",
+					data:"zhanghaos="+zhanghaos+"&bianhao="+bianhao,
+					success:function(result){
+							
+							location.reload();
+						
+					}
+					
+					});
+				 
+				 
+			
+			 
+			 })
+			 
+			 
+		 })
+		 
+		 
 		//删除按钮
 		$(".shanchu").click(function(){
 			
@@ -324,6 +365,43 @@
     </div>
   </div>
 </div>
+<!-- 修改运营中心编号 -->
+<div class="modal fade" id="updateyybiaohao" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">修改运营中心编号</h4>
+      </div>
+      <div class="modal-body">
+       	<form class="form-horizontal">
+		 
+		  		 <input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhangdaoo_input"  />
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">原运营中心编号</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" value="" readonly  unselectable="on" name="cTypeB" class="form-control" id="oldbianhao_upd_input" >
+		    </div>
+		  </div>	
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">新运营中心编号</label>
+		    <div class="col-sm-6">
+		     
+		      <input type="text" placeholder="请输入新的运营中心编号" value="" name="cTypeB" class="form-control" id="newbianhao_upd_input" >
+		    </div>
+		  </div>	
+		 
+		 </form>
+       		   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary qdyybian" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- 修改 -->
 <div class="modal fade" id="updatexixi" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -462,6 +540,7 @@
 		      <input type="text" id="chakan2"  class="form-control so_text" placeholder="请输入要查看的账号">
 		      <span class="input-group-btn">
 		        <button class="btn btn-default"  id="chakan1" type="button">查看</button>
+		        <button class="btn btn-default"  id="fabhui" type="button">刷新</button>
 		      </span>
 		    </div>
 		  </div>
@@ -503,7 +582,7 @@
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								编辑
 								</button>
-								<button   class="btn btn-info record_get_model_btn btn-sm">
+								<button   class="btn btn-info  xiugaiyyzxid get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								修改运营中心编号
 								</button>

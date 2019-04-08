@@ -187,6 +187,40 @@
     order by k.`jihuotime` desc
     
   </select>
+  <!--  //带状态和积分的查询直推人数
+    List<Kuser> selectByExampleWithzhitui(KuserExample example); -->
+  <select id="selectByExampleWithzhitui" parameterType="com.wuyemy.bean.KuserExample" 
+  resultMap="WithZhuangTaiBaseResultMap">
+    select
+    <include refid="Base_Column_List_with_zhuantgtai" />
+    from kuser k
+    left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
+    left join jifen j on k.`zhanghao` = j.`zhanghao`
+    
+    where k.`zhuangtaiid` != 1
+    and  k.`tzhanghao`= #{_parameter}
+   
+    
+    order by k.`jihuotime` desc
+    
+  </select>
+  <!--  //带状态和积分的查询直推人数
+    List<Kuser> selectByExampleWithzhitui(KuserExample example); -->
+  <select id="selectByExampleWithtuantui" parameterType="com.wuyemy.bean.KuserExample" 
+  resultMap="WithZhuangTaiBaseResultMap">
+    select
+    <include refid="Base_Column_List_with_zhuantgtai" />
+    from kuser k
+    left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
+    left join jifen j on k.`zhanghao` = j.`zhanghao`
+    
+    where k.`zhuangtaiid` != 1
+    and  k.`yyzxid`= #{_parameter}
+   
+    
+    order by k.`jihuotime` desc
+    
+  </select>
   <!--  //带状态和积分的查询查找
     List<Kuser> selectByExampleAndJf(KuserExample example); -->
   <select id="selectByExampleAndJf" parameterType="com.wuyemy.bean.KuserExample" 

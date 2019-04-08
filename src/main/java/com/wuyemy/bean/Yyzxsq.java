@@ -1,6 +1,5 @@
 package com.wuyemy.bean;
 
-import java.util.Date;
 
 public class Yyzxsq {
     private Integer id;

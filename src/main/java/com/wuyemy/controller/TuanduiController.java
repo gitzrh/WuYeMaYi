@@ -137,11 +137,6 @@ public class TuanduiController {
 		
 	}
 	
-<<<<<<< HEAD
-	
-	
-	
-=======
 	/**
 	 * 运营中心申请跳转页面
 	 * @return
@@ -297,5 +292,4 @@ public class TuanduiController {
 
 
 
->>>>>>> branch 'master' of https://github.com/gitzrh/WuYeMaYi.git
 }

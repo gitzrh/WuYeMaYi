@@ -13,16 +13,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
 import com.wuyemy.bean.JifenExample;
+import com.wuyemy.bean.JifenZonghe;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.XiaozuExample;
+import com.wuyemy.bean.Yyzx;
+import com.wuyemy.bean.YyzxExample;
 import com.wuyemy.bean.Zijinmingxi;
 import com.wuyemy.controller.Msg;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.XiaozuMapper;
+import com.wuyemy.dao.YyzxMapper;
 import com.wuyemy.dao.ZijinmingxiMapper;
 import com.wuyemy.until.DateToString;
 
@@ -44,6 +48,9 @@ public class KuserService {
 	private CanshuMapper canshuMapper;
 	@Autowired
 	private ZijinmingxiMapper zijinmingxiMapper;
+	
+	@Autowired
+	private YyzxMapper yyzxMapper;
 	
 	public void insertKuser(String zhanghao, String khname, String tzhanghao,String zhucetime, String yyzxid, String kpassword, int zhuangtaiid) {
 		Kuser kuser = new Kuser(zhanghao, khname, tzhanghao, yyzxid,kpassword, zhucetime, zhuangtaiid);
@@ -892,6 +899,69 @@ public class KuserService {
 	}
 
 
+	public List<Kuser> getAllzhanghao(String zhanghao) {
+		 
+		return kuserMapper.selectByExampleWithzhitui(zhanghao);
+			 
+	}
+
+
+	public List<Kuser> gettuanzhanghao(String yybianhao) {
+		
+		
+		return kuserMapper.selectByExampleWithtuantui(yybianhao);
+		
+		
+		
+		
+	}
+//团队总人数
+	public void eittuanduinum(String yybianhao){
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andYyzxidEqualTo(yybianhao);
+		long countByExample = kuserMapper.countByExample(example);
+		
+		YyzxExample yeExample = new YyzxExample();
+		YyzxExample.Criteria criteria2 = yeExample.createCriteria();
+		criteria2.andYybianhaoEqualTo(yybianhao);
+		Yyzx yyzx = new Yyzx();
+		yyzx.setYynum((int) countByExample);
+		yyzxMapper.updateByExampleSelective(yyzx, yeExample);
+	}
+	
+	//直推总人数
+	public void eitZhituiiinum(String zhanghao){
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andTzhanghaoEqualTo(zhanghao);
+		long countByExample = kuserMapper.countByExample(example);
+		
+		YyzxExample yeExample = new YyzxExample();
+		YyzxExample.Criteria criteria2 = yeExample.createCriteria();
+		criteria2.andYyzhanghaoEqualTo(zhanghao);
+		Yyzx yyzx = new Yyzx();
+		yyzx.setZtnum((int) countByExample);
+		yyzxMapper.updateByExampleSelective(yyzx, yeExample);
+		
+	}
+
+
+	public void getwelome() {
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andZhuangtaiidEqualTo(2);
+		long renshu = kuserMapper.countByExample(example);
+		
+		BigDecimal selectjifeFXzonghe = jifenMapper.selectjifeFXzonghe();
+		BigDecimal selectjifeGCzonghe = jifenMapper.selectjifeGCzonghe();
+		BigDecimal selectjifeZTzonghe = jifenMapper.selectjifeZTzonghe();
+		BigDecimal selectjifeCJzonghe = jifenMapper.selectjifeCJzonghe();
+		
+		
+		
+		return ;
+	}
 	
 	
 	

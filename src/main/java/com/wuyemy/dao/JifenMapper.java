@@ -2,6 +2,9 @@ package com.wuyemy.dao;
 
 import com.wuyemy.bean.Jifen;
 import com.wuyemy.bean.JifenExample;
+import com.wuyemy.bean.JifenZonghe;
+
+import java.math.BigDecimal;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,7 +16,12 @@ public interface JifenMapper {
     int deleteByPrimaryKey(Integer jifenid);
 
     int insert(Jifen record);
-
+    
+    BigDecimal selectjifeFXzonghe();
+    BigDecimal selectjifeGCzonghe();
+    BigDecimal selectjifeZTzonghe();
+    BigDecimal selectjifeCJzonghe();
+    
     int insertSelective(Jifen record);
 
     List<Jifen> selectByExample(JifenExample example);

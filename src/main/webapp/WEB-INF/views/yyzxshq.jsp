@@ -20,12 +20,14 @@
 	<script type="text/javascript">
 	$(function(){
 		
-		var ddhh;
-		var textt;
+		var id;
+		var zhanghao;
+		var name;
 		$(".tongguo").click(function(){
 			
-			 ddhh = $(this).parent().parent().find("th:eq(0)").text();
-			 textt = $(this).parent().parent().find("th:eq(2)").text();
+			 id = $(this).parent().parent().find("th:eq(0)").text();
+			 zhanghao = $(this).parent().parent().find("th:eq(1)").text();
+			 name = $(this).parent().parent().find("th:eq(2)").text();
 			
 			
 			
@@ -37,12 +39,12 @@
 		})
 		
 		$(".tijiaoss").click(function(){
-
+			var bianhao =$.trim($("#bianhao_upd_input").val());
 			
 			$.ajax({
 				url:"${APP_PATH }/tongguoyysq",
 				type:"PUT",
-				data:"id="+ddhh,
+				data:"id="+id+"&zhanghao="+zhanghao+"&name="+name+"&bianhao="+bianhao,
 				success:function(result){
 					
 						
@@ -53,6 +55,26 @@
 				
 			})
 		
+		})
+		
+		$(".jujue").click(function(){
+			 ids = $(this).parent().parent().find("th:eq(0)").text();
+				
+			 if(confirm("确定要拒绝【"+ textt +"】吗？")){
+			 $.ajax({
+					url:"${APP_PATH }/jujueyysq",
+					type:"PUT",
+					data:"id="+id,
+					success:function(result){
+						
+							
+							location.reload();
+						
+
+					}
+					
+				})
+			 }
 		})
 	})
 		
@@ -72,7 +94,7 @@
 		  <div class="form-group">
 		    <div class="col-sm-6">
 		     
-		      <input type="text" placeholder="请输入运营中心编号" value="" name="cTypeB" class="form-control" id="password_upd_input" >
+		      <input type="text" placeholder="请输入运营中心编号" value="" name="cTypeB" class="form-control" id="bianhao_upd_input" >
 		    </div>
 		  </div>	
 		 

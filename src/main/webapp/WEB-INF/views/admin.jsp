@@ -174,7 +174,7 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="unicode.html">
+                        <a _href="${APP_PATH }/yyzhongxinhoutai">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>运营中心</cite>
                         </a>

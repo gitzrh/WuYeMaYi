@@ -20,8 +20,18 @@ public class Yyzx {
     private Integer ztnum;
 
     private String dizhi;
+    
+    private Yyzxlvcanshu yyzxlvcanshu;
 
-    public Integer getYyzxid() {
+    public Yyzxlvcanshu getYyzxlvcanshu() {
+		return yyzxlvcanshu;
+	}
+
+	public void setYyzxlvcanshu(Yyzxlvcanshu yyzxlvcanshu) {
+		this.yyzxlvcanshu = yyzxlvcanshu;
+	}
+
+	public Integer getYyzxid() {
         return yyzxid;
     }
 

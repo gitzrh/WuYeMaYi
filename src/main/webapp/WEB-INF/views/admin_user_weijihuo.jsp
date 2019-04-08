@@ -75,7 +75,9 @@
 			
 		})
 			
-		
+	 $("#fabhui").click(function(){
+		 location.reload();
+	 })
 	})
 </script>		
 </head>
@@ -90,6 +92,14 @@
 			</div>
 		</div>
 		<br>
+		<div class="col-md-4 col-lg-8" align="right">
+		    <div class="input-group">
+		      <span class="input-group-btn">
+		        <button class="btn btn-primary"  id="fabhui" type="button">刷新</button>
+		      </span>
+		    </div>
+		  </div>
+		  <br><br>
 		<!-- 显示表格数据 -->
 		<div class="row">
 			<div class="col-md10">

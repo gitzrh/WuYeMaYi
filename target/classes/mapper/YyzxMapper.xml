@@ -12,6 +12,22 @@
     <result column="ztnum" jdbcType="INTEGER" property="ztnum" />
     <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
   </resultMap>
+  <resultMap id="BaseResultMapWithLv" type="com.wuyemy.bean.Yyzx">
+    <id column="yyzxid" jdbcType="INTEGER" property="yyzxid" />
+    <result column="yyzhanghao" jdbcType="VARCHAR" property="yyzhanghao" />
+    <result column="yyname" jdbcType="VARCHAR" property="yyname" />
+    <result column="yybianhao" jdbcType="VARCHAR" property="yybianhao" />
+    <result column="yyzxlvid" jdbcType="INTEGER" property="yyzxlvid" />
+    <result column="yyjinbi" jdbcType="DECIMAL" property="yyjinbi" />
+    <result column="yynum" jdbcType="INTEGER" property="yynum" />
+    <result column="ztnum" jdbcType="INTEGER" property="ztnum" />
+    <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
+    
+    <association property="yyzxlvcanshu" javaType="com.wuyemy.bean.Yyzxlvcanshu">
+    	<id column="id" property="id"/>
+    	<result column="lvname" property="lvname"/>
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -73,6 +89,27 @@
   <sql id="Base_Column_List">
     yyzxid, yyzhanghao, yyname, yybianhao, yyzxlvid, yyjinbi, yynum, ztnum, dizhi
   </sql>
+  <sql id="Base_Column_List——withLv">
+    y.yyzxid, y.yyzhanghao, y.yyname, y.yybianhao, y.yyzxlvid, y.yyjinbi, y.yynum, y.ztnum, y.dizhi, c.lvname
+  </sql>
+  <!--  //查询带等级的
+    List<Yyzx> selectByExampleWithLv(YyzxExample example); -->
+  <select id="selectByExampleWithLv" parameterType="com.wuyemy.bean.YyzxExample" resultMap="BaseResultMapWithLv">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List——withLv" />
+    from yyzx y
+      left join yyzxlvcanshu c on y.`yyzxlvid` = c.`id`
+    
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.wuyemy.bean.YyzxExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
