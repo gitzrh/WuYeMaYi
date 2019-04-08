@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuyemy.dao.YyzxMapper">
+  <resultMap id="BaseResultMap" type="com.wuyemy.bean.Yyzx">
+    <id column="yyzxid" jdbcType="INTEGER" property="yyzxid" />
+    <result column="yyzhanghao" jdbcType="VARCHAR" property="yyzhanghao" />
+    <result column="yyname" jdbcType="VARCHAR" property="yyname" />
+    <result column="yybianhao" jdbcType="VARCHAR" property="yybianhao" />
+    <result column="yyzxlvid" jdbcType="INTEGER" property="yyzxlvid" />
+    <result column="yyjinbi" jdbcType="DECIMAL" property="yyjinbi" />
+    <result column="yynum" jdbcType="INTEGER" property="yynum" />
+    <result column="ztnum" jdbcType="INTEGER" property="ztnum" />
+    <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
+  </resultMap>
+  <resultMap id="BaseResultMapWithLv" type="com.wuyemy.bean.Yyzx">
+    <id column="yyzxid" jdbcType="INTEGER" property="yyzxid" />
+    <result column="yyzhanghao" jdbcType="VARCHAR" property="yyzhanghao" />
+    <result column="yyname" jdbcType="VARCHAR" property="yyname" />
+    <result column="yybianhao" jdbcType="VARCHAR" property="yybianhao" />
+    <result column="yyzxlvid" jdbcType="INTEGER" property="yyzxlvid" />
+    <result column="yyjinbi" jdbcType="DECIMAL" property="yyjinbi" />
+    <result column="yynum" jdbcType="INTEGER" property="yynum" />
+    <result column="ztnum" jdbcType="INTEGER" property="ztnum" />
+    <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
+    
+    <association property="yyzxlvcanshu" javaType="com.wuyemy.bean.Yyzxlvcanshu">
+    	<id column="id" property="id"/>
+    	<result column="lvname" property="lvname"/>
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    yyzxid, yyzhanghao, yyname, yybianhao, yyzxlvid, yyjinbi, yynum, ztnum, dizhi
+  </sql>
+  <sql id="Base_Column_List——withLv">
+    y.yyzxid, y.yyzhanghao, y.yyname, y.yybianhao, y.yyzxlvid, y.yyjinbi, y.yynum, y.ztnum, y.dizhi, c.lvname
+  </sql>
+  <!--  //查询带等级的
+    List<Yyzx> selectByExampleWithLv(YyzxExample example); -->
+  <select id="selectByExampleWithLv" parameterType="com.wuyemy.bean.YyzxExample" resultMap="BaseResultMapWithLv">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List——withLv" />
+    from yyzx y
+      left join yyzxlvcanshu c on y.`yyzxlvid` = c.`id`
+    
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.wuyemy.bean.YyzxExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yyzx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yyzx
+    where yyzxid = #{yyzxid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yyzx
+    where yyzxid = #{yyzxid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wuyemy.bean.YyzxExample">
+    delete from yyzx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wuyemy.bean.Yyzx">
+    insert into yyzx (yyzxid, yyzhanghao, yyname, 
+      yybianhao, yyzxlvid, yyjinbi, 
+      yynum, ztnum, dizhi
+      )
+    values (#{yyzxid,jdbcType=INTEGER}, #{yyzhanghao,jdbcType=VARCHAR}, #{yyname,jdbcType=VARCHAR}, 
+      #{yybianhao,jdbcType=VARCHAR}, #{yyzxlvid,jdbcType=INTEGER}, #{yyjinbi,jdbcType=DECIMAL}, 
+      #{yynum,jdbcType=INTEGER}, #{ztnum,jdbcType=INTEGER}, #{dizhi,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuyemy.bean.Yyzx">
+    insert into yyzx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yyzxid != null">
+        yyzxid,
+      </if>
+      <if test="yyzhanghao != null">
+        yyzhanghao,
+      </if>
+      <if test="yyname != null">
+        yyname,
+      </if>
+      <if test="yybianhao != null">
+        yybianhao,
+      </if>
+      <if test="yyzxlvid != null">
+        yyzxlvid,
+      </if>
+      <if test="yyjinbi != null">
+        yyjinbi,
+      </if>
+      <if test="yynum != null">
+        yynum,
+      </if>
+      <if test="ztnum != null">
+        ztnum,
+      </if>
+      <if test="dizhi != null">
+        dizhi,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yyzxid != null">
+        #{yyzxid,jdbcType=INTEGER},
+      </if>
+      <if test="yyzhanghao != null">
+        #{yyzhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="yyname != null">
+        #{yyname,jdbcType=VARCHAR},
+      </if>
+      <if test="yybianhao != null">
+        #{yybianhao,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzxlvid != null">
+        #{yyzxlvid,jdbcType=INTEGER},
+      </if>
+      <if test="yyjinbi != null">
+        #{yyjinbi,jdbcType=DECIMAL},
+      </if>
+      <if test="yynum != null">
+        #{yynum,jdbcType=INTEGER},
+      </if>
+      <if test="ztnum != null">
+        #{ztnum,jdbcType=INTEGER},
+      </if>
+      <if test="dizhi != null">
+        #{dizhi,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wuyemy.bean.YyzxExample" resultType="java.lang.Long">
+    select count(*) from yyzx
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update yyzx
+    <set>
+      <if test="record.yyzxid != null">
+        yyzxid = #{record.yyzxid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yyzhanghao != null">
+        yyzhanghao = #{record.yyzhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yyname != null">
+        yyname = #{record.yyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yybianhao != null">
+        yybianhao = #{record.yybianhao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yyzxlvid != null">
+        yyzxlvid = #{record.yyzxlvid,jdbcType=INTEGER},
+      </if>
+      <if test="record.yyjinbi != null">
+        yyjinbi = #{record.yyjinbi,jdbcType=DECIMAL},
+      </if>
+      <if test="record.yynum != null">
+        yynum = #{record.yynum,jdbcType=INTEGER},
+      </if>
+      <if test="record.ztnum != null">
+        ztnum = #{record.ztnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.dizhi != null">
+        dizhi = #{record.dizhi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update yyzx
+    set yyzxid = #{record.yyzxid,jdbcType=INTEGER},
+      yyzhanghao = #{record.yyzhanghao,jdbcType=VARCHAR},
+      yyname = #{record.yyname,jdbcType=VARCHAR},
+      yybianhao = #{record.yybianhao,jdbcType=VARCHAR},
+      yyzxlvid = #{record.yyzxlvid,jdbcType=INTEGER},
+      yyjinbi = #{record.yyjinbi,jdbcType=DECIMAL},
+      yynum = #{record.yynum,jdbcType=INTEGER},
+      ztnum = #{record.ztnum,jdbcType=INTEGER},
+      dizhi = #{record.dizhi,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuyemy.bean.Yyzx">
+    update yyzx
+    <set>
+      <if test="yyzhanghao != null">
+        yyzhanghao = #{yyzhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="yyname != null">
+        yyname = #{yyname,jdbcType=VARCHAR},
+      </if>
+      <if test="yybianhao != null">
+        yybianhao = #{yybianhao,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzxlvid != null">
+        yyzxlvid = #{yyzxlvid,jdbcType=INTEGER},
+      </if>
+      <if test="yyjinbi != null">
+        yyjinbi = #{yyjinbi,jdbcType=DECIMAL},
+      </if>
+      <if test="yynum != null">
+        yynum = #{yynum,jdbcType=INTEGER},
+      </if>
+      <if test="ztnum != null">
+        ztnum = #{ztnum,jdbcType=INTEGER},
+      </if>
+      <if test="dizhi != null">
+        dizhi = #{dizhi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yyzxid = #{yyzxid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuyemy.bean.Yyzx">
+    update yyzx
+    set yyzhanghao = #{yyzhanghao,jdbcType=VARCHAR},
+      yyname = #{yyname,jdbcType=VARCHAR},
+      yybianhao = #{yybianhao,jdbcType=VARCHAR},
+      yyzxlvid = #{yyzxlvid,jdbcType=INTEGER},
+      yyjinbi = #{yyjinbi,jdbcType=DECIMAL},
+      yynum = #{yynum,jdbcType=INTEGER},
+      ztnum = #{ztnum,jdbcType=INTEGER},
+      dizhi = #{dizhi,jdbcType=VARCHAR}
+    where yyzxid = #{yyzxid,jdbcType=INTEGER}
+  </update>
+</mapper>

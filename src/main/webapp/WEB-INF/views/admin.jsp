@@ -19,13 +19,11 @@
     <script src="${APP_PATH }/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${APP_PATH }/Admin/js/xadmin.js"></script>
 <script type="text/javascript">
-
-
-
-
 </script>
 </head>
 <body>
+
+
     <!-- 顶部开始 -->
     <div class="container">
         <div class="logo"><a href="javascript:;">五叶蚂蚁</a></div>
@@ -35,9 +33,8 @@
         
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;" > admin </a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a href="javascript:;">修改密码</a></dd>
               <dd><a  href="${APP_PATH }/tuichu">退出</a></dd>
             </dl>
           </li>

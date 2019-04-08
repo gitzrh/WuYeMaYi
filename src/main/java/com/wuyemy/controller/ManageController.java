@@ -1,5 +1,7 @@
 package com.wuyemy.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -45,7 +47,8 @@ public class ManageController {
 		 
 	} 
 	@RequestMapping("/toadmin")
-	public String toadmin(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String toadmin( HttpServletRequest request, 
+			HttpServletResponse response) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){

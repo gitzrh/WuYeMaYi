@@ -48,7 +48,7 @@
    						var code = result.code;
    						if (code == 100) {
    							
-   							window.location.href="${APP_PATH }/toadmin";
+   							window.location.href="${APP_PATH }/toadmin?username="+username;
    						}else{
    							$(".check-tips").show();
    		   					setTimeout(function(){
