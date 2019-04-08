@@ -7,7 +7,7 @@ public class Lunbotu {
 
     private Integer shunxu;
 
-    private Integer zhuangtaiid;
+    private String zhuangtaiid;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,24 @@ public class Lunbotu {
         this.shunxu = shunxu;
     }
 
-    public Integer getZhuangtaiid() {
+    public String getZhuangtaiid() {
         return zhuangtaiid;
     }
 
-    public void setZhuangtaiid(Integer zhuangtaiid) {
+    public void setZhuangtaiid(String zhuangtaiid) {
         this.zhuangtaiid = zhuangtaiid;
     }
+
+	public Lunbotu(Integer id, String image, Integer shunxu, String zhuangtaiid) {
+		super();
+		this.id = id;
+		this.image = image;
+		this.shunxu = shunxu;
+		this.zhuangtaiid = zhuangtaiid;
+	}
+
+    public Lunbotu() {
+		// TODO Auto-generated constructor stub
+	}
+    
 }

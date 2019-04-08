@@ -41,7 +41,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 	
 	<div class="messageDidsplayDiv">
 		<div class="leftMessage">等级：</div>
-		<input type="text" value="${yyzx.yyzxlvid }" readonly="readonly" name="realname" class="rightMessage" style="border:none">
+		<input type="text" value="${yyzx.yyzxlvid -1 }" readonly="readonly" name="realname" class="rightMessage" style="border:none">
 	</div>
 	<div class="messageDidsplayDiv">
 		<div class="leftMessage">直推人数：</div>

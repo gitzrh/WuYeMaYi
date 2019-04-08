@@ -9,16 +9,20 @@ import org.springframework.stereotype.Service;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.KuserExample.Criteria;
+import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.XiaozuExample;
 import com.wuyemy.bean.Yyzx;
 import com.wuyemy.bean.YyzxExample;
 import com.wuyemy.bean.Yyzxsq;
 import com.wuyemy.bean.YyzxsqExample;
+import com.wuyemy.bean.Zixunguanli;
 import com.wuyemy.dao.KuserMapper;
+import com.wuyemy.dao.LunbotuMapper;
 import com.wuyemy.dao.XiaozuMapper;
 import com.wuyemy.dao.YyzxMapper;
 import com.wuyemy.dao.YyzxsqMapper;
+import com.wuyemy.dao.ZixunguanliMapper;
 import com.wuyemy.until.DateToString;
 
 @Service
@@ -32,7 +36,11 @@ public class TuanduiService {
 	private YyzxMapper yyzxMapper;
 	@Autowired
 	private XiaozuMapper xiaozuMapper;
-
+	@Autowired
+	private LunbotuMapper lunbotuMapper;
+	@Autowired
+	private ZixunguanliMapper zixunguanliMapper;
+	
 	private DateToString dateToStr;
 	
 	public String phone(String zhanghao) {
@@ -142,6 +150,35 @@ public class TuanduiService {
 		}
 		
 		return null;
+	}
+
+	public List<Lunbotu> sylbt() {
+		List<Lunbotu> selectByExample = lunbotuMapper.selectByExample(null);
+		return selectByExample;
+	}
+
+	public List<Zixunguanli> zixungl() {
+		List<Zixunguanli> selectByExample = zixunguanliMapper.selectByExample(null);
+		return selectByExample;
+	}
+
+	public Zixunguanli seletezx(Integer id) {
+		Zixunguanli selectByPrimaryKey = zixunguanliMapper.selectByPrimaryKey(id);
+		return selectByPrimaryKey;
+	}
+
+	public void indexzx(String head, String text) {
+		Zixunguanli zixunguanli = new Zixunguanli(null, head, text);
+		zixunguanliMapper.insertSelective(zixunguanli);
+	}
+
+	public void deletezu(Integer id) {
+		zixunguanliMapper.deleteByPrimaryKey(id);
+	}
+
+	public Zixunguanli zxxq(Integer id) {
+		Zixunguanli selectByPrimaryKey = zixunguanliMapper.selectByPrimaryKey(id);
+		return selectByPrimaryKey;
 	}
 
 }

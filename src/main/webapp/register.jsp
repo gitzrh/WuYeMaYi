@@ -102,11 +102,8 @@
 <body class="bodyHeight" style="height: 816px;">
     <!--topTitle -->
     <div class="pageTitleDiv">
-        <div class="backButton">
-            返回
-        </div>
         <span class="pageTitleText">
-            注册会员
+           	 注册会员
         </span>
     </div>
     <form action="" method="post" id="myform">
@@ -123,13 +120,12 @@
         </div>
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">推荐会员:</div>
-            <input type="text" placeholder="请输入推荐会员账号" name="tzhanghao" id="tzhanghao" class="rightMessage">
-            
+            <input type="text" readonly value="${param.tzhanghao }" name="tzhanghao" id="tzhanghao" class="rightMessage">
         </div>
       
       	<div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">运营中心编号:</div>
-                <input type="text" placeholder="请输入运营中心编号" name="yyzxid" id="yyzxid" class="rightMessage">
+            <input type="text" readonly value="${param.yyzxid }" name="tzhanghao" id="tzhanghao" class="rightMessage">
         </div>
         <!---->
         <div class="messageDidsplayDiv">

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuyemy.bean.Kuser;
+import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.Yyzx;
+import com.wuyemy.bean.Zixunguanli;
 import com.wuyemy.service.TuanduiService;
 import com.wuyemy.until.liuweishu;
 
@@ -288,8 +290,85 @@ public class TuanduiController {
 		
 		return null;
 	}
-
-
-
-
+	
+	/**
+	 * 轮播图管理
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/lunbotugl")
+	public String lunbotugl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session != null){
+			List<Lunbotu> lunbotus = tuanduiService.sylbt();
+			map.put("lunbotuls", lunbotus);
+			return "lunbotu";
+		}
+		return null;
+	}
+	
+	/**
+	 * 跳转咨询管理页面
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/zixungl")
+	public String Zixungl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session != null){
+			List<Zixunguanli> zixunguanlis = tuanduiService.zixungl();
+			map.put("zixunguanlis", zixunguanlis);
+			return "zixungl";
+		}
+		return null;
+	}
+	
+	/**
+	 * 查看咨询
+	 * @return
+	 */
+	@RequestMapping("/selectzx")
+	@ResponseBody
+	public Msg Selectzx(@RequestParam("id")Integer id){
+		Zixunguanli zixunguanli = tuanduiService.seletezx(id);
+		return Msg.success().add("zixunguanli", zixunguanli);
+	}
+	
+	/**
+	 * 新增资讯
+	 * @param head
+	 * @param text
+	 * @return
+	 */
+	@RequestMapping("/indexzx")
+	@ResponseBody
+	public Msg Indexzx(@RequestParam("head")String head,@RequestParam("text")String text){
+		tuanduiService.indexzx(head,text);
+		return Msg.success();
+	}
+	
+	/**
+	 * 删除资讯
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/deletezx")
+	@ResponseBody
+	public Msg Deletezx(@RequestParam("id")Integer id){
+		tuanduiService.deletezu(id);
+		return Msg.success();
+	}
+	
+	@RequestMapping("/zxxq")
+	public String Zxxq(@RequestParam("id")Integer id,Map<String, Object> map){
+		Zixunguanli zixunguanli = tuanduiService.zxxq(id);
+		map.put("zixunguanlixq", zixunguanli);
+		return "zxxq";
+	}
 }
