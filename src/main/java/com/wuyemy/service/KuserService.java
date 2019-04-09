@@ -665,10 +665,22 @@ public class KuserService {
 		   Xiaozu xiaozu = new Xiaozu();
 		   xiaozu.setSuozailunshu(chujucs);
 		 xiaozuMapper.updateByExampleSelective(xiaozu, exampl);
-		
 		 
-		
+		 	KuserExample example = new KuserExample();
+			KuserExample.Criteria criteria = example.createCriteria();
+			criteria.andTzhanghaoEqualTo(zhanghao);
+			long countByExample = kuserMapper.countByExample(example);
+			
+		 if(chujucs==5&&countByExample==0){
+			 kuserService.updateTzhanghao(zhanghao);
+			 
+		 }		 		
 		}
+	
+	
+	
+	
+	
 	//出局的人推荐人不为空就给推荐人增加积分	  	 
 	public void addTUserZtOrGcAndFx(String zhanghao){
 		
