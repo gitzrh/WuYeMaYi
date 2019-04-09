@@ -69,7 +69,7 @@
 				<div class="leftMessage">身份证号:</div>
 				<input type="text" placeholder="${kuser.shenfenid }" name="identity_card" id="identity_card" class="rightMessage">
 			</div>
-			<div class="etermineButton" id="infobutton">
+			<div class="etermineButton bankbutton1" id="infobutton">
 				确认
 			</div>
 			<div class="messageDidsplayDiv"></div>
@@ -113,7 +113,7 @@
 				<input type="text" placeholder="${kuser.zhifubaoid }" name="${kuser.zhifubaoid }" id="alipay" class="rightMessage">
 			</div>
 			<!--确认按钮-->
-			<div class="etermineButton" id="bankbutton">
+			<div class="etermineButton bankbutton2" id="bankbutton">
 				确认
 			</div>
 			<div class="messageDidsplayDiv"></div>
@@ -131,6 +131,28 @@
 
 
 	<script>
+		function myalert1(str) {
+		  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+		  $('.bankbutton1').append(div)
+		  $('.layui').html(str);
+		  $('.layui').show();
+		  setTimeout(function() {
+		    $('.layui').hide();
+		    $('.layui').remove();
+		  }, 2000)
+		}	
+		
+		function myalert2(str) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.bankbutton2').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 2000)
+			}
+	
 	
 		$("#infobutton").click(function(){
 			var phone = $("#phone").val();
@@ -140,7 +162,8 @@
         	    type: "GET",
         	    data:"phone="+phone+"&card="+identity_card,
         	    success:function(res){
-        	    	
+        	    	myalert1("修改成功!");
+        	    	window.location.href="${APP_PATH }/toUserShou";
         	    }
         	})
 		})
@@ -182,7 +205,8 @@
         	    type: "POST",
         	    data: "realname="+realname+"&bankname="+bank_name+"&bankcard="+bank_card+"&kaihuaddress="+kaihu_address+"&alipay="+alipay,
         	    success: function (res) {
-        	        
+        	    	myalert2("修改成功!");
+        	    	window.location.href="${APP_PATH }/toUserShou";
         	    }
         	})
 		})
@@ -190,8 +214,6 @@
 		
 		$('.backButton').click(function(){
             window.location.href="${APP_PATH }/toUserShou";
-            // window.location.href="Title.htm";
-            // window.history.back();
         })
 
 	</script>

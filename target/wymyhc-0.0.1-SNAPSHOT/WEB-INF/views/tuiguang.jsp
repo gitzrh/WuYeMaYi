@@ -65,6 +65,11 @@
 				
 			})
 		}
+		
+		$('.backButton').click(function(){
+            window.location.href="${APP_PATH }/toUserShou";
+        })
+        
 
 	</script>
 
