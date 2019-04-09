@@ -120,7 +120,7 @@
         </div>
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">推荐会员:</div>
-            <input type="text"  value="${param.tzhanghao }" name="tzhanghao" id="tzhanghao" class="rightMessage">
+            <input type="text" value="${param.tzhanghao }" name="tzhanghao" id="tzhanghao" class="rightMessage">
         </div>
       
       	<div class="messageDidsplayDiv">

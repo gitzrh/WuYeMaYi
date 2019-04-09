@@ -110,28 +110,28 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
         <!--积分-->
         <div style="height: 4.15rem;">
             <div style="padding-left: 0.2rem;"class="jf">
-              <a href="">
+              <a href="javascript:;">
                 <img class="jftp" src="${APP_PATH }/Home/img/fx.png"/>
                 <span class="jfwz1">分享金币</span>
                 <span class="jfwz2">${jifen.fxjf }</span>
               </a>
             </div>
             <div style="margin-left: 0; "class="jf">
-              <a href="">
+              <a href="javascript:;">
                 <img class="jftp" src="${APP_PATH }/Home/img/bd.png"/>
                 <span class="jfwz1">在途金币</span>
                 <span class="jfwz2">${jifen.ztjf }</span>
               </a>
             </div>
             <div class="jf" style="margin-top: 0;padding-left: 0.2rem; ">
-              <a href="">
+              <a href="javascript:;">
                 <img class="jftp" src="${APP_PATH }/Home/img/gc.png"/>
                 <span class="jfwz1">购车金币</span>
                 <span class="jfwz2">${jifen.gcjf }</span>
               </a>
             </div>
             <div  class="jf" style="margin-top: 0;margin-left: 0; ">
-               <a href="">
+               <a href="javascript:;">
                   <img class="jftp" src="${APP_PATH }/Home/img/cj.png"/>
                   <span class="jfwz1">出局金币</span>
                   <span class="jfwz2">${jifen.chjf }</span>
@@ -230,13 +230,13 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
         <div class="footer" style="background-image: url('${APP_PATH }/Home/img/bak.png');background-position: center;background-repeat: no-repeat;">
             <ul class="footer-page clearfix">
                 <li class="page-item active">
-                    <a href="/index.php?s=/Home/Shop/index.html" class="active">
+                    <a href="" class="active">
                         <i class="iconfont icon-index" style='color:#fff'></i>
                         <p style='color:#fff'>首页</p>
                     </a>
                 </li>
                 <li class="page-item ">
-                    <a href="/index.php?s=/Home/Ucenter/jiegou.html">
+                    <a href="${APP_PATH }/jggl">
                         <i class="iconfont icon-computer" style='color:#fff'></i>
                         <p style='color:#fff'>团队</p>
                     </a>

@@ -295,6 +295,7 @@ public class KuserService {
 				 if("".equals(tuser)){
 					 kuserService.update1zid(i, 4, user1);
 					 kuserService.zengjiaChuJu(user1);
+					 kuserService.jijijiji(user1);
 				 }else{
 					 List<Xiaozu> kuser1 = kuserService.getxiaozid(tuser);
 					 int tzid = kuser1.get(0).getZid();
@@ -304,6 +305,7 @@ public class KuserService {
 						 kuserService.update1zid(tzid, tmaxzidd+1, user1);
 						 kuserService.zengjiaChuJu(user1);
 						 kuserService.addTUserZtOrGcAndFx(user1);
+						 kuserService.jijijiji(user1);
 					 }else if(tmaxzidd==6){
 						 
 						
@@ -341,9 +343,11 @@ public class KuserService {
 						 kuserService.update1zid(m1, 3, user1);
 						 kuserService.zengjiaChuJu(user1);
 						 kuserService.addTUserZtOrGcAndFx(user1);
+						 kuserService.jijijiji(user1);
 						 if("".equals(tusera)){
 							 kuserService.update1zid(tzid, 4, user1a);
 							 kuserService.zengjiaChuJu(user1a);
+							 kuserService.jijijiji(user1a);
 						 }else{
 							 List<Xiaozu> kuser2 = kuserService.getxiaozid(tusera);
 							 int tzid1 = kuser2.get(0).getZid();
@@ -352,6 +356,7 @@ public class KuserService {
 								 kuserService.update1zid(tzid1, tmaxzidd1+1, user1a);
 								 kuserService.zengjiaChuJu(user1a);
 								 kuserService.addTUserZtOrGcAndFx(user1a);
+								 kuserService.jijijiji(user1a);
 							 }else if(tmaxzidd1==6){
 								 int a1 = kuserService.getmaxzid();
 								 int b1 = a1+1;
@@ -386,9 +391,11 @@ public class KuserService {
 								 kuserService.update1zid(b1, 3, user1a);
 								 kuserService.zengjiaChuJu(user1a);
 								 kuserService.addTUserZtOrGcAndFx(user1a);
+								 kuserService.jijijiji(user1a);
 								 if("".equals(tuserb)){
 									 kuserService.update1zid(tzid1, 4, user1b);
 									 kuserService.zengjiaChuJu(user1b);
+									 kuserService.jijijiji(user1b);
 								 }else {
 									 List<Xiaozu> kuser3 = kuserService.getxiaozid(tuserb);
 									 int tzid2 = kuser3.get(0).getZid();
@@ -397,6 +404,7 @@ public class KuserService {
 										 kuserService.update1zid(tzid2, tmaxzidd2+1, user1b);
 										 kuserService.zengjiaChuJu(user1b);
 										 kuserService.addTUserZtOrGcAndFx(user1b);
+										 kuserService.jijijiji(user1b);
 									 }else if(tmaxzidd2==6){
 										 int a2 = kuserService.getmaxzid();
 										 int b2 = a2+1;
@@ -430,9 +438,11 @@ public class KuserService {
 										 kuserService.update1zid(b2, 3, user1b);
 										 kuserService.zengjiaChuJu(user1b);
 										 kuserService.addTUserZtOrGcAndFx(user1b);
+										 kuserService.jijijiji(user1b);
 										 if("".equals(tuserc)){
 											 kuserService.update1zid(tzid2, 4, user1c);
 											 kuserService.zengjiaChuJu(user1c);
+											 kuserService.jijijiji(user1c);
 										 }else {
 											 List<Xiaozu> kuser4 = kuserService.getxiaozid(tuserc);
 											 int tzid3 = kuser4.get(0).getZid();
@@ -441,6 +451,7 @@ public class KuserService {
 												 kuserService.update1zid(tzid3, tmaxzidd3+1, user1c);
 												 kuserService.zengjiaChuJu(user1c);
 												 kuserService.addTUserZtOrGcAndFx(user1c);
+												 kuserService.jijijiji(user1c);
 											 }else if(tmaxzidd3==6){
 												 int a3= kuserService.getmaxzid();
 												 int b3 = a3+1;
@@ -474,9 +485,11 @@ public class KuserService {
 												 kuserService.update1zid(b3, 3, user1c);
 												 kuserService.zengjiaChuJu(user1c);
 												 kuserService.addTUserZtOrGcAndFx(user1c);
+												 kuserService.jijijiji(user1c);
 												 if("".equals(tuserd)){
 													 kuserService.update1zid(tzid3, 4, user1d);
 													 kuserService.zengjiaChuJu(user1d);
+													 kuserService.jijijiji(user1d);
 												 }else {
 													 List<Xiaozu> kuser5 = kuserService.getxiaozid(tuserd);
 													 int tzid4 = kuser5.get(0).getZid();
@@ -485,6 +498,7 @@ public class KuserService {
 														 kuserService.update1zid(tzid4, tmaxzidd4+1, user1d);
 														 kuserService.zengjiaChuJu(user1d);
 														 kuserService.addTUserZtOrGcAndFx(user1d);
+														 kuserService.jijijiji(user1d);
 													 }else if(tmaxzidd4==6){
 														 int a4= kuserService.getmaxzid();
 														 int b4 = a4+1;
@@ -518,9 +532,11 @@ public class KuserService {
 														 kuserService.update1zid(b4, 3, user1d);
 														 kuserService.zengjiaChuJu(user1d);
 														 kuserService.addTUserZtOrGcAndFx(user1d);
+														 kuserService.jijijiji(user1d);
 														 if("".equals(tusere)){
 															 kuserService.update1zid(tzid4, 4, user1e);
 															 kuserService.zengjiaChuJu(user1e);
+															 kuserService.jijijiji(user1e);
 														 }
 													 }
 													 
@@ -561,8 +577,9 @@ public class KuserService {
 		jife.setChjf(chuju);
 		jifenMapper.updateByExampleSelective(jife, example);
 		
-		kuserService.chujuzengjiacishu(zhanghao);
 		kuserService.addChujuJinbiWitnZjmxTal(zhanghao);
+		kuserService.chujuzengjiacishu(zhanghao);
+		
 	
 	}
 	//根据账号增加推荐人的分享和购车金币
@@ -666,19 +683,32 @@ public class KuserService {
 		   xiaozu.setSuozailunshu(chujucs);
 		 xiaozuMapper.updateByExampleSelective(xiaozu, exampl);
 		 
-		 	KuserExample example = new KuserExample();
-			KuserExample.Criteria criteria = example.createCriteria();
-			criteria.andTzhanghaoEqualTo(zhanghao);
-			long countByExample = kuserMapper.countByExample(example);
-			
-		 if(chujucs==5&&countByExample==0){
-			 kuserService.updateTzhanghao(zhanghao);
-			 
-		 }		 		
+		 
 		}
 	
 	
-	
+	public void jijijiji(String zhanghao){
+		
+		//获取出局次数
+				XiaozuExample exampl = new XiaozuExample();
+				XiaozuExample.Criteria crite = exampl.createCriteria();
+				crite.andZhanghaoEqualTo(zhanghao);
+				List<Xiaozu> lis = xiaozuMapper.selectByExample(exampl);
+				
+				   Integer cjcs = lis.get(0).getSuozailunshu(); 
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andTzhanghaoEqualTo(zhanghao);
+		long countByExample = kuserMapper.countByExample(example);
+		
+		System.out.println(countByExample);
+		System.out.println(cjcs);
+	 if(cjcs==5&&countByExample==0){
+		 kuserService.deleteUser(zhanghao);
+		 kuserService.deleteUserXiaozuTab(zhanghao);
+		 
+	 }		 		
+	}
 	
 	
 	//出局的人推荐人不为空就给推荐人增加积分	  	 
