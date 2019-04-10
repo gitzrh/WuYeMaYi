@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.RestTest;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Xiaozu;
@@ -61,17 +62,15 @@ public class TuanduiController {
 	public Msg Huoquphone(@RequestParam("phone")String phone){
 		
 		str = liuweishu.yanzhnegma();
-		System.out.println(str);
 		String sid = "71d51808f02cc0094354fbd71f05d5c5";
 		String token = "f6e6e0f7d6a73d9329613077970df402";
 		String appid = "3fc3212aaf7b4203afe938ee6682c15b";
 		String templateid = "451839";
 		String param = str;
-		String mobile = "15703997033";
+		String mobile = phone;
 		String uid = "2d92c6132139467b989d087c84a365d7";
-		//RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
+		RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
 		return Msg.success().add("yzh", str);
-		
 	}
 	
 	/**

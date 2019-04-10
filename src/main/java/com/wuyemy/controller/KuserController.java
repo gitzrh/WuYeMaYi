@@ -1,11 +1,7 @@
 package com.wuyemy.controller;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wuyemy.bean.Kuser;
-import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.service.KuserService;
 import com.wuyemy.until.DateToString;
 
@@ -115,12 +108,10 @@ public class KuserController {
 	}
 	@RequestMapping("/loginUser")
 	@ResponseBody
-	public Msg loginUser(@RequestParam("zhanghao")String zhanghao,
-			@RequestParam("kpassword")String kpassword,
-			@RequestParam("yanzhma")String yanzhma,
-			HttpServletRequest request, HttpServletResponse response){
+	public Msg loginUser(@RequestParam("zhanghao")String zhanghao,@RequestParam("kpassword")String kpassword,
+			@RequestParam("yanzhma")String yanzhma,HttpServletRequest request, HttpServletResponse response){
 		
-		//2. 获取 session 中的 CHECK_CODE_KEY 属性值
+			//2. 获取 session 中的 CHECK_CODE_KEY 属性值
 		     List<Kuser> kuseer =  kuserService.loginusers(zhanghao);
 		    
 		     if(zhanghao==""){
@@ -130,37 +121,33 @@ public class KuserController {
 		    	 if(kuseer.size()==0){
 		    		 return Msg.fail().add("login", "该账号不存在") ;
 		    	 }else{
-		    	 long j = kuseer.get(0).getZhuangtaiid();
-		     if(j==1){
-		    	 
-		    	return Msg.fail().add("login", "账号未激活") ;
-		     }else{
+				    	 long j = kuseer.get(0).getZhuangtaiid();
+					     if(j==1){
+					    	return Msg.fail().add("login", "账号未激活") ;
+					     }else{
 		     
-		String sessionCode = (String)request.getSession().getAttribute("verCode");
-		
-		
-		
-		long i =	kuserService.loginuser(zhanghao,kpassword);
-		
-		if(i==0){
-			return Msg.fail().add("login", "账号或密码有误");
-			
-		}else{
-		
-		if(yanzhma==""||!(yanzhma.equalsIgnoreCase(sessionCode))){			 
-			 return Msg.fail().add("login","验证码错误");
-		 }else{
-			 
-			 HttpSession session = request.getSession();
-			 session.setAttribute("zhanghao", zhanghao);
-
-
-			 return Msg.success();
-		
-		 }
-		}
-	}
-		     }}	
+							String sessionCode = (String)request.getSession().getAttribute("verCode");
+							long i =	kuserService.loginuser(zhanghao,kpassword);
+							
+							if(i==0){
+								return Msg.fail().add("login", "账号或密码有误");
+								
+							}else{
+							
+							if(yanzhma==""||!(yanzhma.equalsIgnoreCase(sessionCode))){			 
+								 return Msg.fail().add("login","验证码错误");
+							 }else{
+								 
+								 HttpSession session = request.getSession();
+								 session.setAttribute("zhanghao", zhanghao);
+								 session.setMaxInactiveInterval(60*60*6);
+					
+								 return Msg.success();
+							
+							 }
+							}
+						}
+			     }}	
 	}
 	
 	@RequestMapping("/shanchuwei")
@@ -177,6 +164,19 @@ public class KuserController {
 		Kuser kuser = kuserService.getoneuser(zhanghao);
 		
 		return Msg.success().add("pageInfo",kuser );
+	}
+	
+	@RequestMapping("/logindenglu")
+	@ResponseBody
+	public Msg Logindenglu(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		Object attribute = session.getAttribute("zhanghao");
+		if (attribute == null) {
+			return Msg.fail();
+		}else if (attribute != null) {
+			return Msg.success();
+		}
+		return null;
 	}
 	
 }

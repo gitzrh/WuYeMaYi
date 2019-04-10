@@ -17,7 +17,7 @@ public class QRCodeUtil  {
 	public void QRCode(String zhanghao,String yyid,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		MultiFormatWriter writer = new MultiFormatWriter();
-		String contents = "http://wuye.krylai.com/?tzhanghao="+zhanghao+"&yyzxid="+yyid;
+		String contents = "http://www.wymyqc.com/register.jsp?tzhanghao="+zhanghao+"&yyzxid="+yyid;
 		int width = 300;
 		int height = 300;
 		HashMap<EncodeHintType, Object> hints = new HashMap<>();

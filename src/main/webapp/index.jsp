@@ -37,6 +37,19 @@
           }
 	</style>
 	<script type="text/javascript">
+	
+	$.ajax({
+		url:"${APP_PATH }/logindenglu",
+		type:"GET",
+		success:function(result){
+			var code = result.code;
+			if (code == 100) {
+				window.location.href="${APP_PATH }/toUserShou";
+			}
+		}
+	})
+	
+	
 	$(function(){
 		
 		  function myalert(str) {
@@ -76,17 +89,12 @@
 				success:function(result){
 						var code = result.code;
 						if (code == 100) {
-							
 							window.location.href="${APP_PATH }/toUserShou";
-							
-							
-							
 						}else{
 							myalert(result.extent.login);
 							
 						}
 					}
-				
 			})
 			}
 		})
