@@ -35,20 +35,19 @@ public class KuserController {
 			@RequestParam(value="yyzxid")String yyzxid,
 			@RequestParam(value="kpassword")String kpassword,
 			HttpServletRequest request, HttpServletResponse response){
+		
 		if(tzhanghao!=""){
-			
 			long i = kuserService.getcounttzhanghao(tzhanghao);
-			if(i==1){
-				
+			long l = kuserService.getcounttzhanghao(zhanghao);
+			if(i==1 && l == 0){
 				kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
-				
 				return Msg.success();
 			}else{
-				return Msg.fail().add("loog", "推荐人不存在");
+				return Msg.fail().add("loog", "推荐人不存在或此账号已注册!");
 			}
 		}
 		kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
-			return Msg.success();
+		return Msg.success();
 		
 		
 	}
