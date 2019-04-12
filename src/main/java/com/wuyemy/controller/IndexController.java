@@ -93,7 +93,6 @@ public class IndexController {
 
 		if (zhanghao != null) {
 			Kuser kuser = indexService.user(zhanghao);
-			System.out.println(kuser.getZhenshiname());
 			map.put("kuser", kuser);
 			return "user";
 		}else {

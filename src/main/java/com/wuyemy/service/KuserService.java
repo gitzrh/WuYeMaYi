@@ -700,9 +700,6 @@ public class KuserService {
 		KuserExample.Criteria criteria = example.createCriteria();
 		criteria.andTzhanghaoEqualTo(zhanghao);
 		long countByExample = kuserMapper.countByExample(example);
-		
-		System.out.println(countByExample);
-		System.out.println(cjcs);
 	 if(cjcs==5&&countByExample==0){
 		 kuserService.deleteUser(zhanghao);
 		 kuserService.deleteUserXiaozuTab(zhanghao);
