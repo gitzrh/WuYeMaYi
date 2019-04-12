@@ -30,7 +30,6 @@ public class FileUpUtil {
             f.mkdirs();  
             // 获得原始文件名  
             String fileName = file.getOriginalFilename();  
-            System.out.println("原始文件名:" + fileName);  
             // 新文件名  
             String newFileName = UUID.randomUUID() + fileName;  
             if (!file.isEmpty()) {  
@@ -48,7 +47,6 @@ public class FileUpUtil {
                     e.printStackTrace();  
                 }  
             }  
-            System.out.println("上传图片到:" + path + newFileName);  
             return "Picture/"+newFileName;
 	}
 	

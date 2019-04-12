@@ -1,14 +1,11 @@
 package com.wuyemy.service;
 
 import java.math.BigDecimal;
-
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Jifen;
@@ -21,7 +18,6 @@ import com.wuyemy.bean.XiaozuExample;
 import com.wuyemy.bean.Yyzx;
 import com.wuyemy.bean.YyzxExample;
 import com.wuyemy.bean.Zijinmingxi;
-import com.wuyemy.controller.Msg;
 import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
@@ -701,8 +697,6 @@ public class KuserService {
 		criteria.andTzhanghaoEqualTo(zhanghao);
 		long countByExample = kuserMapper.countByExample(example);
 		
-		System.out.println(countByExample);
-		System.out.println(cjcs);
 	 if(cjcs==5&&countByExample==0){
 		 kuserService.deleteUser(zhanghao);
 		 kuserService.deleteUserXiaozuTab(zhanghao);

@@ -1,6 +1,5 @@
 package com.wuyemy.controller;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -30,7 +29,6 @@ public class CanshuController {
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			
 			response.sendRedirect("wyehoutaiadmin.jsp");
 		}
 		 List<Canshu> canshu = canshuService.getCanShu();

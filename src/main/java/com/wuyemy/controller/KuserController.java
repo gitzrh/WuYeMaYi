@@ -41,8 +41,6 @@ public class KuserController {
 		if(tzhanghao != ""){
 			long i = kuserService.getcounttzhanghao(tzhanghao);
 			
-			System.out.println("t"+i);
-			System.out.println("==="+l);
 			if(i==1 && l == 0){
 				kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
 				return Msg.success();

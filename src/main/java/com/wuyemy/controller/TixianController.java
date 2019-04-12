@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.Tixian;
 import com.wuyemy.service.TixianService;
 
