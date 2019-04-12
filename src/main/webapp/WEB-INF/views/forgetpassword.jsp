@@ -61,7 +61,73 @@
     </form>
     
 <script type="text/javascript">
-
+		
+		
+		function myalert1(str) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.updatepassword').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 3000)
+		}
+		
+		function myalert2(str) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.div2').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 3000)
+		}
+		
+		function myalert3(str,div) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.div3').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 3000)
+		}
+		
+		function myalert4(str,div) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.div4').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 3000)
+		}
+		
+		function myalert5(str,div) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.div5').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 3000)
+		}
+		
+		function myalert6(str,div) {
+			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
+			  $('.div1').append(div)
+			  $('.layui').html(str);
+			  $('.layui').show();
+			  setTimeout(function() {
+			    $('.layui').hide();
+			    $('.layui').remove();
+			  }, 3000)
+		}
 	
 		$(".reloadverify").click(function(){
 			document.getElementById("imgVerify").src="AuthImage?"+Math.random();
@@ -108,75 +174,15 @@
                 	        }
                 	    }
 					}
+        	    	
+        	    	if (code == 200) {
+        	    		myalert6(result.extent.fphone);
+					}
 				}
 			})
 		})
 		
-		function myalert1(str) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.updatepassword').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 3000)
-		}
 		
-		function myalert2(str) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.div2').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 3000)
-		}
-	    
-		function myalert3(str,div) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.div3').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 3000)
-		}
-		
-		function myalert4(str,div) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.div4').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 3000)
-		}
-		
-		function myalert5(str,div) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.div5').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 3000)
-		}
-		
-		function myalert6(str,div) {
-			  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-			  $('.div1').append(div)
-			  $('.layui').html(str);
-			  $('.layui').show();
-			  setTimeout(function() {
-			    $('.layui').hide();
-			    $('.layui').remove();
-			  }, 3000)
-		}
 		
 		//判断两次密码是否一样
 		$(".inputPassword2").change(function(){
