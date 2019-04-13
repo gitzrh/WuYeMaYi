@@ -1,10 +1,13 @@
+<%@page import="com.wuyemy.until.GetIPAddress"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%
+	<%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 	%>
     <title>登录</title>
@@ -54,7 +57,7 @@
 		
 		  function myalert(str) {
   		  var div = '<div class="layui" style="color:red;text-align:center;font-size:36px"></div>';
-  		  $('#dl').append(div)
+  		  $('#doo').append(div)
   		  $('.layui').html(str);
   		  $('.layui').show();
   		  setTimeout(function() {
@@ -106,10 +109,17 @@
 </head>
 
 <body class="bodyHeight" style="background-image: url(Home/img/timg.gif);background-position: center;background-repeat: no-repeat;background-size: 100% 100%;">
+  	
+  	<%
+	 	 //使用方法获取ip
+	  	String ip = GetIPAddress.getIp(request);
+    %>
+  	<input type="hidden" value="<%=ip %>" class="ip">
+  	
   	<div style='padding-top:164px;text-align: center'>
       	<img src='Home/img/logo.png' style="width: 747px;">
   	</div>
-
+	
     <!--topTitle -->
     <form action="" style='margin-top: 215px;'>
         <div class="messageDidsplayDiv">
@@ -130,12 +140,27 @@
         </div>
         <div class="etermineButton" id="dl" style="background:rgba(0,0,0,0);margin-top: 150px;">
             	登录
-        </div>
+        </div >
+        <div id="doo"></div>
         <p class="foget-psw"><a href="${APP_PATH }/forgetpassword" style="color:#fff">忘记密码?</a></p>
        
       <div style='margin-top:240px;text-align:center;'><span style='color:#fff;display:inline-block;font-size: 4rem;'> 五叶蚂蚁好车</span></div>
     </form>
-
+    
+<script type="text/javascript"> 
+	var ips = $(".ip").val();
+	
+    $.ajax({
+		url:"${APP_PATH }/logip",
+		type:"POST",
+		data:"ips="+ips,
+		success:function(result){
+			
+		}
+				
+	})
+    
+</script>
 </body>
 
 </html>

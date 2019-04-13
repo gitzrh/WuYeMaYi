@@ -112,7 +112,6 @@
 			$(".qdyyinbi").click(function(){
 				var jinbis = $("#newjinbi_upd_input").val();
 				var bianhaos = $("#bianhao_input").val();
-				alert(jinbis);
 				$.ajax({
 					url:"${APP_PATH }/jinbishezhi",
 					type:"PUT",

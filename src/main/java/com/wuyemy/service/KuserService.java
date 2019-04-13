@@ -686,22 +686,22 @@ public class KuserService {
 	public void jijijiji(String zhanghao){
 		
 		//获取出局次数
-				XiaozuExample exampl = new XiaozuExample();
-				XiaozuExample.Criteria crite = exampl.createCriteria();
-				crite.andZhanghaoEqualTo(zhanghao);
-				List<Xiaozu> lis = xiaozuMapper.selectByExample(exampl);
-				
-				   Integer cjcs = lis.get(0).getSuozailunshu(); 
+		XiaozuExample exampl = new XiaozuExample();
+		XiaozuExample.Criteria crite = exampl.createCriteria();
+		crite.andZhanghaoEqualTo(zhanghao);
+		List<Xiaozu> lis = xiaozuMapper.selectByExample(exampl);
+		
+	    Integer cjcs = lis.get(0).getSuozailunshu(); 
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
 		criteria.andTzhanghaoEqualTo(zhanghao);
 		long countByExample = kuserMapper.countByExample(example);
 		
-	 if(cjcs==5&&countByExample==0){
-		 kuserService.deleteUser(zhanghao);
-		 kuserService.deleteUserXiaozuTab(zhanghao);
-		 
-	 }		 		
+		 if(cjcs==5&&countByExample==0){
+			 kuserService.deleteUser(zhanghao);
+			 kuserService.deleteUserXiaozuTab(zhanghao);
+			 
+		 }		 		
 	}
 	
 	

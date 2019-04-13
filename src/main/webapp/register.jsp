@@ -1,5 +1,8 @@
+<%@page import="com.wuyemy.until.GetIPAddress"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -57,6 +60,8 @@
    				var yyzxid = $.trim($("#yyzxid").val());
    				var kpassword = $.trim($("#kpassword").val());
    				var tzhanghao = $.trim($("#tzhanghao").val());
+   				var yanzheng = $("#code_input_yanzh").val();
+   				
    				if(!regzhanghao.test(zhanghao)){
    					myalert("电话格式错误");		
    					
@@ -73,7 +78,7 @@
        						$.ajax({
        			    			url:"${APP_PATH }/zhuce",
        			    			type:"POST",
-       			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword,
+       			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword+"&yanzheng="+yanzheng,
        			    			success:function(result){
        			    				var code = result.code;
        								if (code == 100) {
@@ -98,6 +103,12 @@
     </script>
 </head>
 <body class="bodyHeight" style="height: 816px;">
+	<%
+	 	 //使用方法获取ip
+	  	String ip = GetIPAddress.getIp(request);
+    %>
+  	<input type="hidden" value="<%=ip %>>">
+  	
     <!--topTitle -->
     <div class="pageTitleDiv">
         <span class="pageTitleText">
@@ -129,24 +140,24 @@
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">登陆密码:</div>
             <input type="text" placeholder="请输登陆密码" name="kpassword" class="rightMessage" id="kpassword">
-
         </div>
         <!---->
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">确认登陆密码:</div>
             <input type="text" placeholder="请输登陆密码" name="repassword" class="rightMessage" id="repassword">
-
+        </div>
+        
+        <div class="messageDidsplayDiv">
+            <div class="leftMessage" style='color:#fff;width:180px;'>验证码:</div>
+            <input type="text" placeholder="请输入验证码" name="password" id="code_input_yanzh" class="rightMessage" style='border: solid 2px #fff;color:#fff;margin-top:5%;width:315px'>
+			<div id="v_container" style="width: 200px;height: 79px; display: inline-block;position:relative;top:26px;left:30px;">
+			<img class="verifyimg reloadverify" id="imgVerify"  src="${APP_PATH }/AuthImage" alt="点击更换验证码">
+			</div>
         </div>
 
 
         <!--确认按钮-->
         <div class="etermineButton"  id="zhuce">确认注册</div>
-        
-        
     </form>
-    
-    
-    
-	
 </body>
 </html>

@@ -208,6 +208,7 @@
 			var bankname1 = $("#bank_name1").val();
 			var bankaddress1 = $("#bank_address1").val();
 			var bankcard1 = $("#bank_card1").val();
+			
 			$.ajax({
         	    url:"${APP_PATH }/txgcjb",
         	    type: "POST",

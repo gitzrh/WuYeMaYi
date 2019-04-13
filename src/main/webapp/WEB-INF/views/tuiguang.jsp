@@ -47,7 +47,6 @@
 	
 		
 		function test(){
-			alert("a");
             window.location.href="${APP_PATH }/toUserShou";
         }
         

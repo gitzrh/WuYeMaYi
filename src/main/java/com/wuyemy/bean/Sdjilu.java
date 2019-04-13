@@ -82,4 +82,23 @@ public class Sdjilu {
     public void setBeizhu(String beizhu) {
         this.beizhu = beizhu == null ? null : beizhu.trim();
     }
+
+	public Sdjilu(Integer id, String zhanghao, String name, String lianhua, Integer jinbileixing, Integer biandonglx,
+			Date biandongtime, String beizhu) {
+		super();
+		this.id = id;
+		this.zhanghao = zhanghao;
+		this.name = name;
+		this.lianhua = lianhua;
+		this.jinbileixing = jinbileixing;
+		this.biandonglx = biandonglx;
+		this.biandongtime = biandongtime;
+		this.beizhu = beizhu;
+	}
+
+	public Sdjilu() {
+		super();
+	}
+    
+    
 }

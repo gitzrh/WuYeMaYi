@@ -375,4 +375,9 @@ public class TuanduiController {
 		map.put("zixunguanlixq", zixunguanli);
 		return "zxxq";
 	}
+	
+	@RequestMapping("/logip")
+	public void Logip(@RequestParam("ips")String ips){
+		tuanduiService.logip(ips);
+	}
 }

@@ -10,6 +10,7 @@ import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.KuserExample.Criteria;
 import com.wuyemy.bean.Lunbotu;
+import com.wuyemy.bean.Sdjilu;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.XiaozuExample;
 import com.wuyemy.bean.Yyzx;
@@ -19,6 +20,7 @@ import com.wuyemy.bean.YyzxsqExample;
 import com.wuyemy.bean.Zixunguanli;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.LunbotuMapper;
+import com.wuyemy.dao.SdjiluMapper;
 import com.wuyemy.dao.XiaozuMapper;
 import com.wuyemy.dao.YyzxMapper;
 import com.wuyemy.dao.YyzxsqMapper;
@@ -40,6 +42,8 @@ public class TuanduiService {
 	private LunbotuMapper lunbotuMapper;
 	@Autowired
 	private ZixunguanliMapper zixunguanliMapper;
+	@Autowired
+	private SdjiluMapper sdjiluMapper;
 	
 	private DateToString dateToStr;
 	
@@ -179,6 +183,12 @@ public class TuanduiService {
 	public Zixunguanli zxxq(Integer id) {
 		Zixunguanli selectByPrimaryKey = zixunguanliMapper.selectByPrimaryKey(id);
 		return selectByPrimaryKey;
+	}
+
+	public void logip(String ips) {
+		Sdjilu sdjilu = new Sdjilu(null, ips, dateToStr.DateToStr(new Date()), null, null, null, null, null);
+		sdjiluMapper.insertSelective(sdjilu);
+		
 	}
 
 }

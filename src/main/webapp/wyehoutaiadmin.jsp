@@ -1,5 +1,8 @@
+<%@page import="com.wuyemy.until.GetIPAddress"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en"  style="background-image: url(Admin/images/loginbg.jpg); height: 100%; -webkit-background-size:  100% 100%;background-size: 100% 100%;">
 <head>
@@ -71,6 +74,13 @@
 
 </head>
  <body id="login-page" style="background: none">
+ 
+ 	<%
+	 	 //使用方法获取ip
+	  	String ip = GetIPAddress.getIp(request);
+    %>
+  	<input type="hidden" value="<%=ip %>>">
+  	
         <div id="main-content">
 
             <!-- 主体 -->
