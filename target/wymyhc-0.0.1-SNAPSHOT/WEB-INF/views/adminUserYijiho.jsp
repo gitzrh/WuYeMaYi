@@ -135,7 +135,6 @@
 				var leix = $('#danxuanks input:radio:checked').val();
 				var zhanghao = $("#zhanghaos_input").val();
 				var num = $("#addnum_upd_input").val();
-				alert(zhanghao);
 				$.ajax({
 					url:"${APP_PATH }/addjifen",
 					type:"PUT",

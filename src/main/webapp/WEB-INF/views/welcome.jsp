@@ -45,7 +45,7 @@
     <body >
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">五叶蚂蚁好车
-            <span class="x-red">欢迎管理员!</span>
+            <span class="x-red">欢迎您!</span>
         </blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>

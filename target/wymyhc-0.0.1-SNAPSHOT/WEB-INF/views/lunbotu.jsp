@@ -51,8 +51,7 @@
 			  if(a.value==""){		   
 				   alert("请先选择图片");
 		           return false;
-				  }
-			  else{
+				  }else{
 				  form.submit();
 				  location.reload();
 			  }		  

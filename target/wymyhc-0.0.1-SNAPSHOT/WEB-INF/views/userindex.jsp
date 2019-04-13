@@ -100,9 +100,9 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
             <div class="swiper-wrapper">
             	<c:forEach items="${lunbotus }" var="reca">
 	                <div class="swiper-slide">
-	                     <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${reca.image }" alt="" style="height:203px;"></a>
+	                   <a href="javascript:void(0)"><img class="swiper-lazy" data-src="${reca.image }" alt="" style="height:203px;"></a>
 	                </div>
-                 </c:forEach>            
+                </c:forEach>           
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -143,18 +143,18 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
         <!--相关资讯-->
         <div style="width: 100%;height: 2rem; background: #FFFFFF;">
             <img src="${APP_PATH }/Home/img/xgzx.png" style="margin-top: -1rem;width: 1.3rem;margin-left:0.35rem;display:inline-block;" />
-            <c:forEach items="${zixunguanlis }" var="reca">
 	            <div class="xgzxy" >
 	                <div>
-	                    <p style="margin-left: 0.2rem;">
-		                    <a href="${APP_PATH }/zxxq?id=${reca.id }" style="margin-top: -3px">
-		                    	<img src="${APP_PATH }/Home/img/zx.png"/>
-		                    	<span>${reca.head }</span>
-		                    </a>
-	                    </p>
+		                <c:forEach items="${zixunguanlis }" var="reca">
+		                    <p style="margin-left: 0.2rem;">
+			                    <a href="${APP_PATH }/zxxq?id=${reca.id }" style="margin-top: -3px">
+			                    	<img src="${APP_PATH }/Home/img/zx.png"/>
+			                    	<span>${reca.head }</span>
+			                    </a>
+		                    </p>
+		                </c:forEach>
 	                </div>
 	            </div>
-            </c:forEach>
         </div>
         <div style="clear:both"></div>
         

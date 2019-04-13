@@ -38,7 +38,7 @@
 		    <!-- 1 -->
 			<div class="detailsDiv">
 				<div class="details_Data">
-					1.${kuser1.zhenshiname }			<!--向下三角形-->
+					1.${kuser1.khname }			<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
@@ -72,7 +72,7 @@
 			<!-- 2 -->
 			<div class="detailsDiv">
 				<div class="details_Data">
-					2. ${kuser2.zhenshiname }		<!--向下三角形-->
+					2. ${kuser2.khname }		<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
@@ -106,7 +106,7 @@
 			<!-- 3 -->
 			<div class="detailsDiv">
 				<div class="details_Data">
-					3. ${kuser3.zhenshiname }		<!--向下三角形-->
+					3. ${kuser3.khname }		<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
@@ -140,7 +140,7 @@
 			
 			<div class="detailsDiv">
 				<div class="details_Data">
-					4. ${kuser4.zhenshiname }		<!--向下三角形-->
+					4. ${kuser4.khname }		<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
@@ -174,7 +174,7 @@
 			
 			<div class="detailsDiv">
 				<div class="details_Data">
-					5. ${kuser5.zhenshiname }	<!--向下三角形-->
+					5. ${kuser5.khname }	<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
@@ -208,7 +208,7 @@
 			
 			<div class="detailsDiv">
 				<div class="details_Data">
-					6. ${kuser6.zhenshiname }	<!--向下三角形-->
+					6. ${kuser6.khname }	<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->
@@ -242,7 +242,7 @@
 			
 			<div class="detailsDiv">
 				<div class="details_Data">
-					7. ${kuser7.zhenshiname }	<!--向下三角形-->
+					7. ${kuser7.khname }	<!--向下三角形-->
 					<div style=" border-top: solid 30px #FFF; border-left: solid 15px transparent; border-right: solid 15px transparent; display: inline-block;float: right;"></div>
 				</div>
 				<!--信息显示块-->

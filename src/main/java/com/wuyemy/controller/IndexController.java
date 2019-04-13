@@ -317,7 +317,7 @@ public class IndexController {
 					indexService.sycj(zhanhao,sycjjb,cjjf,realname2,bankaddress2,bankname2,bankcard2);
 					return Msg.success().add("cjjb", "提现成功!");
 				}else {
-					return Msg.success().add("cjjb", "余额不足!");
+					return Msg.fail().add("cjjb", "余额不足!");
 				}
 			}
 		}
@@ -357,7 +357,7 @@ public class IndexController {
 					indexService.syfx(zhanhao,syfxjb,fxjf,realname3,bankaddress3,bankname3,bankcard3);
 					return Msg.success().add("fxjf", "提现成功!");
 				}else {
-					return Msg.success().add("fxjf", "余额不足!");
+					return Msg.fail().add("fxjf", "余额不足!");
 				}
 			}
 		}

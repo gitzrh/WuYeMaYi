@@ -46,49 +46,47 @@
     	
     		
     		$("#zhuce").click(function(){
-    		
-    				//1、拿到要校验的数据，使用正则表达式
-    				var zhanghao = $.trim($("#zhanghao").val());
-    				var khname = $.trim($("#khname").val());
-    				var regzhanghao = /^[1][0-9][0-9]{9}$/;
-    				var regName = /(^[\u2E80-\u9FFF]{2,5})/;
-    				var kpassword = $.trim($("#kpassword").val());
-    				var repassword =$.trim($("#repassword").val());
-    				var tzhanghao = $.trim($("#tzhanghao").val());
-    				var yyzxid = $.trim($("#yyzxid").val());
-    				var kpassword = $.trim($("#kpassword").val());
-    				var tzhanghao = $.trim($("#tzhanghao").val());
-    				if(!regzhanghao.test(zhanghao)){
-    					myalert("电话格式错误");		
-    					
-    				}else{
-    					if(!regName.test(khname)){
-        					myalert("名字格式错误");   					
-        					
-        				}else{
-        					
-        						if(repassword!=kpassword){
-        							myalert("密码不一样");
-        					}else{
-        						
-        						
-        						$.ajax({
-        			    			url:"${APP_PATH }/zhuce",
-        			    			type:"POST",
-        			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword,
-        			    			success:function(result){
-        			    				var code = result.code;
-        								if (code == 100) {
-        			    				myalerts("注册成功");
-        								}else{
-        									myalert(result.extent.loog);
-        								}
-        			    			}
-        			    			
-        			    		});
-        						
-        					}
-        					
+   				//1、拿到要校验的数据，使用正则表达式
+   				var zhanghao = $.trim($("#zhanghao").val());
+   				var khname = $.trim($("#khname").val());
+   				var regzhanghao = /^[1][0-9][0-9]{9}$/;
+   				var regName = /(^[\u2E80-\u9FFF]{2,5})/;
+   				var kpassword = $.trim($("#kpassword").val());
+   				var repassword =$.trim($("#repassword").val());
+   				var tzhanghao = $.trim($("#tzhanghao").val());
+   				var yyzxid = $.trim($("#yyzxid").val());
+   				var kpassword = $.trim($("#kpassword").val());
+   				var tzhanghao = $.trim($("#tzhanghao").val());
+   				if(!regzhanghao.test(zhanghao)){
+   					myalert("电话格式错误");		
+   					
+   				}else{
+   					if(!regName.test(khname)){
+       					myalert("名字格式错误");   					
+       					
+       				}else{
+       					
+       						if(repassword!=kpassword){
+       							myalert("密码不一样");
+       					}else{
+       						
+       						$.ajax({
+       			    			url:"${APP_PATH }/zhuce",
+       			    			type:"POST",
+       			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword,
+       			    			success:function(result){
+       			    				var code = result.code;
+       								if (code == 100) {
+       			    				myalerts("注册成功");
+       								}else{
+       									myalert(result.extent.loog);
+       								}
+       			    			}
+       			    			
+       			    		});
+       						
+       					}
+       					
         					
         					
         				};
