@@ -41,14 +41,14 @@
    		
    				$.ajax({
    					url:"${APP_PATH }/adminLogin",
-   					type:"GET",
+   					type:"POST",
    					data:"username="+username+"&password="+password+"&yanzhengma="+yzm,
    					
    					success:function(result){
    						var code = result.code;
    						if (code == 100) {
    							
-   							window.location.href="${APP_PATH }/toadmin?username="+username;
+   							window.location.href="${APP_PATH }/toadmin";
    						}else{
    							$(".check-tips").show();
    		   					setTimeout(function(){

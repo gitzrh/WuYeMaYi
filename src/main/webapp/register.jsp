@@ -44,6 +44,9 @@
     		  }, 2000)
     		}
     	
+    	$("#imgVerify").click(function(){
+			document.getElementById("imgVerify").src="AuthImage?"+Math.random();
+		})
     		
     		$("#zhuce").click(function(){
    				//1、拿到要校验的数据，使用正则表达式
@@ -57,6 +60,8 @@
    				var yyzxid = $.trim($("#yyzxid").val());
    				var kpassword = $.trim($("#kpassword").val());
    				var tzhanghao = $.trim($("#tzhanghao").val());
+   				var yanzheng = $("#code_input_yanzh").val();
+   				
    				if(!regzhanghao.test(zhanghao)){
    					myalert("电话格式错误");		
    					
@@ -73,7 +78,7 @@
        						$.ajax({
        			    			url:"${APP_PATH }/zhuce",
        			    			type:"POST",
-       			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword,
+       			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword+"&yanzheng="+yanzheng,
        			    			success:function(result){
        			    				var code = result.code;
        								if (code == 100) {
@@ -129,13 +134,19 @@
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">登陆密码:</div>
             <input type="text" placeholder="请输登陆密码" name="kpassword" class="rightMessage" id="kpassword">
-
         </div>
         <!---->
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">确认登陆密码:</div>
             <input type="text" placeholder="请输登陆密码" name="repassword" class="rightMessage" id="repassword">
-
+        </div>
+        
+        <div class="messageDidsplayDiv">
+            <div class="leftMessage" style='color:#fff;width:180px;'>验证码:</div>
+            <input type="text" placeholder="请输入验证码" name="password" id="code_input_yanzh" class="rightMessage" style='border: solid 2px #fff;color:#fff;margin-top:5%;width:315px'>
+			<div id="v_container" style="width: 200px;height: 79px; display: inline-block;position:relative;top:26px;left:30px;">
+			<img class="verifyimg reloadverify" id="imgVerify"  src="${APP_PATH }/AuthImage" alt="点击更换验证码">
+			</div>
         </div>
 
 

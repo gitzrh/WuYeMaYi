@@ -34,22 +34,29 @@ public class KuserController {
 			@RequestParam(value="tzhanghao")String tzhanghao,
 			@RequestParam(value="yyzxid")String yyzxid,
 			@RequestParam(value="kpassword")String kpassword,
+			@RequestParam(value="yanzheng")String yanzheng,
 			HttpServletRequest request, HttpServletResponse response){
 		
 		long l = kuserService.getcounttzhanghao(zhanghao);
 		
-		if(tzhanghao != ""){
-			long i = kuserService.getcounttzhanghao(tzhanghao);
-			
-			if(i==1 && l == 0){
+		String sessionCode = (String)request.getSession().getAttribute("verCode");
+		
+		if (yanzheng.equalsIgnoreCase(sessionCode) ) {
+			if(tzhanghao != ""){
+				long i = kuserService.getcounttzhanghao(tzhanghao);
+				
+				if(i==1 && l == 0){
+					kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
+					return Msg.success();
+				}else{
+					return Msg.fail().add("loog", "推荐人不存在或此账号已注册!");
+				}
+			}else if (l == 0) {
 				kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
 				return Msg.success();
-			}else{
-				return Msg.fail().add("loog", "推荐人不存在或此账号已注册!");
 			}
-		}else if (l == 0) {
-			kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
-			return Msg.success();
+		}else {
+			return Msg.fail().add("loog", "验证码错误!");
 		}
 		return Msg.fail().add("loog", "此账号已注册!");
 		
