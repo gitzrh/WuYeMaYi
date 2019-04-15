@@ -177,15 +177,18 @@ public class IndexController {
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
-		//获取运营id
-		String yyid = indexService.selectyyid(zhanhao);
-		
-		QRCodeUtil codeUtil = new QRCodeUtil();
-		codeUtil.QRCode(zhanhao,yyid,request,response);
-		//codeUtil.main(null);
-		map.put("erzhang", zhanhao);
-		
-		return "tuiguang";
+		if (zhanhao != null) {
+			//获取运营id
+			String yyid = indexService.selectyyid(zhanhao);
+			
+			QRCodeUtil codeUtil = new QRCodeUtil();
+			codeUtil.QRCode(zhanhao,yyid,request,response);
+			//codeUtil.main(null);
+			map.put("erzhang", zhanhao);
+			
+			return "tuiguang";
+		}
+		return null;
 	}
 	
 	/**
@@ -214,7 +217,6 @@ public class IndexController {
 		
 		if (zhanhao != null) {
 			Kuser kuser = indexService.zijintixian(zhanhao);
-			
 			BigDecimal value = new BigDecimal("100");
 			
 			//购车
@@ -262,7 +264,7 @@ public class IndexController {
 		BigDecimal value = new BigDecimal("6000");
 		BigDecimal values = new BigDecimal("0");
 			
-		 if (!gcjf.equals("") || !realname1.equals("") || !bankaddress1.equals("") || !bankname1.equals("") || !bankcard1.equals("")) {
+		 if (!gcjf.equals("") && !realname1.equals("") && !bankaddress1.equals("") && !bankname1.equals("") && !bankcard1.equals("")) {
 			
 			if (zhanhao != null && gcjf.compareTo(values) == 1) {
 				//拥有总金币
@@ -305,7 +307,7 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (!cjjf.equals("") || !realname2.equals("") || !bankaddress2.equals("") || !bankname2.equals("") || !bankcard2.equals("")) {
+		if (!cjjf.equals("") && !realname2.equals("") && !bankaddress2.equals("") && !bankname2.equals("") && !bankcard2.equals("")) {
 		
 			if (zhanhao != null && cjjf.compareTo(value) == 1) {
 				//拥有总金币
@@ -321,7 +323,7 @@ public class IndexController {
 				}
 			}
 		}
-		return Msg.success().add("cjjb", "请填写完整信息!");
+		return Msg.fail().add("cjjb", "请填写完整信息!");
 	}
 	
 	/**
@@ -346,7 +348,7 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (!fxjf.equals("") || !realname3.equals("") || !bankaddress3.equals("") || !bankname3.equals("") || !bankcard3.equals("")) {
+		if (!fxjf.equals("") && !realname3.equals("") && !bankaddress3.equals("") && !bankname3.equals("") && !bankcard3.equals("")) {
 			if (zhanhao != null && fxjf.compareTo(value) == 1) {
 				//拥有总金币
 				BigDecimal decimal = indexService.hqfxjb(zhanhao);
@@ -361,7 +363,7 @@ public class IndexController {
 				}
 			}
 		}
-		return Msg.success().add("fxjf", "请填写完整信息不足!");
+		return Msg.fail().add("fxjf", "请填写完整信息不足!");
 	}
 
 	/**

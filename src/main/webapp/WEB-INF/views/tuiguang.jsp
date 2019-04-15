@@ -57,7 +57,7 @@
 		function test(){
 			$.ajax({
 				url:"${APP_PATH }/shanchut",
-				type:"GET",
+				type:"POST",
 				success:function(result){
 						
 					}

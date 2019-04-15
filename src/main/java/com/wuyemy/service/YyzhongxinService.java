@@ -33,26 +33,26 @@ public class YyzhongxinService {
 	private KuserMapper kuserMapper;
 	@Autowired
 	private YyzhongxinService yyzhongxinService;
-	private DateToString dateToString;
-	
 	
 	//查询所有申请
 	public List<Yyzxsq> getallyysq() {
 		return yyzxsqMapper.selectByExample(null);
 		
 	}
-//通过运营中心申请
+	
+	//通过运营中心申请
 	public void tongguoyysq(int id,String zhanghao, String name, String bianhao) {  
 		YyzxsqExample example = new YyzxsqExample();
 		YyzxsqExample.Criteria criteria = example.createCriteria();
 		criteria.andIdEqualTo(id);
 		Yyzxsq yyzxsq = new Yyzxsq();
 		yyzxsq.setZhaungtaiid(1);
-		yyzxsq.setTgtime(dateToString.DateToStr(new Date()));
+		yyzxsq.setTgtime(DateToString.DateToStr(new Date()));
 		yyzxsqMapper.updateByExampleSelective(yyzxsq, example);
 		yyzhongxinService.insertyyzxtab(zhanghao, name, bianhao);
 	}
-//通过就插入运营中心表
+	
+	//通过就插入运营中心表
 	public void insertyyzxtab(String zhanghao, String name, String bianhao){
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
@@ -60,12 +60,10 @@ public class YyzhongxinService {
 		criteria.andZhuangtaiidEqualTo(2);
 		int ztnum = (int) kuserMapper.countByExample(example);
 		
-		
 		Yyzx yyzx = new Yyzx(null, zhanghao, name, bianhao, 1, BigDecimal.ZERO, 0, ztnum,null);
 		yyzxMapper.insertSelective(yyzx);
-		
-		 
 	}
+	
 	public void jujuesqyy(int id) {
 		YyzxsqExample example = new YyzxsqExample();
 		YyzxsqExample.Criteria criteria = example.createCriteria();
@@ -75,10 +73,9 @@ public class YyzhongxinService {
 		yyzxsqMapper.updateByExampleSelective(yyzxsq, example);
 		
 	}
+	
 	public List<Yyzx> getallyyzx() {
-		
-	return	yyzxMapper.selectByExampleWithLv(null);
-		
+		return	yyzxMapper.selectByExampleWithLv(null);
 	}
 	
 	public void shengji(String bianhao) {
@@ -99,10 +96,8 @@ public class YyzhongxinService {
 		}else{
 			return;
 		}
-		
-		
-		
 	}
+	
 	public void jiangji(String bianhao) {
 		YyzxExample example = new YyzxExample();
 		YyzxExample.Criteria criteria = example.createCriteria();
@@ -119,6 +114,7 @@ public class YyzhongxinService {
 			return;
 		}
 	}
+	
 	public void quxiao(String bianhao) {
 		YyzxExample example = new YyzxExample();
 		YyzxExample.Criteria criteria = example.createCriteria();
@@ -133,6 +129,7 @@ public class YyzhongxinService {
 		kuserMapper.updateByExampleSelective(kuser, kexample);
 		
 	}
+	
 	public void xiaugaoybh(String zhanghao, String bianhao) {
 		YyzxExample yeExample = new YyzxExample();
 		YyzxExample.Criteria criteria1 = yeExample.createCriteria();
@@ -149,9 +146,8 @@ public class YyzhongxinService {
 		 }else{
 			 return;
 		 }
-		
-		
 	}
+	
 	public void xiugaijinbibh(BigDecimal jinbi, String bianhao) {
 		YyzxExample yeExample = new YyzxExample();
 		YyzxExample.Criteria criteria1 = yeExample.createCriteria();

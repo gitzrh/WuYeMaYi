@@ -45,8 +45,6 @@ public class TuanduiService {
 	@Autowired
 	private SdjiluMapper sdjiluMapper;
 	
-	private DateToString dateToStr;
-	
 	public String phone(String zhanghao) {
 		KuserExample example = new KuserExample();
 		Criteria createCriteria = example.createCriteria();
@@ -88,7 +86,7 @@ public class TuanduiService {
 	}
 
 	public void sqyyzx(String zhanghao, String name, String phone, String address, String remark) {
-		Yyzxsq yyzxsq = new Yyzxsq(null, zhanghao, name, phone, address, dateToStr.DateToStr(new Date()), null, remark, 2);
+		Yyzxsq yyzxsq = new Yyzxsq(null, zhanghao, name, phone, address, DateToString.DateToStr(new Date()), null, remark, 2);
 		yyzxsqMapper.insertSelective(yyzxsq);
 	}
 
@@ -186,7 +184,7 @@ public class TuanduiService {
 	}
 
 	public void logip(String ips) {
-		Sdjilu sdjilu = new Sdjilu(null, ips, dateToStr.DateToStr(new Date()), null, null, null, null, null);
+		Sdjilu sdjilu = new Sdjilu(null, ips, DateToString.DateToStr(new Date()), null, null, null, null, null);
 		sdjiluMapper.insertSelective(sdjilu);
 		
 	}

@@ -28,7 +28,7 @@
 					
 					$.ajax({
 						url:"${APP_PATH}/deletetp",
-						type:"GET",
+						type:"POST",
 						data: "id="+id,
 						success:function(result){
 							var code = result.code;

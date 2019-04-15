@@ -6,19 +6,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<%
-	pageContext.setAttribute("APP_PATH", request.getContextPath());
-	%>
-    <title>登录</title>
-    <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">
-    <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet_PC.css" media="screen and (min-width:1000px)">
-    <link href="${APP_PATH }/Home/css/layer.css">
-    <script src="${APP_PATH }/Home/js/jquery-3.2.1.min.js"></script>
-    <script src="${APP_PATH }/Home/js/comment.js"></script>
-    <script src="${APP_PATH }/Home/js/layer.js"></script>
-  <script src="${APP_PATH }/Home/js/unicode.js"></script>
-  <script src="${APP_PATH }/Home/js/gVerify-1.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%
+pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
+<title>登录</title>
+<link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">
+<link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet_PC.css" media="screen and (min-width:1000px)">
+<link href="${APP_PATH }/Home/css/layer.css">
+<script src="${APP_PATH }/Home/js/jquery-3.2.1.min.js"></script>
+<script src="${APP_PATH }/Home/js/comment.js"></script>
+<script src="${APP_PATH }/Home/js/layer.js"></script>
+<script src="${APP_PATH }/Home/js/unicode.js"></script>
+<script src="${APP_PATH }/Home/js/gVerify-1.js"></script>
     <style>
         input{
 				outline:none!important;
@@ -39,11 +39,12 @@
               font-size: 3.5rem;
           }
 	</style>
-	<script type="text/javascript">
+	
+<script type="text/javascript">
 	
 	$.ajax({
 		url:"${APP_PATH }/logindenglu",
-		type:"GET",
+		type:"POST",
 		success:function(result){
 			var code = result.code;
 			if (code == 100) {
@@ -87,7 +88,7 @@
 				
 			$.ajax({
 				url:"${APP_PATH }/loginUser",
-				type:"GET",
+				type:"POST",
 				data:"zhanghao="+kzhanghao+"&kpassword="+kpassword+"&yanzhma="+yzm,
 				success:function(result){
 						var code = result.code;
@@ -105,7 +106,7 @@
 		
 	})
 	
-	</script>
+</script>
 </head>
 
 <body class="bodyHeight" style="background-image: url(Home/img/timg.gif);background-position: center;background-repeat: no-repeat;background-size: 100% 100%;">
@@ -129,9 +130,8 @@
         <div class="messageDidsplayDiv">
             <div class="leftMessage" style='color:#fff;width:180px;'>登陆密码:</div>
             <input type="password" placeholder="请输入登陆密码" name="password" id="password" class="rightMessage" style='border-bottom: solid 2px #fff;color:#fff;margin-top:5%;width:430px'>
-
         </div>
-      <div class="messageDidsplayDiv">
+      	<div class="messageDidsplayDiv">
             <div class="leftMessage" style='color:#fff;width:180px;'>验证码:</div>
             <input type="text" placeholder="请输入验证码" name="password" id="code_input_yanzh" class="rightMessage" style='border: solid 2px #fff;color:#fff;margin-top:5%;width:315px'>
 			<div id="v_container" style="width: 200px;height: 79px; display: inline-block;position:relative;top:26px;left:30px;">
@@ -143,24 +143,9 @@
         </div >
         <div id="doo"></div>
         <p class="foget-psw"><a href="${APP_PATH }/forgetpassword" style="color:#fff">忘记密码?</a></p>
-       
-      <div style='margin-top:240px;text-align:center;'><span style='color:#fff;display:inline-block;font-size: 4rem;'> 五叶蚂蚁好车</span></div>
+      	<div style='margin-top:240px;text-align:center;'><span style='color:#fff;display:inline-block;font-size: 4rem;'> 五叶蚂蚁好车</span></div>
     </form>
     
-<script type="text/javascript"> 
-	var ips = $(".ip").val();
-	
-    $.ajax({
-		url:"${APP_PATH }/logip",
-		type:"POST",
-		data:"ips="+ips+"id="+id,
-		success:function(result){
-			
-		}
-				
-	})
-    
-</script>
 </body>
 
 </html>

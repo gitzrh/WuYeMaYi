@@ -1,6 +1,7 @@
 package com.wuyemy.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.wuyemy.bean.Tixian;
 import com.wuyemy.bean.TixianExample;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.TixianMapper;
+import com.wuyemy.until.DateToString;
 @Service
 public class TixianService {
 	
@@ -21,7 +23,7 @@ public class TixianService {
 	private KuserService kuserService;
 	@Autowired
 	private JifenMapper jifenMapper;
-
+	
 	public List<Tixian> getTixianShenhe() {
 		return tixianMapper.selectByExamplewithZhuangtai(null);		 
 	}
@@ -33,15 +35,17 @@ public class TixianService {
 		return tixianMapper.selectByExamplewithZhuangtai7(null);
 	}
 	
-//通过提现
+	//通过提现
 	public void tongguo(Integer id) {
 		TixianExample example = new TixianExample();
 		TixianExample.Criteria criteria = example.createCriteria();
 		criteria.andIdEqualTo(id);
 		Tixian tixian = new Tixian();
+		tixian.setTguotime(DateToString.DateToStr(new Date()));
 		tixian.setZhuangtaiid(6);
 		tixianMapper.updateByExampleSelective(tixian, example);
 	}
+	
 	//拒绝提现
 	public void jujue(Integer id, String zhanghao, String jibileixing, BigDecimal jibbishu) {
 		TixianExample example = new TixianExample();
@@ -49,6 +53,7 @@ public class TixianService {
 		criteria.andIdEqualTo(id);
 		Tixian tixian = new Tixian();
 		tixian.setZhuangtaiid(7);
+		tixian.setJujuetime(DateToString.DateToStr(new Date()));
 		tixianMapper.updateByExampleSelective(tixian, example);//拒绝提现
 		
 		BigDecimal jb = null;
@@ -82,10 +87,7 @@ public class TixianService {
 			jifen.setGcjf(jb); 
 			jifenMapper.updateByExampleSelective(jifen, jExample);
 		}else{
-			
 			return;
-			
-			
 		}
 			
 	}

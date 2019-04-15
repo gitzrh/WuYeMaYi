@@ -188,7 +188,7 @@
 				
 			$.ajax({
 					url:"${APP_PATH }/chazhaoone",
-					type:"GET",
+					type:"POST",
 					data:"zhanghao="+zhanghao,
 					success:function(result){
 						var code = result.code;
@@ -613,9 +613,9 @@
 			<div class="col-md-6">
 				<nav aria-label="Page navigation">
 				<ul class="pagination  kehuhu">
-					<li><a href="${APP_PATH }/yijihuouser?pn=1">首页</a></li>
+					<li><a href="${APP_PATH }/yijihuoAllK?pn=1">首页</a></li>
 					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${APP_PATH }/yijihuouser?pn=${pageInfo.pageNum-1}"
+						<li><a href="${APP_PATH }/yijihuoAllK?pn=${pageInfo.pageNum-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
@@ -626,16 +626,16 @@
 							<li class="active"><a href="#">${page_Num }</a></li>
 						</c:if>
 						<c:if test="${page_Num != pageInfo.pageNum }">
-							<li><a href="${APP_PATH }/yijihuouser?pn=${page_Num }">${page_Num }</a></li>
+							<li><a href="${APP_PATH }/yijihuoAllK?pn=${page_Num }">${page_Num }</a></li>
 						</c:if>
 
 					</c:forEach>
 					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${APP_PATH }/yijihuouser?pn=${pageInfo.pageNum+1 }"
+						<li><a href="${APP_PATH }/yijihuoAllK?pn=${pageInfo.pageNum+1 }"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:if>
-					<li><a href="${APP_PATH }/yijihuouser?pn=${pageInfo.pages}">末页</a></li>
+					<li><a href="${APP_PATH }/yijihuoAllK?pn=${pageInfo.pages}">末页</a></li>
 				</ul>
 				
 				</nav>

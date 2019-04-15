@@ -159,7 +159,7 @@
 			var identity_card = $("#identity_card").val();
 			$.ajax({
         	    url:"${APP_PATH }/updatePhCa",
-        	    type: "GET",
+        	    type: "POST",
         	    data:"phone="+phone+"&card="+identity_card,
         	    success:function(res){
         	    	myalert1("修改成功!");

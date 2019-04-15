@@ -1,6 +1,5 @@
 package com.wuyemy.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.pagehelper.PageInfo;
-import com.wuyemy.bean.Canshu;
 import com.wuyemy.bean.Zijinmingxi;
 import com.wuyemy.service.ZijinmingxiService;
 

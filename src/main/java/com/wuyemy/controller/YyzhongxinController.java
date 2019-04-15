@@ -30,6 +30,8 @@ public class YyzhongxinController {
 	private YyzhongxinService yyzxService;
 	@Autowired 
 	private KuserService kuserService;
+	
+	
 	@RequestMapping("/yysqyem")
 	public String tosqzx(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
 			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
@@ -60,6 +62,8 @@ public class YyzhongxinController {
 		
 		return Msg.success();
 	}
+	
+	
 	@RequestMapping("/jujueyysq")
 	@ResponseBody
 	public Msg jujueyysq(@RequestParam("id")int id){
@@ -67,10 +71,12 @@ public class YyzhongxinController {
 		
 		return Msg.success();
 	}
+	
+	
 	@RequestMapping("/yyzhongxinhoutai")
 	public String toYunyinhzongxinadmin(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
 			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
-String session  = (String) request.getSession().getAttribute("username");
+		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
 			
@@ -88,11 +94,12 @@ String session  = (String) request.getSession().getAttribute("username");
 		return "yyzxadmin";
 	}
 	
+	
 	@RequestMapping("/tuandui")
 	public String totuandui(@RequestParam("yyzhanghao")String zhanghao,
 			Map<String,Object>map,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
-String session  = (String) request.getSession().getAttribute("username");
+		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
 			
@@ -104,6 +111,8 @@ String session  = (String) request.getSession().getAttribute("username");
 		map.put("list", list);
 		return "tuanduiliebiao";
 	}
+	
+	
 	@RequestMapping("/zhitui")
 	public String tozhitui(@RequestParam("yybianhao")String yybianhao,
 			Map<String,Object>map,
@@ -128,6 +137,8 @@ String session  = (String) request.getSession().getAttribute("username");
 		kuserService.eittuanduinum(yybianhao);
 		return Msg.success();
 	}
+	
+	
 	@RequestMapping("/shengjiyyzx")
 	@ResponseBody
 	public Msg shengjiyyzx(@RequestParam("bianhao")String bianhao){
@@ -143,6 +154,8 @@ String session  = (String) request.getSession().getAttribute("username");
 		yyzxService.jiangji(bianhao);
 		return Msg.success();
 	}
+	
+	
 	@RequestMapping("/quxiao")
 	@ResponseBody
 	public Msg quxiaoyyzx(@RequestParam("bianhao")String bianhao){
@@ -150,6 +163,8 @@ String session  = (String) request.getSession().getAttribute("username");
 		yyzxService.quxiao(bianhao);
 		return Msg.success();
 	}
+	
+	
 	@RequestMapping("/updatebinhao")
 	@ResponseBody
 	public Msg xiugaiybianha(@RequestParam("zhanghaos")String zhanghao,@RequestParam("bianhao")String bianhao){
@@ -157,6 +172,8 @@ String session  = (String) request.getSession().getAttribute("username");
 		yyzxService.xiaugaoybh( zhanghao,bianhao);
 		return Msg.success();
 	}
+	
+	
 	@RequestMapping("/jinbishezhi")
 	@ResponseBody
 	public Msg jinbixiugai(@RequestParam("jinbi")BigDecimal jinbi,@RequestParam("bianhaos")String bianhao){
@@ -165,14 +182,11 @@ String session  = (String) request.getSession().getAttribute("username");
 		return Msg.success();
 	}
 	
+	
 	@RequestMapping("/shouyeyeye")
 	@ResponseBody
 	public Msg toshouyewe(){
 		JifenZonghe jifenZonghe = kuserService.getwelome();
 		return Msg.success().add("numm",jifenZonghe);
 	}
-	
-	
-	
-	
 }

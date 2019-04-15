@@ -90,21 +90,26 @@ public class TuanduiController {
 	@ResponseBody
 	public Msg Updatepass(@RequestParam("verification1")String verification1, @RequestParam("password")String password,
 			@RequestParam("verification2")String verification2, HttpServletRequest request, HttpServletResponse response){
+		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		String attribute = (String) session.getAttribute("verCode");
 		
-		if (verification2.equals(str)) {
-			if (verification1.equals(attribute)) {
-				tuanduiService.updatepass(zhanghao,password);
-				return Msg.success();
+		if (zhanghao != null) {
+			if (verification2.equals(str)) {
+				
+				if (verification1.equals(attribute)) {
+					tuanduiService.updatepass(zhanghao,password);
+					return Msg.success();
+				}else {
+					return Msg.fail().add("attribute", "验证码错误!");
+				}
+				
 			}else {
-				return Msg.fail().add("attribute", "验证码错误!");
+				return Msg.fail().add("verification", "手机验证码错误!");
 			}
-		}else {
-			return Msg.fail().add("verification", "手机验证码错误!");
 		}
-		
+		return null;
 	}
 	
 	@RequestMapping("/forgetpassword")
@@ -170,9 +175,11 @@ public class TuanduiController {
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
-		tuanduiService.sqyyzx(zhanghao,name,phone,address,remark);
+		if (zhanghao != null) {
+			tuanduiService.sqyyzx(zhanghao,name,phone,address,remark);
 		return Msg.success();
-		
+		}
+		return null;
 	}
 	
 	/**
@@ -230,9 +237,11 @@ public class TuanduiController {
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
-		tuanduiService.deletesq(zhanghao);
-		
-		return "yysq";
+		if (zhanghao != null) {
+			tuanduiService.deletesq(zhanghao);
+			return "yysq";
+		}
+		return null;
 	}
 
 	/**
@@ -376,8 +385,4 @@ public class TuanduiController {
 		return "zxxq";
 	}
 	
-	@RequestMapping("/logip")
-	public void Logip(@RequestParam("ips")String ips){
-		tuanduiService.logip(ips);
-	}
 }

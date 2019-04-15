@@ -53,7 +53,6 @@ public class IndexService {
 	@Autowired
 	private ZixunguanliMapper zixunguanliMapper;
 	
-	private DateToString dateToStr;
 	/**
 	 * 获取金币信息
 	 * @param zhanghao
@@ -212,7 +211,7 @@ public class IndexService {
 		BigDecimal shouxufei = gcjf.multiply(value);
 		BigDecimal shijidaozhang = gcjf.subtract(shouxufei);
 		
-		Tixian tixian = new Tixian(null, zhanhao, "购车金币", gcjf, shouxufei, shijidaozhang, dateToStr.DateToStr(new Date()), null, null, realname1, bankname1, bankaddress1, bankcard1, 5);
+		Tixian tixian = new Tixian(null, zhanhao, "购车金币", gcjf, shouxufei, shijidaozhang, DateToString.DateToStr(new Date()), null, null, realname1, bankname1, bankaddress1, bankcard1, 5);
 		tixianMapper.insertSelective(tixian);
 	}
 
@@ -247,7 +246,7 @@ public class IndexService {
 		BigDecimal shouxufei = cjjf.multiply(value);
 		BigDecimal shijidaozhang = cjjf.subtract(shouxufei);
 		
-		Tixian tixian = new Tixian(null, zhanhao, "出局金币", cjjf, shouxufei, shijidaozhang, dateToStr.DateToStr(new Date()), null, null, realname2, bankname2, bankaddress2, bankcard2, 5);
+		Tixian tixian = new Tixian(null, zhanhao, "出局金币", cjjf, shouxufei, shijidaozhang, DateToString.DateToStr(new Date()), null, null, realname2, bankname2, bankaddress2, bankcard2, 5);
 		tixianMapper.insertSelective(tixian);
 	}
 
@@ -282,7 +281,7 @@ public class IndexService {
 		BigDecimal shouxufei = fxjf.multiply(value);
 		BigDecimal shijidaozhang = fxjf.subtract(shouxufei);
 		
-		Tixian tixian = new Tixian(null, zhanhao, "分享金币", fxjf, shouxufei, shijidaozhang, dateToStr.DateToStr(new Date()), null, null, realname3, bankname3, bankaddress3, bankcard3, 5);
+		Tixian tixian = new Tixian(null, zhanhao, "分享金币", fxjf, shouxufei, shijidaozhang, DateToString.DateToStr(new Date()), null, null, realname3, bankname3, bankaddress3, bankcard3, 5);
 		tixianMapper.insertSelective(tixian);
 	}
 

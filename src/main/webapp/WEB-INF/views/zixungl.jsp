@@ -23,7 +23,7 @@
 					
 					$.ajax({
 						url:"${APP_PATH}/selectzx",
-						type:"GET",
+						type:"POST",
 						data: "id="+id,
 						success:function(result){
 							var code = result.code;

@@ -13,14 +13,12 @@ import com.wuyemy.dao.ZijinmingxiMapper;
 public class ZijinmingxiService {
 	@Autowired
 	private ZijinmingxiMapper zijinmingxiMapper;
+	
 	public List<Zijinmingxi> getallZJMx() {
-		
 		String leix = "扣除";
 		ZijinmingxiExample example = new ZijinmingxiExample();
 		ZijinmingxiExample.Criteria criteria = example.createCriteria();
 		criteria.andBiandonleixLike(leix);
-		
-		
 		return zijinmingxiMapper.selectByExample(example);
 	}
 

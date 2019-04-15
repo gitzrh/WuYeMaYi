@@ -28,23 +28,19 @@ import com.wuyemy.until.DateToString;
 
 @Service
 public class KuserService {
-
 	
 	@Autowired
 	private KuserMapper kuserMapper;
-	private DateToString dateToStr;
 	@Autowired
 	private JifenMapper jifenMapper;
 	@Autowired
 	private XiaozuMapper xiaozuMapper;
 	@Autowired
 	private KuserService kuserService;
-	
 	@Autowired
 	private CanshuMapper canshuMapper;
 	@Autowired
 	private ZijinmingxiMapper zijinmingxiMapper;
-	
 	@Autowired
 	private YyzxMapper yyzxMapper;
 	
@@ -53,14 +49,9 @@ public class KuserService {
 		kuserMapper.insert(kuser);
 	}
 
-
 	public List<Kuser> getallweijihuo() {
-		
-		
-		
 		return kuserMapper.selectByExampleWithZhuangTai(null);
 	}
-
 
 	public void qidong(String zhanghao) {
 		KuserExample emple = new KuserExample();
@@ -68,14 +59,12 @@ public class KuserService {
 		criteria.andZhanghaoEqualTo(zhanghao);
 		Kuser kuser = new Kuser();
 		kuser.setZhuangtaiid(2);
-		kuser.setJihuotime( dateToStr.DateToStr(new Date()));
+		kuser.setJihuotime(DateToString.DateToStr(new Date()));
 		kuserMapper.updateByExampleSelective(kuser, emple);
 		
 	}
 
-
 	public List<Kuser> getyijihuouser() {
-		// TODO Auto-generated method stub
 		return kuserMapper.selectByExampleWithZhuangTaiAndJf(null);
 	}
 
@@ -96,7 +85,6 @@ public class KuserService {
 		return kuserMapper.countByExample(examp);
 	}
 
-
 	public long getcounttzhanghao(String zhanghao) {
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
@@ -105,30 +93,22 @@ public class KuserService {
 		return kuserMapper.countByExample(example);
 	}
 
-
 	public void insertjifen(String zhanghao, BigDecimal fxjf, BigDecimal gcjf, BigDecimal ztjf, BigDecimal chjf ) {
 		Jifen jifen = new Jifen( zhanghao, fxjf, gcjf, ztjf, chjf);
 		jifenMapper.insert(jifen);
-		
 	}
-
 
 	public void inserxiaozutable(int zid, int zidd, String zhanghao) {
 		Xiaozu xiazu = new Xiaozu(zid, zidd, zhanghao,0);
-		
 		xiaozuMapper.insert(xiazu);
-		
 	}
-
 
 	public List<Xiaozu> getxiaozid(String zhanghao) {
 		XiaozuExample xiaozuExample = new XiaozuExample();
 		XiaozuExample.Criteria criteria = xiaozuExample.createCriteria();
 		criteria.andZhanghaoEqualTo(zhanghao);
 		return xiaozuMapper.selectByExample(xiaozuExample);
-		
 	}
-
 
 	public long getcountxzid(int i) {
 		XiaozuExample example = new XiaozuExample();
@@ -137,13 +117,9 @@ public class KuserService {
 		return xiaozuMapper.countByExample(example);
 	}
 
-
 	public int getmaxzid() {
-		
 		 return xiaozuMapper.selectMaxZid();
-	
 	}
-
 
 	public void updateZzidd( int bzidd ,int zid,int zidd) {
 		Xiaozu xiaozu = new Xiaozu();
@@ -154,20 +130,13 @@ public class KuserService {
 		xiaozu.setZidd(bzidd);
 		xiaozuMapper.updateByExampleSelective(xiaozu, example);
 	}
-	
 
 	public List<Xiaozu> selectzidd(int g) {
 		XiaozuExample xiaozuExample = new XiaozuExample();
 		XiaozuExample.Criteria criteria = xiaozuExample.createCriteria();
 		criteria.andZidEqualTo(g);
-		
 		return xiaozuMapper.selectByExample(xiaozuExample);
-		
 	}
-
-
-	
-
 
 	public List<Xiaozu> getxzzhanghao(int i, int mm) {
 		XiaozuExample xiaozuExample = new XiaozuExample();
@@ -177,7 +146,6 @@ public class KuserService {
 		return xiaozuMapper.selectByExample(xiaozuExample);
 	}
 
-
 	public List<Kuser> getTzhanghao(String zhanghaos) {
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
@@ -186,15 +154,12 @@ public class KuserService {
 		
 	}
 
-
 	public int getmaxziddwithzid(int l) {
 		XiaozuExample exmp = new XiaozuExample();
 		XiaozuExample.Criteria criteria = exmp.createCriteria();
 		criteria.andZidEqualTo(l);
-		
 		return xiaozuMapper.selectMaxZidd(exmp);
 	}
-
 
 	public void update1zid(int zid ,int zidd,  String zhanghaos) {
 		XiaozuExample example = new XiaozuExample();
@@ -206,20 +171,15 @@ public class KuserService {
 		xiaozuMapper.updateByExampleSelective(xiaozu, example);
 	}
 
-
 	public long getcountxZzid() {
 		return xiaozuMapper.countByExample(null);
 	}
 	
-	
-	
 	//启动激活
 	public int jihuo( String zhanghao,String tzhanghao){
-		
 		kuserService.qidong(zhanghao);
 		kuserService.insertjifen(zhanghao, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO,BigDecimal.ZERO  );
-		
-			long longs = kuserService.getcountxZzid();
+		long longs = kuserService.getcountxZzid();
 		
 		if("".equals(tzhanghao)){
 			int zid;
@@ -560,11 +520,12 @@ public class KuserService {
 		}
 		return 3;
 	}
-	////根据账号增加出局金币金币
+
+	//根据账号增加出局金币金币
 	public void zengjiaChuJu(String zhanghao){
-		 BigDecimal Chuji = kuserService.getCHjucanshu();
-		 BigDecimal chuju = null;
-		 BigDecimal getchuj = kuserService.getchuj(zhanghao);
+		BigDecimal Chuji = kuserService.getCHjucanshu();
+		BigDecimal chuju = null;
+		BigDecimal getchuj = kuserService.getchuj(zhanghao);
 		chuju = getchuj.add(Chuji);
 		JifenExample example = new JifenExample();
 		JifenExample.Criteria criteria = example.createCriteria();
@@ -575,44 +536,44 @@ public class KuserService {
 		
 		kuserService.addChujuJinbiWitnZjmxTal(zhanghao);
 		kuserService.chujuzengjiacishu(zhanghao);
-		
-	
 	}
+	
 	//根据账号增加推荐人的分享和购车金币
 	public  void zengjiaFxAndGc(String zhanghao) {
+		List<Kuser> tzhanghaos = kuserService.getTzhanghao(zhanghao);
+		String tzhanghao = tzhanghaos.get(0).getTzhanghao();
+		BigDecimal fXcanshu = kuserService.getFXcanshu();
+		BigDecimal gCcanshu = kuserService.getGCcanshu();
+		BigDecimal fxjb = kuserService.getfxjb(tzhanghao);
 		
-		 List<Kuser> tzhanghaos = kuserService.getTzhanghao(zhanghao);
-		 String tzhanghao = tzhanghaos.get(0).getTzhanghao();
-		 	BigDecimal fXcanshu = kuserService.getFXcanshu();
-		 	BigDecimal gCcanshu = kuserService.getGCcanshu();
-		    BigDecimal fxjb = kuserService.getfxjb(tzhanghao);
+		BigDecimal fxjf = null;
+		fxjf = fxjb.add(fXcanshu);
+		BigDecimal gcjf = kuserService.getgcjb(tzhanghao);
+		BigDecimal gcjb = null;
+		gcjb = gcjf.add(gCcanshu);
 		    
-		    BigDecimal fxjf = null;
-		    fxjf = fxjb.add(fXcanshu);
-		    BigDecimal gcjf = kuserService.getgcjb(tzhanghao);
-		    BigDecimal gcjb = null;
-		    gcjb = gcjf.add(gCcanshu);
-		    
-		 JifenExample example = new JifenExample();
-		 JifenExample.Criteria criteria = example.createCriteria();
+		JifenExample example = new JifenExample();
+		JifenExample.Criteria criteria = example.createCriteria();
 		 
-		 criteria.andZhanghaoEqualTo(tzhanghao);
-		 Jifen jifen = new Jifen();
-		 jifen.setFxjf(fxjf);
-		 jifen.setGcjf(gcjb);
-		 jifenMapper.updateByExampleSelective(jifen, example);
-		 kuserService.addFxJinbiWitnZjmxTal(tzhanghao);
-		 kuserService.addGCJinbiWitnZjmxTal(tzhanghao);
-		}
+		criteria.andZhanghaoEqualTo(tzhanghao);
+		Jifen jifen = new Jifen();
+		jifen.setFxjf(fxjf);
+		jifen.setGcjf(gcjb);
+		jifenMapper.updateByExampleSelective(jifen, example);
+		kuserService.addFxJinbiWitnZjmxTal(tzhanghao);
+		kuserService.addGCJinbiWitnZjmxTal(tzhanghao);
+	}
+	
 	//根据账号获取分享金币数
 	public BigDecimal getfxjb(String zhanghao){
-		JifenExample example = new JifenExample();
+		 JifenExample example = new JifenExample();
 		 JifenExample.Criteria criteria = example.createCriteria();
 		 criteria.andZhanghaoEqualTo(zhanghao);
 		 List<Jifen> list = jifenMapper.selectByExample(example);
 		 BigDecimal fxjf = list.get(0).getFxjf();
 		 return fxjf ;
 	}
+	
 	//根据账号获取购车金币数
 	public BigDecimal getgcjb(String zhanghao){
 		JifenExample example = new JifenExample();
@@ -634,54 +595,46 @@ public class KuserService {
 		BigDecimal chjf = list.get(0).getChjf();
 		return chjf ;
 	}
+	
 	//获取分享积分参数 6000
 	public BigDecimal getFXcanshu(){
 		Canshu canshu = canshuMapper.selectByPrimaryKey(4);
-		
 		return canshu.getValue();	
-
 	}
+	
 	//获取购车积分参数 6000
 	public BigDecimal getGCcanshu(){
 		Canshu canshu = canshuMapper.selectByPrimaryKey(3);
-		
 		return canshu.getValue();	
-		
 	}
+	
 	//获取出局积分参数 2000
 	public BigDecimal getCHjucanshu(){
 		Canshu canshu = canshuMapper.selectByPrimaryKey(2);
-		
 		return canshu.getValue();	
-		
 	}
+	
 	//获取在途积分参数 2000
 	public BigDecimal getZTcanshu(){
 		Canshu canshu = canshuMapper.selectByPrimaryKey(1);
-		
 		return canshu.getValue();	
-		
 	}
 	
 	//出局加1
 	public void chujuzengjiacishu(String zhanghao){
-		
 		//获取出局次数
 		XiaozuExample exampl = new XiaozuExample();
 		XiaozuExample.Criteria crite = exampl.createCriteria();
 		crite.andZhanghaoEqualTo(zhanghao);
 		List<Xiaozu> lis = xiaozuMapper.selectByExample(exampl);
 		
-		   Integer cjcs = lis.get(0).getSuozailunshu(); 
+		Integer cjcs = lis.get(0).getSuozailunshu(); 
 		//出局次数+1
-		   int chujucs = cjcs + 1;
-		   Xiaozu xiaozu = new Xiaozu();
-		   xiaozu.setSuozailunshu(chujucs);
-		 xiaozuMapper.updateByExampleSelective(xiaozu, exampl);
-		 
-		 
+	    int chujucs = cjcs + 1;
+	    Xiaozu xiaozu = new Xiaozu();
+	    xiaozu.setSuozailunshu(chujucs);
+		xiaozuMapper.updateByExampleSelective(xiaozu, exampl);
 		}
-	
 	
 	public void jijijiji(String zhanghao){
 		
@@ -700,49 +653,37 @@ public class KuserService {
 		 if(cjcs==5&&countByExample==0){
 			 kuserService.deleteUser(zhanghao);
 			 kuserService.deleteUserXiaozuTab(zhanghao);
-			 
 		 }		 		
 	}
 	
-	
 	//出局的人推荐人不为空就给推荐人增加积分	  	 
 	public void addTUserZtOrGcAndFx(String zhanghao){
-		
-		
 		BigDecimal fXcanshu = kuserService.getFXcanshu();
 		BigDecimal gCcanshu = kuserService.getGCcanshu();
 		BigDecimal zTcanshu = kuserService.getZTcanshu();
 		
 		 //获取推荐人账号
 		List<Kuser> tzhanghaos = kuserService.getTzhanghao(zhanghao);
-		 String tzhanghao = tzhanghaos.get(0).getTzhanghao();
+		String tzhanghao = tzhanghaos.get(0).getTzhanghao();
 		 
-		
-		 XiaozuExample exampl = new XiaozuExample();
-			XiaozuExample.Criteria crite = exampl.createCriteria();
-			crite.andZhanghaoEqualTo(zhanghao);
-			List<Xiaozu> lis = xiaozuMapper.selectByExample(exampl);
+		XiaozuExample exampl = new XiaozuExample();
+		XiaozuExample.Criteria crite = exampl.createCriteria();
+		crite.andZhanghaoEqualTo(zhanghao);
+		List<Xiaozu> lis = xiaozuMapper.selectByExample(exampl);
 			
-			   Integer cjcs = lis.get(0).getSuozailunshu(); 
+		Integer cjcs = lis.get(0).getSuozailunshu(); 
 			
-		 //获取推荐人的在途余额和购车分享余额
-		 JifenExample example = new JifenExample();
-		 JifenExample.Criteria criteria = example.createCriteria();
-		 criteria.andZhanghaoEqualTo(tzhanghao);
+		//获取推荐人的在途余额和购车分享余额
+		JifenExample example = new JifenExample();
+		JifenExample.Criteria criteria = example.createCriteria();
+		criteria.andZhanghaoEqualTo(tzhanghao);
 		 
-		 List<Jifen> list = jifenMapper.selectByExample(example);
-		 
-		 BigDecimal ztjf = list.get(0).getZtjf();
-		 
-		 BigDecimal gcjf = list.get(0).getGcjf();
-		 
-		 BigDecimal fxjf = list.get(0).getFxjf();
-		 
-		 
+		List<Jifen> list = jifenMapper.selectByExample(example);
+		BigDecimal ztjf = list.get(0).getZtjf();
+		BigDecimal gcjf = list.get(0).getGcjf();
+		BigDecimal fxjf = list.get(0).getFxjf();
 		
-		 
-		 
-		 if(cjcs<2){
+		if(cjcs<2){
 			 BigDecimal fxjb = null;
 			 fxjb = fxjf.add(fXcanshu);
 			 BigDecimal ztjb = null;
@@ -767,33 +708,27 @@ public class KuserService {
 		 }
 	}
 	
-	
 	//插入资金明细表增加出局金币记录
 	public void addChujuJinbiWitnZjmxTal(String zhanghao){
-		
-		
-		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getCHjucanshu(), "出局金币","增加", dateToStr.DateToStr(new Date()));
-		 zijinmingxiMapper.insertSelective(zijinmingxi);
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getCHjucanshu(), "出局金币","增加", DateToString.DateToStr(new Date()));
+		zijinmingxiMapper.insertSelective(zijinmingxi);
 	}
+	
 	//插入资金明细表增加分享金币记录
 	public void addFxJinbiWitnZjmxTal(String zhanghao){
-		
-		
-		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getFXcanshu(), "分享金币","增加", dateToStr.DateToStr(new Date()));
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getFXcanshu(), "分享金币","增加", DateToString.DateToStr(new Date()));
 		zijinmingxiMapper.insertSelective(zijinmingxi);
 	}
+
 	//插入资金明细表增加购车金币记录
 	public void addGCJinbiWitnZjmxTal(String zhanghao){
-		
-		
-		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getGCcanshu(), "购车金币","增加", dateToStr.DateToStr(new Date()));
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getGCcanshu(), "购车金币","增加", DateToString.DateToStr(new Date()));
 		zijinmingxiMapper.insertSelective(zijinmingxi);
 	}
+
 	//插入资金明细表增加在途金币记录
 	public void addZaituJinbiWitnZjmxTal(String zhanghao){
-		
-		
-		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getZTcanshu(), "在途金币","增加", dateToStr.DateToStr(new Date()));
+		Zijinmingxi zijinmingxi= new Zijinmingxi(null, zhanghao, getZTcanshu(), "在途金币","增加", DateToString.DateToStr(new Date()));
 		zijinmingxiMapper.insertSelective(zijinmingxi);
 	}
 
@@ -835,11 +770,9 @@ public class KuserService {
 		
 		kuserMapper.deleteByExample(example);
 	}
+	
 	//从xiaozu表删除此账号且后边的前进一位
 	public void deleteUserXiaozuTab(String zhanghao){
-		
-		
-		
 		//获取账号的zid
 		List<Xiaozu> xiaozid = kuserService.getxiaozid(zhanghao);
 		int zid = xiaozid.get(0).getZid();
@@ -927,31 +860,19 @@ public class KuserService {
 			
 	}
 
-
 	public Kuser getoneuser(String zhanghao) {
-		
 		return kuserMapper.selectByExampleAndJf(zhanghao);
-		
 	}
-
 
 	public List<Kuser> getAllzhanghao(String zhanghao) {
-		 
 		return kuserMapper.selectByExampleWithzhitui(zhanghao);
-			 
 	}
-
 
 	public List<Kuser> gettuanzhanghao(String yybianhao) {
-		
-		
 		return kuserMapper.selectByExampleWithtuantui(yybianhao);
-		
-		
-		
-		
 	}
-//团队总人数
+	
+	//团队总人数
 	public void eittuanduinum(String yybianhao){
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
@@ -982,7 +903,6 @@ public class KuserService {
 		
 	}
 
-
 	public JifenZonghe getwelome() {
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
@@ -1004,10 +924,6 @@ public class KuserService {
 		
 		return jifenZonghe;
 	}
-	
-	
-	
-		 
 }
 	
 	

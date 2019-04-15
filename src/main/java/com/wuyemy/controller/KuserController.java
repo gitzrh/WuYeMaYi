@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,9 +27,7 @@ public class KuserController {
 	@Autowired
 	private KuserService kuserService;
 	
-	private DateToString dateToStr;
-	
-	@RequestMapping("/zhuce")
+	@RequestMapping(value="/zhuce",method=RequestMethod.POST)
 	@ResponseBody
 	private Msg zhuce(@RequestParam("zhanghao") String zhanghao,@RequestParam("kname")String kname,
 			@RequestParam(value="tzhanghao")String tzhanghao,@RequestParam(value="yyzxid")String yyzxid,
@@ -47,13 +46,13 @@ public class KuserController {
 				long i = kuserService.getcounttzhanghao(tzhanghao);
 				
 				if(i==1 && l == 0){
-					kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
+					kuserService.insertKuser(zhanghao,kname,tzhanghao,DateToString.DateToStr(new Date()),yyzxid,kpassword,1);
 					return Msg.success();
 				}else{
 					return Msg.fail().add("loog", "推荐人不存在或此账号已注册!");
 				}
 			}else if (l == 0) {
-				kuserService.insertKuser(zhanghao,kname,tzhanghao,dateToStr.DateToStr(new Date()),yyzxid,kpassword,1);
+				kuserService.insertKuser(zhanghao,kname,tzhanghao,DateToString.DateToStr(new Date()),yyzxid,kpassword,1);
 				return Msg.success();
 			}
 		}else {
@@ -70,7 +69,6 @@ public class KuserController {
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			
 			response.sendRedirect("wyehoutaiadmin.jsp");
 		}
 		// 这不是一个分页查询；
@@ -84,6 +82,7 @@ public class KuserController {
 		
 		return "admin_user_weijihuo";
 	}
+	
 	@RequestMapping("/qidong")
 	@ResponseBody
 	public Msg qidong(@RequestParam("zhanghao") String zhanghao,@RequestParam("tzhanghao")String tzhanghao ){
@@ -98,26 +97,37 @@ public class KuserController {
 		return null;
 		
 	}
-	@RequestMapping("/yijihuouser")
+	
+	@RequestMapping("/yijihuoAllK")
 	public String getyijihuoUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
 			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
 		
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			
 			response.sendRedirect("wyehoutaiadmin.jsp");
-		}// 这不是一个分页查询；
-				// 引入PageHelper分页插件
-				// 在查询之前只需要调用，传入页码，以及每页的大小
-				PageHelper.startPage(pn, 50);
-				// startPage后面紧跟的这个查询就是一个分页查询
-				List<Kuser> userss = kuserService.getyijihuouser();
-				PageInfo page = new PageInfo(userss, 5);
-				model.addAttribute("pageInfo", page);
+		}
+		// 这不是一个分页查询；
+		// 引入PageHelper分页插件
+		// 在查询之前只需要调用，传入页码，以及每页的大小
+		PageHelper.startPage(pn, 50);
+		// startPage后面紧跟的这个查询就是一个分页查询
+		List<Kuser> userss = kuserService.getyijihuouser();
+		PageInfo page = new PageInfo(userss, 5);
+		model.addAttribute("pageInfo", page);
 		return "adminUserYijiho";
 	}
-	@RequestMapping("/loginUser")
+	
+	/**
+	 * 验证登录
+	 * @param zhanghao
+	 * @param kpassword
+	 * @param yanzhma
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/loginUser",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg loginUser(@RequestParam("zhanghao")String zhanghao,@RequestParam("kpassword")String kpassword,
 			@RequestParam("yanzhma")String yanzhma,HttpServletRequest request, HttpServletResponse response){
@@ -168,6 +178,7 @@ public class KuserController {
 		kuserService.deleteUser(zhanghao); 
 		return Msg.success();
 	}
+	
 	@RequestMapping("/chazhaoone")
 	@ResponseBody
 	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao){
@@ -177,7 +188,13 @@ public class KuserController {
 		return Msg.success().add("pageInfo",kuser );
 	}
 	
-	@RequestMapping("/logindenglu")
+	/**
+	 * 快速登录
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="/logindenglu",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg Logindenglu(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
