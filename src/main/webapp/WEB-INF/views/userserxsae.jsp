@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户中心-已通过</title>
+<title>查找一个客户</title>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
@@ -21,13 +20,13 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	$(function(){
 		
 		
 		 $("#fabhui").click(function(){
-			 location.reload();
+			 window.location.href="${APP_PATH }/yijihuoAllK";
 		 })
 		 //修改运营中心编号
 		 $(".xiugaiyyzxid").click(function(){
@@ -177,88 +176,45 @@
 		 })
 		
 		})
-		//查找一个账号的信息
-		$("#chazhao1").click(function(){
-			
-			window.location.href="${APP_PATH }/czoneeShou";
-			
-		})
 		
 		//查看该账号信息
 		$("#chakan1").click(function(){
 			var zhanghao = $.trim($("#chakan2").val());
 			
-			
-							$("#selectxixi").modal({
-								backdrop:"static"
-							});
-				
 			$.ajax({
-					url:"${APP_PATH }/chazhaoone",
+					url:"${APP_PATH }/chazhaoone2",
 					type:"POST",
 					data:"zhanghao="+zhanghao,
 					success:function(result){
-						var code = result.code;
+					var code = result.code;
 						
 						if (code == 100) {
-							var kid =result.extent.pageInfo.kid;
-							var kname =result.extent.pageInfo.khname;
-							var zhanghao=result.extent.pageInfo.zhanghao;
-							var tzhanghao =result.extent.pageInfo.tzhanghao;
-							var fxjf =result.extent.pageInfo.jifen.fxjf;
-							var gcjf =result.extent.pageInfo.jifen.gcjf;
-							var ztjf =result.extent.pageInfo.jifen.ztjf;
-							var chjf =result.extent.pageInfo.jifen.chjf;
-							var jihuotime =result.extent.pageInfo.jihuotime;
-							var yyzxid =result.extent.pageInfo.yyzxid;
-							var zhuangtai =result.extent.pageInfo.zhuangtai.zhuangtai;
+							var kid =result.extent.bbgqs.kid;
+							var kname =result.extent.bbgqs.khname;
+							var zhanghao=result.extent.bbgqs.zhanghao;
+							var tzhanghao =result.extent.bbgqs.tzhanghao;
+							var fxjf =result.extent.bbgqs.jifen.fxjf;
+							var gcjf =result.extent.bbgqs.jifen.gcjf;
+							var ztjf =result.extent.bbgqs.jifen.ztjf;
+							var chjf =result.extent.bbgqs.jifen.chjf;
+							var jihuotime =result.extent.bbgqs.jihuotime;
+							var yyzxid =result.extent.bbgqs.yyzxid;
+							var zhuangtai =result.extent.bbgqs.zhuangtai.zhuangtai;
+						
+							$("#b1").text(kid);
+							$("#b2").text(kname);
+							$("#b3").text(zhanghao);
+							$("#b4").text(tzhanghao);
+							$("#b5").text(fxjf);
+							$("#b6").text(gcjf);
+							$("#b7").text(ztjf);
+							$("#b8").text(chjf);
+							$("#b9").text(jihuotime);
+							$("#b10").text(yyzxid);
+							$("#b11").text(zhuangtai);
 							
-							
-							$("#a1").val(kid);
-							$("#a2").val(kname);
-							$("#a3").val(zhanghao);
-							$("#a4").val(tzhanghao);
-							$("#a5").val(fxjf);
-							$("#a6").val(gcjf);
-							$("#a7").val(ztjf);
-							$("#a8").val(chjf);
-							$("#a9").val(jihuotime);
-							$("#a10").val(yyzxid);
-							$("#a11").val(zhuangtai);
-							
-						/* 	var kids = $("<th></th>").append(kid);
-							var knames = $("<th></th>").append(kname);
-							var zhanghaos = $("<th></th>").append(zhanghao);
-							var tzhanghaos = $("<th></th>").append(tzhanghao);
-							var fxjfs = $("<th></th>").append(fxjf);
-							var gcjfs = $("<th></th>").append(gcjf);
-							var ztjfs = $("<th></th>").append(ztjf);
-							var chjfs = $("<th></th>").append(chjf);
-							var jihuotimes = $("<th></th>").append(jihuotime);
-							var yyzxids = $("<th></th>").append(yyzxid);
-							var zhuangtais = $("<th></th>").append(zhuangtai);
-							
-							
-							
-							$("<tr></tr>").addClass("tabllll")
-							  .append(kids)
-							  .append(knames)
-				              .append(zhanghaos)
-				              .append(tzhanghaos)
-				              .append(fxjfs)
-				              .append(gcjfs)
-				              .append(ztjfs)
-				              .append(chjfs)
-				              .append(jihuotimes)
-				              .append(yyzxids)
-				              .append(zhuangtais);
-						      
-								 */
-								
 							
 						}
-						
-						
 					}
 					
 				})
@@ -267,110 +223,9 @@
 		})	
 		
 	})
-</script>		
+	</script>
 </head>
 <body>
-
-
-
-<!-- 查看 -->
-<div class="modal fade" id="selectxixi" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">查看用户信息</h4>
-      </div>
-      <div class="modal-body">
-       	<form class="form-horizontal">
-		 
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">UID</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a1" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">名字</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a2" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">账号</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a3" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">推荐人账号</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a4" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">分享积分</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a5" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">购车积分</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a6" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">在途积分</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a7" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">出局积分</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a8" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">激活时间</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a9" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">运营中心</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a10" >
-		    </div>
-		  </div>	
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label">状态</label>
-		    <div class="col-sm-6">
-		     
-		      <input type="text" readonly  unselectable="on" value="" name="cTypeB" class="form-control" id="a11" >
-		    </div>
-		  </div>	
-		 
-		 </form>
-       		   
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- 修改运营中心编号 -->
 <div class="modal fade" id="updateyybiaohao" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -529,11 +384,6 @@
   </div>
 </div>
 
-
-
-
-
-<!-- 搭建显示页面 -->
 	<div class="container-fluid">
 		<!-- 标题 -->
 		<div class="row">
@@ -545,9 +395,8 @@
 		    <div class="input-group">
 		      <input type="text" id="chakan2"  class="form-control so_text" placeholder="请输入要查看的账号">
 		      <span class="input-group-btn">
-		        <button class="btn btn-default"  id="chakan1" type="button">查看</button>
-		        <button class="btn btn-default"  id="chazhao1" type="button" >查找</button>		        
-		        <button class="btn btn-default"  id="fabhui" type="button">刷新</button>
+		        <button class="btn btn-default"  id="chakan1" type="button">查找</button>
+		        <button class="btn btn-default"  id="fabhui" type="button">返回</button>
 		      </span>
 		    </div>
 		  </div>
@@ -572,19 +421,18 @@
 						
 						
 					</tr>
-					<c:forEach items="${pageInfo.list }" var="reca">
 						<tr class="tabllll">
-							<th id="kid">${reca.kid }</th>
-							<th id="khname">${reca.khname }</th>
-							<th id="zhanghao">${reca.zhanghao }</th>
-							<th id="tzhanghao">${reca.tzhanghao }</th>
-							<th id="fxjf">${reca.jifen.fxjf }</th>
-							<th id="gcjf">${reca.jifen.gcjf }</th>
-							<th id="ztjf">${reca.jifen.ztjf }</th>
-							<th id="chjf">${reca.jifen.chjf }</th>
-							<th id="jihuotime">${reca.jihuotime }</th>
-							<th id="yyzxid">${reca.yyzxid }</th>
-							<th id="zhuangtai">${reca.zhuangtai.zhuangtai }</th>
+							<th id="b1"></th>
+							<th id="b2"></th>
+							<th id="b3"></th>
+							<th id="b4"></th>
+							<th id="b5"></th>
+							<th id="b6"></th>
+							<th id="b7"></th>
+							<th id="b8"></th>
+							<th id="b9"></th>
+							<th id="b10"></th>
+							<th id="b11"></th>
 							<th id="caozuo"><button   class="btn btn-primary  updatexinxi get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								编辑
@@ -607,52 +455,9 @@
 								</button>
 							</th>
 						</tr>
-					</c:forEach>
 				</table>
 			</div>
 		</div>
-
-		<!-- 显示分页信息 -->
-		<div class="row ljljlj">
-			<!--分页文字信息  -->
-			<div class="col-md-6">当前 ${pageInfo.pageNum }页,总${pageInfo.pages }
-				页,总 ${pageInfo.total } 条记录</div>
-			<!-- 分页条信息 -->
-			<div class="col-md-6">
-				<nav aria-label="Page navigation">
-				<ul class="pagination  kehuhu">
-					<li><a href="${APP_PATH }/yijihuoAllK?pn=1">首页</a></li>
-					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${APP_PATH }/yijihuoAllK?pn=${pageInfo.pageNum-1}"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-					</c:if>
-
-
-					<c:forEach items="${pageInfo.navigatepageNums }" var="page_Num">
-						<c:if test="${page_Num == pageInfo.pageNum }">
-							<li class="active"><a href="#">${page_Num }</a></li>
-						</c:if>
-						<c:if test="${page_Num != pageInfo.pageNum }">
-							<li><a href="${APP_PATH }/yijihuoAllK?pn=${page_Num }">${page_Num }</a></li>
-						</c:if>
-
-					</c:forEach>
-					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${APP_PATH }/yijihuoAllK?pn=${pageInfo.pageNum+1 }"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</c:if>
-					<li><a href="${APP_PATH }/yijihuoAllK?pn=${pageInfo.pages}">末页</a></li>
-				</ul>
-				
-				</nav>
-			</div>
-		</div>
-		
 	</div>
-	
-
-
 </body>
 </html>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,14 +47,14 @@ public class ManageController {
 		 
 		 
 	} 
-	@RequestMapping("/toadminadadadadad")
+	@RequestMapping("/toadminqpwoamznjhh" )
 	public String toadmin( HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		return "admin";
 	}
@@ -63,7 +64,7 @@ public class ManageController {
 		String session  = (String) request.getSession().getAttribute("username");
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		return "welcome";
 		
@@ -72,6 +73,6 @@ public class ManageController {
 	public void tuichu(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		request.getSession().removeAttribute("username");
-		response.sendRedirect("wyehoutaiadmin.jsp");
+		response.sendRedirect("index.jsp");
 	}
 }

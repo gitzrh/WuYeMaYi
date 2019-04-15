@@ -32,7 +32,7 @@ public class CanshuController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		 List<Canshu> canshu = canshuService.getCanShu();
 		 PageInfo page = new PageInfo(canshu, 10);
@@ -46,7 +46,7 @@ public class CanshuController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		List<Yyzxlvcanshu> yycanshu = canshuService.getyycanshu();
 		 PageInfo page = new PageInfo(yycanshu, 10);

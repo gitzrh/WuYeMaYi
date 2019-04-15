@@ -27,7 +27,7 @@ public class ZijinmxController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		 List<Zijinmingxi> zijinmingxs = zijinmxService.getallZJMx();
 		 PageInfo page = new PageInfo(zijinmingxs, 50);

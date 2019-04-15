@@ -48,7 +48,7 @@
    						var code = result.code;
    						if (code == 100) {
    							
-   							window.location.href="${APP_PATH }/toadminadadadadad";
+   							window.location.href="${APP_PATH }/toadminqpwoamznjhh";
    						}else{
    							$(".check-tips").show();
    		   					setTimeout(function(){

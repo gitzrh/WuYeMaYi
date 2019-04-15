@@ -69,7 +69,7 @@ public class KuserController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
@@ -104,7 +104,7 @@ public class KuserController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}// 这不是一个分页查询；
 				// 引入PageHelper分页插件
 				// 在查询之前只需要调用，传入页码，以及每页的大小
@@ -187,5 +187,19 @@ public class KuserController {
 		}
 		return null;
 	}
+	@RequestMapping("/chazhaoone2")
+	@ResponseBody
+	public Msg cchazhaoone2( @RequestParam("zhanghao")String zhanghao,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
+		Kuser kuser = kuserService.getoneuser(zhanghao);
+		return Msg.success().add("bbgqs", kuser);
+	}
+	
+	
 	
 }
