@@ -75,7 +75,7 @@
 			var phone = $.trim($(".phone").val());
 			$.ajax({
 				url:"${APP_PATH}/huoquphone",
-				type:"GET",
+				type:"POST",
 				data: "phone="+phone,
 				success:function(result){
 					var code = result.code;
@@ -209,7 +209,7 @@
 			
 			$.ajax({
 				url:"${APP_PATH}/updatepass",
-				type:"GET",
+				type:"POST",
 				data: "verification1="+verification1+"&password="+password+"&verification2="+verification2,
 				success:function(result){
 					var code = result.code;

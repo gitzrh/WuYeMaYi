@@ -96,7 +96,7 @@ public class KuserController {
 		return null;
 		
 	}
-	@RequestMapping("/yijihuouser")
+	@RequestMapping("/yijihuoAllK")
 	public String getyijihuoUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
 			HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
 		

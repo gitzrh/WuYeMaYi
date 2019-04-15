@@ -40,7 +40,7 @@
 	
 	$.ajax({
 		url:"${APP_PATH }/logindenglu",
-		type:"GET",
+		type:"POST",
 		success:function(result){
 			var code = result.code;
 			if (code == 100) {
@@ -84,7 +84,7 @@
 				
 			$.ajax({
 				url:"${APP_PATH }/loginUser",
-				type:"GET",
+				type:"POST",
 				data:"zhanghao="+kzhanghao+"&kpassword="+kpassword+"&yanzhma="+yzm,
 				success:function(result){
 						var code = result.code;

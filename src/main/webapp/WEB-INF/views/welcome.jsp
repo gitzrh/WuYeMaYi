@@ -21,7 +21,7 @@
      function a(){
 	   $.ajax({
 		   url:"${APP_PATH }/shouyeyeye",
-			type:"GET",
+			type:"POST",
 			success:function(result){
 			    if (result.code == 100) {
 					$(".num").text(result.extent.numm.num);

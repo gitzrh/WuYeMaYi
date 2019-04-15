@@ -70,7 +70,7 @@
                         </a>
                     </li >
                     <li>
-                        <a target="_top" _href="${APP_PATH }/yijihuouser">
+                        <a target="_top" _href="${APP_PATH }/yijihuoAllK">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>已通过用户</cite>
                         </a>

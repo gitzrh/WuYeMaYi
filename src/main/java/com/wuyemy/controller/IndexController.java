@@ -262,7 +262,7 @@ public class IndexController {
 		BigDecimal value = new BigDecimal("6000");
 		BigDecimal values = new BigDecimal("0");
 			
-		 if (!gcjf.equals("") || !realname1.equals("") || !bankaddress1.equals("") || !bankname1.equals("") || !bankcard1.equals("")) {
+		 if (!gcjf.equals("") && !realname1.equals("") && !bankaddress1.equals("") && !bankname1.equals("") && !bankcard1.equals("")) {
 			
 			if (zhanhao != null && gcjf.compareTo(values) == 1) {
 				//拥有总金币
@@ -305,7 +305,7 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (!cjjf.equals("") || !realname2.equals("") || !bankaddress2.equals("") || !bankname2.equals("") || !bankcard2.equals("")) {
+		if (!cjjf.equals("") && !realname2.equals("") && !bankaddress2.equals("") && !bankname2.equals("") && !bankcard2.equals("")) {
 		
 			if (zhanhao != null && cjjf.compareTo(value) == 1) {
 				//拥有总金币
@@ -321,7 +321,7 @@ public class IndexController {
 				}
 			}
 		}
-		return Msg.success().add("cjjb", "请填写完整信息!");
+		return Msg.fail().add("cjjb", "请填写完整信息!");
 	}
 	
 	/**
@@ -346,7 +346,7 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (!fxjf.equals("") || !realname3.equals("") || !bankaddress3.equals("") || !bankname3.equals("") || !bankcard3.equals("")) {
+		if (!fxjf.equals("") && !realname3.equals("") && !bankaddress3.equals("") && !bankname3.equals("") && !bankcard3.equals("")) {
 			if (zhanhao != null && fxjf.compareTo(value) == 1) {
 				//拥有总金币
 				BigDecimal decimal = indexService.hqfxjb(zhanhao);
@@ -361,7 +361,7 @@ public class IndexController {
 				}
 			}
 		}
-		return Msg.success().add("fxjf", "请填写完整信息不足!");
+		return Msg.fail().add("fxjf", "请填写完整信息不足!");
 	}
 
 	/**
