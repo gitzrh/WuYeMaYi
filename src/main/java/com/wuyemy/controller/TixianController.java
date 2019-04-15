@@ -33,7 +33,7 @@ public class TixianController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 				// 这不是一个分页查询；
 				// 引入PageHelper分页插件

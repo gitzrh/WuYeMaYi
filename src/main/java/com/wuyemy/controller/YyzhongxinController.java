@@ -1,5 +1,6 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class YyzhongxinController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
@@ -80,7 +81,7 @@ public class YyzhongxinController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
@@ -103,7 +104,7 @@ public class YyzhongxinController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		
 		List<Kuser> list = kuserService.getAllzhanghao(zhanghao);
@@ -121,7 +122,7 @@ public class YyzhongxinController {
 		
 		if(session==null){
 			
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		
 		List<Kuser> list = kuserService.gettuanzhanghao(yybianhao);
@@ -185,8 +186,24 @@ public class YyzhongxinController {
 	
 	@RequestMapping("/shouyeyeye")
 	@ResponseBody
-	public Msg toshouyewe(){
+	public Msg toshouyewe( HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		JifenZonghe jifenZonghe = kuserService.getwelome();
 		return Msg.success().add("numm",jifenZonghe);
+	}
+	
+	@RequestMapping("/czoneeShou")
+	public String czoneeShou( HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
+		return "userserxsae";
 	}
 }

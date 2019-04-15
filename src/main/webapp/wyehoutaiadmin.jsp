@@ -24,6 +24,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
    			})
    			
    			//登录表单验证
+   			
    			$("#denglu").click(function(){
    				var yzm = $.trim($("#yzm").val());
    				var username = $.trim($("#username").val());
@@ -36,7 +37,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
    					success:function(result){
    						var code = result.code;
    						if (code == 100) {
-   							window.location.href="${APP_PATH }/toadminadadadadad";
+   							window.location.href="${APP_PATH }/toadminqpwoamznjhh";
    						}else{
    							$(".check-tips").show();
    		   					setTimeout(function(){

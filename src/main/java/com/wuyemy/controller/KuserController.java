@@ -1,5 +1,6 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class KuserController {
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
@@ -104,7 +105,7 @@ public class KuserController {
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		// 这不是一个分页查询；
 		// 引入PageHelper分页插件
@@ -180,8 +181,14 @@ public class KuserController {
 	
 	@RequestMapping("/chazhaoone")
 	@ResponseBody
-	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao,HttpServletRequest request, HttpServletResponse response){
+	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
 		
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		Kuser kuser = kuserService.getoneuser(zhanghao);
 		return Msg.success().add("pageInfo",kuser );
 	}
@@ -204,5 +211,19 @@ public class KuserController {
 		}
 		return null;
 	}
+	@RequestMapping(value="/chazhaoone2",method=RequestMethod.POST)
+	@ResponseBody
+	public Msg cchazhaoone2( @RequestParam("zhanghao")String zhanghao,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
+		Kuser kuser = kuserService.getoneuser(zhanghao);
+		return Msg.success().add("bbgqs", kuser);
+	}
+	
+	
 	
 }

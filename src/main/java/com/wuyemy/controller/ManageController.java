@@ -38,13 +38,13 @@ public class ManageController {
 		 }
 	} 
 	
-	@RequestMapping("/toadminadadadadad")
+	@RequestMapping("/toadminqpwoamznjhh" )
 	public String toadmin( HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		return "admin";
 	}
@@ -53,7 +53,7 @@ public class ManageController {
 	public String toshouye(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");
 		if(session==null){
-			response.sendRedirect("wyehoutaiadmin.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		return "welcome";
 	}
@@ -61,6 +61,6 @@ public class ManageController {
 	@RequestMapping("/tuichu")
 	public void tuichu(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.getSession().removeAttribute("username");
-		response.sendRedirect("wyehoutaiadmin.jsp");
+		response.sendRedirect("index.jsp");
 	}
 }
