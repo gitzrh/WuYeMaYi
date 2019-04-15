@@ -18,6 +18,8 @@ import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Tixian;
 import com.wuyemy.bean.TixianExample;
+import com.wuyemy.bean.Yyzx;
+import com.wuyemy.bean.YyzxExample;
 import com.wuyemy.bean.Yyzxsq;
 import com.wuyemy.bean.YyzxsqExample;
 import com.wuyemy.bean.Zijinmingxi;
@@ -28,6 +30,7 @@ import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.LunbotuMapper;
 import com.wuyemy.dao.TixianMapper;
+import com.wuyemy.dao.YyzxMapper;
 import com.wuyemy.dao.YyzxsqMapper;
 import com.wuyemy.dao.ZijinmingxiMapper;
 import com.wuyemy.dao.ZixunguanliMapper;
@@ -52,6 +55,8 @@ public class IndexService {
 	private LunbotuMapper lunbotuMapper;
 	@Autowired
 	private ZixunguanliMapper zixunguanliMapper;
+	@Autowired
+	private YyzxMapper yyzxMapper;
 	
 	/**
 	 * 获取金币信息
@@ -392,16 +397,29 @@ public class IndexService {
 	}
 
 	public String selectyyid(String zhanhao) {
-		KuserExample example = new KuserExample();
-		com.wuyemy.bean.KuserExample.Criteria createCriteria = example.createCriteria();
-		createCriteria.andZhanghaoEqualTo(zhanhao);
-		List<Kuser> selectByExample = kuserMapper.selectByExample(example);
 		
-		for (Kuser kuser : selectByExample) {
-			String yyzxid = kuser.getYyzxid();
-			return yyzxid;
+		YyzxExample example1 = new YyzxExample();
+		com.wuyemy.bean.YyzxExample.Criteria createCriteria2 = example1.createCriteria();
+		createCriteria2.andYyzhanghaoEqualTo(zhanhao);
+		long count = yyzxMapper.countByExample(example1);
+		
+		if (count == 1) {
+			List<Yyzx> selectByExample = yyzxMapper.selectByExample(example1);
+			for (Yyzx yyzx : selectByExample) {
+				String yybianhao = yyzx.getYybianhao();
+				return yybianhao;
+			}
+		}else if (count == 0) {
+			KuserExample example2 = new KuserExample();
+			com.wuyemy.bean.KuserExample.Criteria createCriteria = example2.createCriteria();
+			createCriteria.andZhanghaoEqualTo(zhanhao);
+			List<Kuser> selectByExample = kuserMapper.selectByExample(example2);
+			
+			for (Kuser kuser : selectByExample) {
+				String yyzxid = kuser.getYyzxid();
+				return yyzxid;
+			}
 		}
-		
 		return null;
 	}
 

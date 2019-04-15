@@ -75,9 +75,10 @@
      			    			success:function(result){
      			    				var code = result.code;
      								if (code == 100) {
+     									document.getElementById("imgVerify").src="AuthImage?"+Math.random();
      			    					myalerts("注册成功");
-     			    					document.getElementById("imgVerify").src="AuthImage?"+Math.random();
      								}else{
+     									document.getElementById("imgVerify").src="AuthImage?"+Math.random();
      									myalert(result.extent.loog);
      								}
      			    			}

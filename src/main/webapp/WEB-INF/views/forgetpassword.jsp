@@ -139,6 +139,7 @@
 		
 		//获取手机验证码
 		$(".huoquphone").click(function(){
+			
 			var phone = $.trim($(".phone").val());
 			if (phone == "") {
 				myalert6("手机号不能为空!");
@@ -243,12 +244,14 @@
 				success:function(result){
 					var code = result.code;
         	    	if (code == 100) {
+        	    		document.getElementById("imgVerify").src="AuthImage?"+Math.random();
         	    		myalert1("修改完成!");
         	    		window.location.href="${APP_PATH }/index.jsp";
 					}
         	    	if (code == 200) {
         	    		if (result.extent.fphone == null && result.extent.attribute != null && result.extent.verification == null) {
         	    			//验证码
+        	    			document.getElementById("imgVerify").src="AuthImage?"+Math.random();
         	    			myalert4(result.extent.attribute);
 						}else if (result.extent.fphone != null && result.extent.attribute == null && result.extent.verification == null) {
 							//手机号
@@ -258,6 +261,7 @@
 							myalert5(result.extent.verification);
 						}else if (result.extent.fphone != null && result.extent.attribute != null && result.extent.verification == null) {
 							//验证码  手机号
+							document.getElementById("imgVerify").src="AuthImage?"+Math.random();
 							myalert6(result.extent.fphone);
 							myalert4(result.extent.attribute);
 						}else if (result.extent.fphone != null && result.extent.attribute == null && result.extent.verification != null) {
@@ -266,9 +270,11 @@
 							myalert5(result.extent.verification);
 						}else if (result.extent.fphone == null && result.extent.attribute != null && result.extent.verification != null) {
 							//验证码  手机验证码
+							document.getElementById("imgVerify").src="AuthImage?"+Math.random();
 							myalert4(result.extent.attribute);
 							myalert5(result.extent.verification);
 						}else if (result.extent.fphone != null && result.extent.attribute != null && result.extent.verification != null) {
+							document.getElementById("imgVerify").src="AuthImage?"+Math.random();
 							myalert6(result.extent.fphone);
 							myalert4(result.extent.attribute);
 							myalert5(result.extent.verification);

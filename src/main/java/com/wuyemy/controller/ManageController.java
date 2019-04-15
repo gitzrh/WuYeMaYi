@@ -61,6 +61,6 @@ public class ManageController {
 	@RequestMapping("/tuichu")
 	public void tuichu(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.getSession().removeAttribute("username");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("wyehoutaiadmin.jsp");
 	}
 }

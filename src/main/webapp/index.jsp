@@ -66,8 +66,8 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
   		    $('.layui').remove();
   		  }, 2000)
   		}
-		function Trim(str)
-		 { 
+		
+		function Trim(str){ 
 		  return str.replace(/(^\s*)|(\s*$)/g, ""); 
 		}
 
@@ -93,13 +93,14 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 				success:function(result){
 						var code = result.code;
 						if (code == 100) {
+							document.getElementById("imgVerify").src="AuthImage?"+Math.random();
 							window.location.href="${APP_PATH }/toUserShou";
-						}else{
+						}else if(code == 200){
+							document.getElementById("imgVerify").src="AuthImage?"+Math.random();
 							myalert(result.extent.login);
-							
 						}
 					}
-			})
+				})
 			}
 		})
 		

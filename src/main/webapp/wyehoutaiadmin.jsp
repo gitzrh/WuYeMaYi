@@ -24,7 +24,6 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
    			})
    			
    			//登录表单验证
-   			
    			$("#denglu").click(function(){
    				var yzm = $.trim($("#yzm").val());
    				var username = $.trim($("#username").val());
@@ -37,8 +36,10 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
    					success:function(result){
    						var code = result.code;
    						if (code == 100) {
+   							document.getElementById("imgVerify").src="ValidateColorServlet?"+Math.random();
    							window.location.href="${APP_PATH }/toadminqpwoamznjhh";
    						}else{
+   							document.getElementById("imgVerify").src="ValidateColorServlet?"+Math.random();
    							$(".check-tips").show();
    		   					setTimeout(function(){
    		   					    $(".check-tips").hide();
@@ -55,12 +56,6 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 </head>
  <body id="login-page" style="background: none">
  
- 	<%
-	 	 //使用方法获取ip
-	  	String ip = GetIPAddress.getIp(request);
-    %>
-  	<input type="hidden" value="<%=ip %>>">
-  	
         <div id="main-content">
             <div class="login-body">
                 <div class="login-main pr">
