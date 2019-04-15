@@ -148,7 +148,7 @@ public class TuanduiService {
 		List<Kuser> selectByExample = kuserMapper.selectByExample(example);
 		
 		for (Kuser kuser : selectByExample) {
-			return kuser.getZhenshiname();
+			return kuser.getKhname();
 		}
 		
 		return null;

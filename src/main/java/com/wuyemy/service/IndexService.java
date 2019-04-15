@@ -337,8 +337,6 @@ public class IndexService {
 	public List<Kuser> tjlb(String zhanhao) {
 		
 		List<Kuser> kusers = new ArrayList<>();
-		
-		
 		List<Kuser> selectByExampleALL = kuserMapper.selectByExampleALL(zhanhao);
 		
 		for (Kuser kuser : selectByExampleALL) {
@@ -351,7 +349,7 @@ public class IndexService {
 			
 			kus.setJihuotime(kuser.getJihuotime());
 			kus.setZhanghao(kuser.getZhanghao());
-			kus.setZhenshiname(kuser.getZhenshiname());
+			kus.setKhname(kuser.getKhname());
 			kus.setZhenshishoujihao(kuser.getZhenshishoujihao());
 			kus.setTjrs(countByExample);
 			kus.setSuozailunshu(kuser.getSuozailunshu());

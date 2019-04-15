@@ -54,13 +54,7 @@
 						会员姓名：
 					</span>
 					<span class="details_RightMessage">
-						${reca.zhenshiname }
-					</span>
-					<span class="details_LeftMessage">
-						手机号码：
-					</span>
-					<span class="details_RightMessage">
-						${reca.zhenshishoujihao }
+						${reca.khname }
 					</span>
 					<span class="details_LeftMessage">
 						推荐人数：

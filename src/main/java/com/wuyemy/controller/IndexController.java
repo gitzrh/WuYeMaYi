@@ -430,6 +430,7 @@ public class IndexController {
 			//详细信息
 			List<Kuser> kusers = indexService.tjlb(zhanhao);
 			Collections.reverse(kusers);
+			System.out.println(kusers.get(0).getKhname());
 			map.put("tjkusers", kusers);
 			return "tjlb";
 		}

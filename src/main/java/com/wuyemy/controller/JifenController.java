@@ -25,11 +25,12 @@ public class JifenController {
 			@RequestParam("leix")Integer jibid,@RequestParam("num")BigDecimal jbshu){
 		int i = jifenService.kouchujifen(zhanghao,jibid,jbshu);
 		
-	if(i==1){
-		return Msg.success();
-	}
-		return Msg.fail();
-	}
+		if(i==1){
+			return Msg.success();
+		}
+			return Msg.fail();
+		}
+	
 	@RequestMapping("/addjifen")
 	@ResponseBody
 	public Msg addjifen(@RequestParam("zhanghao")String zhanghao,
@@ -48,17 +49,15 @@ public class JifenController {
 	public Msg updateuserxx(@RequestParam("zhanghao")String zhanghao,@RequestParam("name") String name, @RequestParam("password")String password){
 		
 		kuserService.updateUserXinxi(zhanghao,name,password);
-		
-		
 		return Msg.success();
 	}
+	
 	
 	@RequestMapping("/shanchu")
 	@ResponseBody
 	public Msg shanchuone(@RequestParam("zhanghao")String zhanghao){
 		
 		kuserService.updateTzhanghao(zhanghao);
-		
 		return Msg.success();
 	}
 	

@@ -90,7 +90,6 @@ public class KuserController {
 		int jihuo = kuserService.jihuo(zhanghao, tzhanghao);
 		
 		if (jihuo == 1||jihuo == 2){
-			
 			return Msg.success();
 		}
 		
@@ -181,10 +180,9 @@ public class KuserController {
 	
 	@RequestMapping("/chazhaoone")
 	@ResponseBody
-	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao){
+	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao,HttpServletRequest request, HttpServletResponse response){
 		
 		Kuser kuser = kuserService.getoneuser(zhanghao);
-		
 		return Msg.success().add("pageInfo",kuser );
 	}
 	

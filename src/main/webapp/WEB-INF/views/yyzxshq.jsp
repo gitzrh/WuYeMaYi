@@ -60,11 +60,11 @@
 		$(".jujue").click(function(){
 			 ids = $(this).parent().parent().find("th:eq(0)").text();
 				
-			 if(confirm("确定要拒绝【"+ textt +"】吗？")){
+			 if(confirm("确定要拒绝【"+ name +"】吗？")){
 			 $.ajax({
 					url:"${APP_PATH }/jujueyysq",
 					type:"PUT",
-					data:"id="+id,
+					data:"id="+ids,
 					success:function(result){
 						
 							
