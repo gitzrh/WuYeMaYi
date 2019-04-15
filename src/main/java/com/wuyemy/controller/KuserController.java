@@ -31,10 +31,8 @@ public class KuserController {
 	@RequestMapping("/zhuce")
 	@ResponseBody
 	private Msg zhuce(@RequestParam("zhanghao") String zhanghao,@RequestParam("kname")String kname,
-			@RequestParam(value="tzhanghao")String tzhanghao,
-			@RequestParam(value="yyzxid")String yyzxid,
-			@RequestParam(value="kpassword")String kpassword,
-			@RequestParam(value="yanzheng")String yanzheng,
+			@RequestParam(value="tzhanghao")String tzhanghao,@RequestParam(value="yyzxid")String yyzxid,
+			@RequestParam(value="kpassword")String kpassword,@RequestParam(value="yanzheng")String yanzheng,
 			HttpServletRequest request, HttpServletResponse response){
 		
 		long l = kuserService.getcounttzhanghao(zhanghao);
@@ -42,6 +40,9 @@ public class KuserController {
 		String sessionCode = (String)request.getSession().getAttribute("verCode");
 		
 		if (yanzheng !="" && yanzheng.equalsIgnoreCase(sessionCode) ) {
+
+		if (yanzheng.equalsIgnoreCase(sessionCode) ) {
+
 			if(tzhanghao != ""){
 				long i = kuserService.getcounttzhanghao(tzhanghao);
 				
@@ -58,8 +59,9 @@ public class KuserController {
 		}else {
 			return Msg.fail().add("loog", "验证码错误!");
 		}
-		return Msg.fail().add("loog", "此账号已注册!");
-		
+			return Msg.fail().add("loog", "此账号已注册!");
+		}
+		return null;
 	}
 	
 	@RequestMapping("/getallwei")

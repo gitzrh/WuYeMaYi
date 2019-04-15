@@ -153,7 +153,7 @@
     $.ajax({
 		url:"${APP_PATH }/logip",
 		type:"POST",
-		data:"ips="+ips,
+		data:"ips="+ips+"id="+id,
 		success:function(result){
 			
 		}

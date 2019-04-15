@@ -47,6 +47,9 @@
     		  }, 2000)
     		}
     	
+    	$("#imgVerify").click(function(){
+			document.getElementById("imgVerify").src="AuthImage?"+Math.random();
+		})
     		
     		$("#zhuce").click(function(){
    				//1、拿到要校验的数据，使用正则表达式
