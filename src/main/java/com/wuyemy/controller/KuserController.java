@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,7 +29,7 @@ public class KuserController {
 	
 	private DateToString dateToStr;
 	
-	@RequestMapping("/zhuce")
+	@RequestMapping(value="/zhuce",method=RequestMethod.POST)
 	@ResponseBody
 	private Msg zhuce(@RequestParam("zhanghao") String zhanghao,@RequestParam("kname")String kname,
 			@RequestParam(value="tzhanghao")String tzhanghao,
@@ -115,7 +116,7 @@ public class KuserController {
 				model.addAttribute("pageInfo", page);
 		return "adminUserYijiho";
 	}
-	@RequestMapping("/loginUser")
+	@RequestMapping(value="/loginUser",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg loginUser(@RequestParam("zhanghao")String zhanghao,@RequestParam("kpassword")String kpassword,
 			@RequestParam("yanzhma")String yanzhma,HttpServletRequest request, HttpServletResponse response){
@@ -175,7 +176,7 @@ public class KuserController {
 		return Msg.success().add("pageInfo",kuser );
 	}
 	
-	@RequestMapping("/logindenglu")
+	@RequestMapping(value="/logindenglu",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg Logindenglu(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();

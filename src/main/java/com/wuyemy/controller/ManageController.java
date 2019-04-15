@@ -21,7 +21,7 @@ public class ManageController {
 	@Autowired
 	private ManageService mangageService;
 
-	@RequestMapping("/adminLogin")
+	@RequestMapping(value="/adminLogin",method=RequestMethod.POST)
 	@ResponseBody
 	public  Msg loginadmin(@RequestParam("username")String username,
 				@RequestParam("password")String password,
