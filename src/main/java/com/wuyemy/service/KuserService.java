@@ -218,25 +218,25 @@ public class KuserService {
 			  int z5 = kuserService.getmaxzid();
 				 int m5 = z5+1;
 				 kuserService.inserxiaozutable(i,7,zhanghao);
-				 List<Xiaozu> users =  kuserService.getxzzhanghao(i,1);
+				 List<Xiaozu> users = kuserService.getxzzhanghao(i,1);
 				 String user1 = users.get(0).getZhanghao();
 				 
-				 	List<Kuser> kuser =	kuserService.getTzhanghao(user1);
-					String tuser = kuser.get(0).getTzhanghao();
+				 List<Kuser> kuser = kuserService.getTzhanghao(user1);
+				 String tuser = kuser.get(0).getTzhanghao();
 				 
-				 List<Xiaozu> users1 =  kuserService.getxzzhanghao(i,2);
+				 List<Xiaozu> users1 = kuserService.getxzzhanghao(i,2);
 				 String user2 = users1.get(0).getZhanghao();
 				 
-				 List<Xiaozu> users2 =  kuserService.getxzzhanghao(i,3);
+				 List<Xiaozu> users2 = kuserService.getxzzhanghao(i,3);
 				 String user3 = users2.get(0).getZhanghao();
 				 
-				 List<Xiaozu> users3 =  kuserService.getxzzhanghao(i,4);
+				 List<Xiaozu> users3 = kuserService.getxzzhanghao(i,4);
 				 String user4 = users3.get(0).getZhanghao();
 				 
-				 List<Xiaozu> users4 =  kuserService.getxzzhanghao(i,5);
+				 List<Xiaozu> users4 = kuserService.getxzzhanghao(i,5);
 				 String user5 = users4.get(0).getZhanghao();
 				 
-				 List<Xiaozu> users5 =  kuserService.getxzzhanghao(i,6);
+				 List<Xiaozu> users5 = kuserService.getxzzhanghao(i,6);
 				 String user6 = users5.get(0).getZhanghao();
 				 
 				 kuserService.update1zid(i, 1, user2);

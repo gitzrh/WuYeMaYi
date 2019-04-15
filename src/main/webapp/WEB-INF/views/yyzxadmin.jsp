@@ -29,11 +29,7 @@
 				type:"PUT",
 				data:"ddhh="+ddhh+"&yybianhao="+yybianhao,
 				success:function(result){
-					
-						
 						location.reload();
-					
-
 				}
 				
 			})
@@ -47,10 +43,7 @@
 				type:"PUT",
 				data:"bianhao="+bianhao,
 				success:function(result){
-											
 						location.reload();
-					
-
 				}
 				
 			})}
@@ -66,10 +59,7 @@
 				type:"PUT",
 				data:"bianhao="+bianhao,
 				success:function(result){
-											
 						location.reload();
-					
-
 				}
 				
 			})}
@@ -87,10 +77,7 @@
 				type:"PUT",
 				data:"bianhao="+bianhao,
 				success:function(result){
-											
 						location.reload();
-					
-
 				}
 				
 			})}
@@ -117,10 +104,7 @@
 					type:"PUT",
 					data:"jinbi="+jinbis+"&bianhaos="+bianhaos,
 					success:function(result){
-												
 							location.reload();
-						
-
 					}
 					
 				})
@@ -227,14 +211,7 @@
 								<a class="jiangji" href="javascript:;">降级</a>
 								&nbsp;||&nbsp;
 								<a class="quxiaozige" href="javascript:;">取消运营中心</a>
-								
-								
 							</th>
-						
-							
-							
-							
-							
 						</tr>
 					</c:forEach>
 				</table>

@@ -1,6 +1,5 @@
 package com.wuyemy.controller;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -40,27 +39,22 @@ public class KuserController {
 		String sessionCode = (String)request.getSession().getAttribute("verCode");
 		
 		if (yanzheng !="" && yanzheng.equalsIgnoreCase(sessionCode) ) {
-
-		if (yanzheng.equalsIgnoreCase(sessionCode) ) {
-
-			if(tzhanghao != ""){
-				long i = kuserService.getcounttzhanghao(tzhanghao);
-				
-				if(i==1 && l == 0){
+				if(tzhanghao != ""){
+					long i = kuserService.getcounttzhanghao(tzhanghao);
+					
+					if(i==1 && l == 0){
+						kuserService.insertKuser(zhanghao,kname,tzhanghao,DateToString.DateToStr(new Date()),yyzxid,kpassword,1);
+						return Msg.success();
+					}else{
+						return Msg.fail().add("loog", "推荐人不存在或此账号已注册!");
+					}
+				}else if (l == 0) {
 					kuserService.insertKuser(zhanghao,kname,tzhanghao,DateToString.DateToStr(new Date()),yyzxid,kpassword,1);
 					return Msg.success();
-				}else{
-					return Msg.fail().add("loog", "推荐人不存在或此账号已注册!");
 				}
-			}else if (l == 0) {
-				kuserService.insertKuser(zhanghao,kname,tzhanghao,DateToString.DateToStr(new Date()),yyzxid,kpassword,1);
-				return Msg.success();
+			}else {
+				return Msg.fail().add("loog", "验证码错误!");
 			}
-		}else {
-			return Msg.fail().add("loog", "验证码错误!");
-		}
-			return Msg.fail().add("loog", "此账号已注册!");
-		}
 		return null;
 	}
 	

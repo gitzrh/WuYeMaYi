@@ -41,7 +41,7 @@
   		}
   	
 	  	$("#imgVerify").click(function(){
-		document.getElementById("imgVerify").src="AuthImage?"+Math.random();
+			document.getElementById("imgVerify").src="AuthImage?"+Math.random();
 		})
   		
   		$("#zhuce").click(function(){
@@ -75,7 +75,8 @@
      			    			success:function(result){
      			    				var code = result.code;
      								if (code == 100) {
-     			    				myalerts("注册成功");
+     			    					myalerts("注册成功");
+     			    					document.getElementById("imgVerify").src="AuthImage?"+Math.random();
      								}else{
      									myalert(result.extent.loog);
      								}

@@ -22,9 +22,11 @@
 <script
 	src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+ 
  $(function(){
 	 $("#fabhui").click(function(){
-		 window.history.back();location.reload();
+		 window.history.back();
+		 location.reload();
 	 })
 	 
  })
@@ -45,7 +47,7 @@
 		<div class="col-md-4 col-lg-8" align="right">
 		    <div class="input-group">
 		      <span class="input-group-btn">
-		        <button class="btn btn-primary"  id="fabhui" type="button">返回</button>
+		        <button class="btn btn-primary"  id="fabhui" type="button" >返回</button>
 		      </span>
 		    </div>
 		  </div>

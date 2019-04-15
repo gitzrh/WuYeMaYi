@@ -281,5 +281,17 @@ public class Kuser {
     }
 
 
+	@Override
+	public String toString() {
+		return "Kuser [kid=" + kid + ", zhanghao=" + zhanghao + ", khname=" + khname + ", tzhanghao=" + tzhanghao
+				+ ", zhucetime=" + zhucetime + ", jihuotime=" + jihuotime + ", dongjietime=" + dongjietime + ", yyzxid="
+				+ yyzxid + ", shenfenid=" + shenfenid + ", kpassword=" + kpassword + ", zhenshishoujihao="
+				+ zhenshishoujihao + ", zhenshiname=" + zhenshiname + ", yinhangname=" + yinhangname + ", yinhangkajao="
+				+ yinhangkajao + ", kaihudizhi=" + kaihudizhi + ", zhifubaoid=" + zhifubaoid + ", zhuangtaiid="
+				+ zhuangtaiid + ", zhuangtai=" + zhuangtai + ", jifen=" + jifen + ", suozailunshu=" + suozailunshu
+				+ ", tjrs=" + tjrs + ", tname=" + tname + "]";
+	}
+
+
     
 }
