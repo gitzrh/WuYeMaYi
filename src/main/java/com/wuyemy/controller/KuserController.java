@@ -1,5 +1,6 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -169,8 +170,14 @@ public class KuserController {
 	}
 	@RequestMapping("/chazhaoone")
 	@ResponseBody
-	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao){
+	public Msg chazhaoone(@RequestParam("zhanghao")String zhanghao,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
 		
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		Kuser kuser = kuserService.getoneuser(zhanghao);
 		
 		return Msg.success().add("pageInfo",kuser );
@@ -188,7 +195,7 @@ public class KuserController {
 		}
 		return null;
 	}
-	@RequestMapping("/chazhaoone2")
+	@RequestMapping(value="/chazhaoone2",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg cchazhaoone2( @RequestParam("zhanghao")String zhanghao,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");

@@ -57,7 +57,14 @@ public class CanshuController {
 	
 	@RequestMapping("/xiugaicanshu1")
 	@ResponseBody
-	public Msg updatecanshu1(@RequestParam("id")Integer id,@RequestParam("canshu")BigDecimal canshu){
+	public Msg updatecanshu1(@RequestParam("id")Integer id,@RequestParam("canshu")BigDecimal canshu,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		canshuService.updatecanshu1(id,canshu);
 		return Msg.success();
 	}
@@ -65,8 +72,14 @@ public class CanshuController {
 	@ResponseBody
 	public Msg updatecanshu2(@RequestParam("id")Integer id,@RequestParam("lvname")String lvname,
 			@RequestParam("fulijin")Integer fulijin,@RequestParam("zongrenshu")Integer zongnum,
-			@RequestParam("zhituishu")Integer zhituinum,@RequestParam("zhekoubi")BigDecimal zhekoubili){
-		
+			@RequestParam("zhituishu")Integer zhituinum,@RequestParam("zhekoubi")BigDecimal zhekoubili,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		canshuService.updatecanshu2(id,lvname,fulijin,zongnum,zhituinum,zhekoubili);
 		return Msg.success();
 	}
@@ -74,8 +87,14 @@ public class CanshuController {
 	@ResponseBody
 	public Msg addcanshu(@RequestParam("lvname")String lvname,
 			@RequestParam("fulijin")Integer fulijin,@RequestParam("zongrenshu")Integer zongnum,
-			@RequestParam("zhituishu")Integer zhituinum,@RequestParam("zhekoubi")BigDecimal zhekoubili){
-		
+			@RequestParam("zhituishu")Integer zhituinum,@RequestParam("zhekoubi")BigDecimal zhekoubili,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		canshuService.addcanshu(lvname,fulijin,zongnum,zhituinum,zhekoubili);
 		return Msg.success();
 	}

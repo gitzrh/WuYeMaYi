@@ -19,6 +19,7 @@
     <script src="${APP_PATH }/Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${APP_PATH }/Admin/js/xadmin.js"></script>
 <script type="text/javascript">
+
 </script>
 </head>
 <body>
@@ -48,14 +49,7 @@
     <div class="left-nav">
       <div id="side-nav">
         <ul id="nav">
-            <li>
-                <a href="">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>管理首页</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                
-            </li>
+           
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>

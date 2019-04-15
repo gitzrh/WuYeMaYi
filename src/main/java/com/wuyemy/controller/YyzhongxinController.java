@@ -168,7 +168,12 @@ String session  = (String) request.getSession().getAttribute("username");
 	
 	@RequestMapping("/shouyeyeye")
 	@ResponseBody
-	public Msg toshouyewe(){
+	public Msg toshouyewe( HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		if(session==null){
+			
+			response.sendRedirect("index.jsp");
+		}
 		JifenZonghe jifenZonghe = kuserService.getwelome();
 		return Msg.success().add("numm",jifenZonghe);
 	}
