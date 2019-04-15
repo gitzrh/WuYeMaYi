@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,29 +40,33 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 		</span>
 	</div>
 	
-	<div class="messageDidsplayDiv">
-		<div class="leftMessage">等级：</div>
-		<input type="text" value="${yyzx.yyzxlvid -1 }" readonly="readonly" name="realname" class="rightMessage" style="border:none">
-	</div>
-	<div class="messageDidsplayDiv">
-		<div class="leftMessage">直推人数：</div>
-		<input type="text" value="${yyzx.ztnum }人" readonly="readonly" name="realname" class="rightMessage" style="border:none">
-	</div>
-			<div class="messageDidsplayDiv">
-		<div class="leftMessage">团队人数：</div>
-		<input type="text" value="${yyzx.yynum }人" readonly="readonly" name="realname" class="rightMessage" style="border:none">
-	</div>
-	<div class="messageDidsplayDiv">
-		<div class="leftMessage">运营津贴：</div>
-		<input type="text" value="${yyzx.yyjinbi }" readonly="readonly" name="realname" class="rightMessage" style="border:none">
-	</div>
-
-	<script>
+	<c:if test="${yyzx.yyzxlvid != null }">
+	
+		<div class="messageDidsplayDiv">
+			<div class="leftMessage">等级：</div>
+			<input type="text" value="${yyzx.yyzxlvid -1 }" readonly="readonly" name="realname" class="rightMessage" style="border:none">
+		</div>
+		<div class="messageDidsplayDiv">
+			<div class="leftMessage">直推人数：</div>
+			<input type="text" value="${yyzx.ztnum }人" readonly="readonly" name="realname" class="rightMessage" style="border:none">
+		</div>
+				<div class="messageDidsplayDiv">
+			<div class="leftMessage">团队人数：</div>
+			<input type="text" value="${yyzx.yynum }人" readonly="readonly" name="realname" class="rightMessage" style="border:none">
+		</div>
+		<div class="messageDidsplayDiv">
+			<div class="leftMessage">运营津贴：</div>
+			<input type="text" value="${yyzx.yyjinbi }" readonly="readonly" name="realname" class="rightMessage" style="border:none">
+		</div>
+	
+	</c:if>
+	
+<script>
 	$('.backButton').click(function(){
 		window.location.href="${APP_PATH }/toUserShou";
-    	})
-	
-	</script>
+	   	})
+
+</script>
 
 </body>
 </html>
