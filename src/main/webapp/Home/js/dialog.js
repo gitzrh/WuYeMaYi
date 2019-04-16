@@ -178,12 +178,12 @@
         buttonText : {
             ok : '确定',
             cancel : '取消',
-            delete : '删除'
+            delete1 : '删除'
         },
         buttonClass : {
             ok : '',
             cancel : '',
-            delete : ''
+            delete1 : ''
         },
 
         infoText : '',      // working in info type

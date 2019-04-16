@@ -33,16 +33,14 @@ public class CanshuController {
 		}
 		 List<Canshu> canshu = canshuService.getCanShu();
 		 PageInfo page = new PageInfo(canshu, 10);
-		 
 		 model.addAttribute("canshu", page);
-		return "canshu";
+		 return "canshu";
 	}
 	@RequestMapping("/toyycanshu")
 	public String toyycanshu(HttpServletRequest request, HttpServletResponse response,Model model ) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session==null){
-			
 			response.sendRedirect("index.jsp");
 		}
 		List<Yyzxlvcanshu> yycanshu = canshuService.getyycanshu();

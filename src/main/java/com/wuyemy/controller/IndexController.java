@@ -41,9 +41,10 @@ public class IndexController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/toUserShou")
-	public String toindex(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String toindex(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
@@ -73,6 +74,8 @@ public class IndexController {
 			
 			map.put("jifen", jifen);
 			return "userindex";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		
 		return null;
@@ -85,9 +88,10 @@ public class IndexController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/user")
-	public String User(HttpServletRequest request, HttpServletResponse response, Map<String, Object> map){
+	public String User(HttpServletRequest request, HttpServletResponse response, Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 
@@ -96,19 +100,21 @@ public class IndexController {
 			map.put("kuser", kuser);
 			return "user";
 		}else {
-			return "index";
+			response.sendRedirect("index.jsp");
 		}
+		return null;
 		
 	}
 	
 	/**
 	 * 修改基本信息
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/updatePhCa")
 	@ResponseBody
 	public Msg OneUser(@RequestParam("phone")String phone,@RequestParam("card")String card,
-			              HttpServletRequest request, HttpServletResponse response){
+			              HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
@@ -125,6 +131,8 @@ public class IndexController {
 				return Msg.success().add("ok", "保存完成!");
 			}
 			
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 			
 		return null;
@@ -133,12 +141,13 @@ public class IndexController {
 	/**
 	 * 修改银行信息
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/updateyh")
 	@ResponseBody
 	public Msg Updateyh(@RequestParam("realname")String realname,@RequestParam("bankname")String bankname,
 			@RequestParam("bankcard")String bankcard,@RequestParam("kaihuaddress")String kaihuaddress,
-			@RequestParam("alipay")String alipay, HttpServletRequest request, HttpServletResponse response){
+			@RequestParam("alipay")String alipay, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
@@ -146,6 +155,8 @@ public class IndexController {
 		if (zhanghao != null) {
 			indexService.OneYh(realname, bankname, bankcard, kaihuaddress, alipay, zhanghao);
 			return Msg.success().add("yhok", "保存完成!");
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		
 		
@@ -187,6 +198,8 @@ public class IndexController {
 			map.put("erzhang", zhanhao);
 			
 			return "tuiguang";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -209,9 +222,10 @@ public class IndexController {
 	 * @param request
 	 * @param response
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/zijintixian")
-	public String Zijintixian(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String Zijintixian(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
@@ -236,9 +250,13 @@ public class IndexController {
 			map.put("gouche", value1+"%");
 			map.put("chuju", value2+"%");
 			map.put("fenxiang", value3+"%");
+			
+			return "tixian";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		
-		return "tixian";
+		return null;
 	}
 	
 	/**
@@ -372,9 +390,10 @@ public class IndexController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/zijinmingxi")
-	public String Zijinmingxi(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String Zijinmingxi(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
@@ -392,6 +411,8 @@ public class IndexController {
 			List<com.wuyemy.bean.Zijinmingxi> zijinzts = indexService.syztjb(zhanhao);
 			map.put("zijinzts", zijinzts);
 			return "zijinmingxi";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -399,9 +420,10 @@ public class IndexController {
 	/**
 	 * 查询提现记录
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/tixianjilu")
-	public String tixianjilu(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String tixianjilu(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
@@ -409,6 +431,8 @@ public class IndexController {
 			List<Tixian> tixians = indexService.txjl(zhanhao);
 			map.put("tixians", tixians);
 			return "txjl";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -419,9 +443,10 @@ public class IndexController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/tjlb")
-	public String Tjlb(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String Tjlb(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
@@ -430,9 +455,10 @@ public class IndexController {
 			//详细信息
 			List<Kuser> kusers = indexService.tjlb(zhanhao);
 			Collections.reverse(kusers);
-			System.out.println(kusers.get(0).getKhname());
 			map.put("tjkusers", kusers);
 			return "tjlb";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}

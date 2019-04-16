@@ -1,5 +1,6 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -34,9 +35,10 @@ public class TuanduiController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/updatepassword")
-	public String Password(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String Password(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
@@ -45,6 +47,8 @@ public class TuanduiController {
 			String phone = tuanduiService.phone(zhanghao);
 			map.put("phone", phone);
 			return "updatepassword";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		
 		return null;
@@ -85,11 +89,12 @@ public class TuanduiController {
 	 * @param request
 	 * @param response
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/updatepass")
 	@ResponseBody
 	public Msg Updatepass(@RequestParam("verification1")String verification1, @RequestParam("password")String password,
-			@RequestParam("verification2")String verification2, HttpServletRequest request, HttpServletResponse response){
+			@RequestParam("verification2")String verification2, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
@@ -108,6 +113,8 @@ public class TuanduiController {
 			}else {
 				return Msg.fail().add("verification", "手机验证码错误!");
 			}
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -151,14 +158,17 @@ public class TuanduiController {
 	/**
 	 * 运营中心申请跳转页面
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/hhrsq")
-	public String hhrsq(HttpServletRequest request, HttpServletResponse response){
+	public String hhrsq(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
 			return "yysq";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -166,27 +176,31 @@ public class TuanduiController {
 	/**
 	 * 申请运营中心
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/sqyyzx")
 	@ResponseBody
 	public Msg Sqyyzx(@RequestParam("phone")String phone, @RequestParam("name")String name,
 			@RequestParam("address")String address, @RequestParam("remark")String remark,
-			HttpServletRequest request, HttpServletResponse response){
+			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
 			tuanduiService.sqyyzx(zhanghao,name,phone,address,remark);
 		return Msg.success();
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
 	
 	/**
 	 * 获取运营中心信息并跳转
+	 * @throws IOException 
 	 */
 	@RequestMapping("/yyzx")
-	private String Yyzx(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	private String Yyzx(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
@@ -194,6 +208,8 @@ public class TuanduiController {
 			Yyzx yyzx = tuanduiService.yyzx(zhanghao);
 			map.put("yyzx", yyzx);
 			return "yyzx";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -201,14 +217,17 @@ public class TuanduiController {
 	/**
 	 * 跳转申请待审核页面
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/hhds")
-	public String hhds(HttpServletRequest request, HttpServletResponse response){
+	public String hhds(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
 			return "hhds";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -216,14 +235,17 @@ public class TuanduiController {
 	/**
 	 * 跳转申请拒绝页面
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/hhjj")
-	public String hhjj(HttpServletRequest request, HttpServletResponse response){
+	public String hhjj(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
 			return "hhjj";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -231,15 +253,18 @@ public class TuanduiController {
 	/**
 	 * 重新申请合伙人
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/cxsq")
-	public String cxsq(HttpServletRequest request, HttpServletResponse response){
+	public String cxsq(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
 			tuanduiService.deletesq(zhanghao);
 			return "yysq";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -250,9 +275,10 @@ public class TuanduiController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/jggl")
-	public String Jggl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String Jggl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
@@ -299,6 +325,8 @@ public class TuanduiController {
 			}
 			
 			return "jggl";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		
 		return null;
@@ -310,15 +338,18 @@ public class TuanduiController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/lunbotugl")
-	public String lunbotugl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String lunbotugl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session != null){
 			List<Lunbotu> lunbotus = tuanduiService.sylbt();
 			map.put("lunbotuls", lunbotus);
 			return "lunbotu";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
@@ -329,15 +360,18 @@ public class TuanduiController {
 	 * @param response
 	 * @param map
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/zixungl")
-	public String Zixungl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	public String Zixungl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map) throws IOException{
 		String session  = (String) request.getSession().getAttribute("username");
 		
 		if(session != null){
 			List<Zixunguanli> zixunguanlis = tuanduiService.zixungl();
 			map.put("zixunguanlis", zixunguanlis);
 			return "zixungl";
+		}else {
+			response.sendRedirect("index.jsp");
 		}
 		return null;
 	}
