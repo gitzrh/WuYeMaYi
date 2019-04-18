@@ -93,11 +93,6 @@
 </script>
 </head>
 <body class="bodyHeight" style="height: 816px;">
-	<%
-	 	 //使用方法获取ip
-	  	String ip = GetIPAddress.getIp(request);
-    %>
-  	<input type="hidden" value="<%=ip %>>">
   	
     <!--topTitle -->
     <div class="pageTitleDiv">

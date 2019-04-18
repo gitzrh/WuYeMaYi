@@ -113,12 +113,6 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 
 <body class="bodyHeight" style="background-image: url(Home/img/timg.gif);background-position: center;background-repeat: no-repeat;background-size: 100% 100%;">
   	
-  	<%
-	 	 //使用方法获取ip
-	  	String ip = GetIPAddress.getIp(request);
-    %>
-  	<input type="hidden" value="<%=ip %>" class="ip">
-  	
   	<div style='padding-top:164px;text-align: center'>
       	<img src='Home/img/logo.png' style="width: 747px;">
   	</div>
