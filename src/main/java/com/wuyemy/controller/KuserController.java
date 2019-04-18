@@ -29,7 +29,7 @@ public class KuserController {
 	
 	@RequestMapping(value="/zhuce",method=RequestMethod.POST)
 	@ResponseBody
-	private Msg zhuce(@RequestParam("zhanghao") String zhanghao,@RequestParam("kname")String kname,
+	private Msg zhuce(@RequestParam("zhanghao") String zhanghao,@RequestParam("khname")String kname,
 			@RequestParam(value="tzhanghao")String tzhanghao,@RequestParam(value="yyzxid")String yyzxid,
 			@RequestParam(value="kpassword")String kpassword,@RequestParam(value="yanzheng")String yanzheng,
 			HttpServletRequest request, HttpServletResponse response){

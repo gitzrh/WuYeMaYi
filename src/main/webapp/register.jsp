@@ -13,7 +13,7 @@
 <title>注册会员</title>
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet_PC.css" media="screen and (min-width:1000px)">
-<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
+<link rel="shortcut  icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico"/>
 <script src="${APP_PATH }/static/js/jquery-1.12.4.min.js"></script>
 <script src="${APP_PATH }/Home/js/comment.js"></script>
 	
@@ -47,16 +47,15 @@
   		
   		$("#zhuce").click(function(){
  				//1、拿到要校验的数据，使用正则表达式
- 				var zhanghao = $.trim($("#zhanghao").val());
- 				var khname = $.trim($("#khname").val());
  				var regzhanghao = /^[1][0-9][0-9]{9}$/;
  				var regName = /(^[\u2E80-\u9FFF]{2,5})/;
+ 				
+ 				var zhanghao = $.trim($("#zhanghao").val());
+ 				var khname = $.trim($("#khname").val());
  				var kpassword = $.trim($("#kpassword").val());
  				var repassword =$.trim($("#repassword").val());
  				var tzhanghao = $.trim($("#tzhanghao").val());
  				var yyzxid = $.trim($("#yyzxid").val());
- 				var kpassword = $.trim($("#kpassword").val());
- 				var tzhanghao = $.trim($("#tzhanghao").val());
  				var yanzheng = $("#code_input_yanzh").val();
  				
  				if(!regzhanghao.test(zhanghao)){
@@ -72,7 +71,7 @@
      						$.ajax({
      			    			url:"${APP_PATH }/zhuce",
      			    			type:"POST",
-     			    			data:"zhanghao="+zhanghao+"&kname="+khname+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&kpassword="+kpassword+"&yanzheng="+yanzheng,
+     			    			data:"zhanghao="+zhanghao+"&khname="+khname+"&kpassword="+kpassword+"&tzhanghao="+tzhanghao+"&yyzxid="+yyzxid+"&yanzheng="+yanzheng,
      			    			success:function(result){
      			    				var code = result.code;
      								if (code == 100) {
@@ -119,7 +118,7 @@
       
       	<div class="messageDidsplayDiv">
             <div class="leftMessage" style="width: 290px;">运营中心编号:</div>
-            <input type="text" readonly value="${param.yyzxid }" name="tzhanghao" id="tzhanghao" class="rightMessage">
+            <input type="text" readonly value="${param.yyzxid }" name="yyzxid" id="yyzxid" class="rightMessage">
         </div>
         <!---->
         <div class="messageDidsplayDiv">

@@ -102,6 +102,7 @@
 						<th>账号</th>
 						<th>推荐人账号</th>
 						<th>注册时间</th>
+						<th>运营编号</th>
 						<th>状态</th>
 						<th>操作</th>
 						
@@ -114,6 +115,7 @@
 							<th>${reca.zhanghao }</th>
 							<th>${reca.tzhanghao }</th>
 							<th>${reca.zhucetime }</th>
+							<th>${reca.yyzxid }</th>
 							<th>${reca.zhuangtai.zhuangtai }</th>
 							<th>
 								<button  id="qidong" class="btn qidong btn-primary record_get_model_btn btn-sm">
