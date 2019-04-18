@@ -58,12 +58,38 @@ public class TuanduiController {
 	private String str;
 	
 	/**
-	 * 获取手机验证码
+	 * 忘记密码获取手机验证码
 	 * @return
 	 */
 	@RequestMapping("/huoquphone")
 	@ResponseBody
 	public Msg Huoquphone(@RequestParam("phone")String phone){
+		
+		long l = tuanduiService.kphon(phone);
+		if (l == 1) {
+			str = liuweishu.yanzhnegma();
+			String sid = "71d51808f02cc0094354fbd71f05d5c5";
+			String token = "f6e6e0f7d6a73d9329613077970df402";
+			String appid = "3fc3212aaf7b4203afe938ee6682c15b";
+			String templateid = "451911";
+			String param = str;
+			String mobile = phone;
+			String uid = "2d92c6132139467b989d087c84a365d7";
+			RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
+			return Msg.success().add("yzh", str);
+		}
+		return Msg.fail().add("fphone", "请检查您的手机号!");
+		
+	}
+	
+	
+	/**
+	 * 修改密码获取手机验证码
+	 * @return
+	 */
+	@RequestMapping("/updatephone")
+	@ResponseBody
+	public Msg Updatephone(@RequestParam("phone")String phone){
 		
 		long l = tuanduiService.kphon(phone);
 		if (l == 1) {

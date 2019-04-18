@@ -9,7 +9,7 @@
 		pageContext.setAttribute("APP_PATH", request.getContextPath());
 	%>
 <title>个人信息</title>
-
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">
 <link rel="stylesheet" href="${APP_PATH }/Home/css/style.css">
 <link rel="stylesheet" href="${APP_PATH }/Home/css/style.css">

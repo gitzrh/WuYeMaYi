@@ -9,15 +9,12 @@
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
-<script type="text/javascript"
-	src="${APP_PATH }/static/js/jquery-1.12.4.min.js"></script>
-<link
-	href="${APP_PATH }/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${APP_PATH }/static/js/jquery-1.12.4.min.js"></script>
+<link href="${APP_PATH }/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
+<script src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(function(){
 		
 		var id;

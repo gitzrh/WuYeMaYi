@@ -12,6 +12,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
 <title>五叶蚂蚁好车</title>
 <link rel="stylesheet" type="text/css" href="${APP_PATH }/Admin/css/login.css" media="all">
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <script type="text/javascript" src="${APP_PATH }/static/jquery-2.0.3.min.js"></script>
    		
 <script type="text/javascript">

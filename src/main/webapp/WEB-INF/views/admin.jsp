@@ -3,24 +3,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>五叶蚂蚁</title>
-	<meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta charset="UTF-8">
+<title>五叶蚂蚁</title>
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="${APP_PATH }/Admin/css/font.css">
-	<link rel="stylesheet" href="${APP_PATH }/Admin/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="${APP_PATH }/Admin/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="${APP_PATH }/Admin/js/xadmin.js"></script>
-<script type="text/javascript">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="${APP_PATH }/Admin/css/font.css">
+<link rel="stylesheet" href="${APP_PATH }/Admin/css/xadmin.css">
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="${APP_PATH }/Admin/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="${APP_PATH }/Admin/js/xadmin.js"></script>
 
-</script>
 </head>
 <body>
 

@@ -9,8 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="description" content="">
 <%
-pageContext.setAttribute("APP_PATH", request.getContextPath());
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/slick.css" />
 <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/base.css" />
 <link rel="stylesheet" type="text/css" href="${APP_PATH }/Home/css/style.css" />

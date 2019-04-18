@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet_PC.css" media="screen and (min-width:1000px)">
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <script src="${APP_PATH }/static/js/jquery-1.12.4.min.js"></script>
 <script src="${APP_PATH }/Home/js/comment.js"></script>
 
@@ -74,7 +75,7 @@
 		$(".huoquphone").click(function(){
 			var phone = $.trim($(".phone").val());
 			$.ajax({
-				url:"${APP_PATH}/huoquphone",
+				url:"${APP_PATH}/updatephone",
 				type:"POST",
 				data: "phone="+phone,
 				success:function(result){

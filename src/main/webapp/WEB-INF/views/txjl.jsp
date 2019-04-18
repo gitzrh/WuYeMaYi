@@ -12,6 +12,7 @@
 %>
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet_PC.css" media="screen and (min-width:1000px)">
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <script src="${APP_PATH }/Home/js/jquery-3.2.1.min.js"></script>
 <script src="${APP_PATH }/Home/js/comment.js"></script>
 <style>

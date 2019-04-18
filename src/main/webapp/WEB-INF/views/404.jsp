@@ -7,7 +7,7 @@
 <head>
  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- 
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <title>404-对不起！您访问的页面不存在</title>
  
 <style type="text/css">
