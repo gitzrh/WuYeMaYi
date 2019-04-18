@@ -7,9 +7,11 @@
 <head>
  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
-<title>404-对不起！您访问的页面不存在</title>
- 
+<title>404</title>
+<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
+<link rel="shortcut  icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico"/>
 <style type="text/css">
 .head404{ width:580px; height:234px; margin:50px auto 0 auto; background:url(https://www.daixiaorui.com/Public/images/head404.png) no-repeat; }
 .txtbg404{ width:499px; height:169px; margin:10px auto 0 auto; background:url(https://www.daixiaorui.com/Public/images/txtbg404.png) no-repeat;}
