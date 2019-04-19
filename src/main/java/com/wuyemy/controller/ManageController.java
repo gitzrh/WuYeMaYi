@@ -33,7 +33,8 @@ public class ManageController {
 		 }else{
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
-		
+			session.setMaxInactiveInterval(60*60*6);
+			
 			return Msg.success();
 		 }
 	} 
