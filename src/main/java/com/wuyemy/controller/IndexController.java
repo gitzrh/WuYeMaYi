@@ -206,15 +206,21 @@ public class IndexController {
 	
 	/**
 	 * 删除二维码
+	 * @throws IOException 
 	 */
 	@RequestMapping("/shanchut")
-	public void Shanchut(HttpServletRequest request, HttpServletResponse response){
+	public void Shanchut(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
-		String realPath = request.getSession().getServletContext().getRealPath("/");
+		if (zhanhao != null) {
+			String realPath = request.getSession().getServletContext().getRealPath("/");
+			indexService.Shanchue(zhanhao,realPath);
+		}else {
+			response.sendRedirect("index.jsp");
+		}
 		
-		indexService.Shanchue(zhanhao,realPath);
+		
 	}
 	
 	/**

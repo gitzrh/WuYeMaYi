@@ -35,7 +35,7 @@ public static final String CHECK_CODE_KEY = "CHECK_CODE_KEY";
 	private int codeY = 0;
 	
 	//验证码由哪些字符组成
-	char [] codeSequence = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz23456789".toCharArray();
+	char [] codeSequence = "ABCDEFGHKMNPRSTUWXYZabcdefghkmnqrstuwxyz23456789".toCharArray();
 	
 	//初始化验证码图形属性
 	public void init(){

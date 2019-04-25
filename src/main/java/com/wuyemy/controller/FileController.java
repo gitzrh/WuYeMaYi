@@ -29,6 +29,7 @@ public class FileController {
 	
 	//文件上传并生成缩略图
 	@RequestMapping(value="/thumb",method=RequestMethod.POST)
+	
 	@ResponseBody
 	public void GenerateImage(@RequestParam("image")CommonsMultipartFile file,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{			

@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%
-pageContext.setAttribute("APP_PATH", request.getContextPath());
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
 <title>登录</title>
 <link rel="stylesheet" href="${APP_PATH }/Home/css/stylesheet.css">

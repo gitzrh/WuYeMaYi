@@ -405,12 +405,22 @@ public class TuanduiController {
 	/**
 	 * 查看咨询
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("/selectzx")
 	@ResponseBody
-	public Msg Selectzx(@RequestParam("id")Integer id){
-		Zixunguanli zixunguanli = tuanduiService.seletezx(id);
-		return Msg.success().add("zixunguanli", zixunguanli);
+	public Msg Selectzx(HttpServletRequest request, HttpServletResponse response,@RequestParam("id")Integer id) throws IOException{
+		HttpSession session = request.getSession();
+		String zhanghao = (String) session.getAttribute("zhanghao");
+		
+		if (zhanghao != null) {
+			Zixunguanli zixunguanli = tuanduiService.seletezx(id);
+			return Msg.success().add("zixunguanli", zixunguanli);
+		}else {
+			response.sendRedirect("index.jsp");
+		}
+		return null;
+		
 	}
 	
 	/**
