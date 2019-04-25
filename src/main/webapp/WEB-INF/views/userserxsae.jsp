@@ -43,16 +43,10 @@
 					type:"PUT",
 					data:"zhanghaos="+zhanghaos+"&bianhao="+bianhao,
 					success:function(result){
-							
 							location.reload();
-						
 					}
 					
-					});
-				 
-				 
-			
-			 
+				});
 			 })
 			 
 			 
@@ -66,49 +60,42 @@
 			var textt = $(this).parent().parent().find("th:eq(1)").text();
 			
 			if(confirm("确定要删除【"+ textt +"】吗？")){
-			$.ajax({
-				url:"${APP_PATH }/shanchu",
-				type:"PUT",
-				data:"zhanghao="+ddhh,
-				success:function(result){
-						
+				$.ajax({
+					url:"${APP_PATH }/shanchu",
+					type:"PUT",
+					data:"zhanghao="+ddhh,
+					success:function(result){
 						location.reload();
+					}
 					
-				}
-				
 				});
 			}
-			
 		}); 
+		 
 		//扣除积分
-			$(".kouchujifen").click(function(){
-				$("#zhanghao_input").hide();
+		$(".kouchujifen").click(function(){
+			$("#zhanghao_input").hide();
+			
+			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
+			$("#zhanghao_input").val(zhanghao);
+			$("#kouchukuang").modal({
+				backdrop:"static"
+			});
+			
+			$(".tijiao").click(function(){
+				var leix = $('#danxuank input:radio:checked').val();
+				var zhanghao = $("#zhanghao_input").val();
+				var num = $("#shuliang_upd_input").val();
 				
-				var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
-				$("#zhanghao_input").val(zhanghao);
-				$("#kouchukuang").modal({
-					backdrop:"static"
-				});
-				
-				
-				$(".tijiao").click(function(){
-					var leix = $('#danxuank input:radio:checked').val();
-					var zhanghao = $("#zhanghao_input").val();
-					var num = $("#shuliang_upd_input").val();
-					
-					$.ajax({
-						url:"${APP_PATH }/kouchujifen",
-						type:"PUT",
-						data:"zhanghao="+zhanghao+"&leix="+leix+"&num="+num,
-						success:function(result){
-							location.reload();
-						}
-					})
-					
-					
+				$.ajax({
+					url:"${APP_PATH }/kouchujifen",
+					type:"PUT",
+					data:"zhanghao="+zhanghao+"&leix="+leix+"&num="+num,
+					success:function(result){
+						location.reload();
+					}
 				})
-			
-			
+			})
 		});
 			
 		//增加积分

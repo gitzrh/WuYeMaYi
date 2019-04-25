@@ -44,19 +44,11 @@
 					type:"PUT",
 					data:"zhanghaos="+zhanghaos+"&bianhao="+bianhao,
 					success:function(result){
-							
 							location.reload();
-						
 					}
 					
-					});
-				 
-				 
-			
-			 
+				});
 			 })
-			 
-			 
 		 })
 		 
 		 
@@ -79,35 +71,33 @@
 				
 				});
 			}
-			
 		}); 
+		 
 		//扣除积分
-			$(".kouchujifen").click(function(){
-				$("#zhanghao_input").hide();
+		$(".kouchujifen").click(function(){
+			$("#zhanghao_input").hide();
+			
+			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
+			$("#zhanghao_input").val(zhanghao);
+			$("#kouchukuang").modal({
+				backdrop:"static"
+			});
+			
+			
+			$(".tijiao").click(function(){
+				var leix = $('#danxuank input:radio:checked').val();
+				var zhanghao = $("#zhanghao_input").val();
+				var num = $("#shuliang_upd_input").val();
 				
-				var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
-				$("#zhanghao_input").val(zhanghao);
-				$("#kouchukuang").modal({
-					backdrop:"static"
-				});
-				
-				
-				$(".tijiao").click(function(){
-					var leix = $('#danxuank input:radio:checked').val();
-					var zhanghao = $("#zhanghao_input").val();
-					var num = $("#shuliang_upd_input").val();
-					
-					$.ajax({
-						url:"${APP_PATH }/kouchujifen",
-						type:"PUT",
-						data:"zhanghao="+zhanghao+"&leix="+leix+"&num="+num,
-						success:function(result){
-							location.reload();
-						}
-					})
-					
-					
+				$.ajax({
+					url:"${APP_PATH }/kouchujifen",
+					type:"PUT",
+					data:"zhanghao="+zhanghao+"&leix="+leix+"&num="+num,
+					success:function(result){
+						location.reload();
+					}
 				})
+			})
 			
 			
 		});
@@ -136,11 +126,9 @@
 						location.reload();
 					}
 				})
-				
-				
 			})
-			
 		})
+		
 		//更改用户信息
 		$(".updatexinxi").click(function(){
 			$("#zhanghaoss_input").hide();
@@ -153,38 +141,34 @@
 				backdrop:"static"
 			});
 			
-		$(".tijiaoss").click(function(){
-			var zhanghao = $("#zhanghaoss_input").val();
-			var name = $("#name_upd_input").val();
-			var password = $("#password_upd_input").val()
-			
-			$.ajax({
-				url:"${APP_PATH }/updateuser",
-				type:"PUT",
-				data:"zhanghao="+zhanghao+"&name="+name+"&password="+password,
-				success:function(result){
-					location.reload();
-				}
+			$(".tijiaoss").click(function(){
+				var zhanghao = $("#zhanghaoss_input").val();
+				var name = $("#name_upd_input").val();
+				var password = $("#password_upd_input").val()
 				
-			})
-		 })
-		
+				$.ajax({
+					url:"${APP_PATH }/updateuser",
+					type:"PUT",
+					data:"zhanghao="+zhanghao+"&name="+name+"&password="+password,
+					success:function(result){
+						location.reload();
+					}
+				})
+			 })
 		})
+		
 		//查找一个账号的信息
 		$("#chazhao1").click(function(){
-			
 			window.location.href="${APP_PATH }/czoneeShou";
-			
 		})
 		
 		//查看该账号信息
 		$("#chakan1").click(function(){
 			var zhanghao = $.trim($("#chakan2").val());
-			
-			
-							$("#selectxixi").modal({
-								backdrop:"static"
-							});
+
+			$("#selectxixi").modal({
+				backdrop:"static"
+			});
 				
 			$.ajax({
 					url:"${APP_PATH }/chazhaoone",
@@ -218,47 +202,10 @@
 							$("#a9").val(jihuotime);
 							$("#a10").val(yyzxid);
 							$("#a11").val(zhuangtai);
-							
-						/* 	var kids = $("<th></th>").append(kid);
-							var knames = $("<th></th>").append(kname);
-							var zhanghaos = $("<th></th>").append(zhanghao);
-							var tzhanghaos = $("<th></th>").append(tzhanghao);
-							var fxjfs = $("<th></th>").append(fxjf);
-							var gcjfs = $("<th></th>").append(gcjf);
-							var ztjfs = $("<th></th>").append(ztjf);
-							var chjfs = $("<th></th>").append(chjf);
-							var jihuotimes = $("<th></th>").append(jihuotime);
-							var yyzxids = $("<th></th>").append(yyzxid);
-							var zhuangtais = $("<th></th>").append(zhuangtai);
-							
-							
-							
-							$("<tr></tr>").addClass("tabllll")
-							  .append(kids)
-							  .append(knames)
-				              .append(zhanghaos)
-				              .append(tzhanghaos)
-				              .append(fxjfs)
-				              .append(gcjfs)
-				              .append(ztjfs)
-				              .append(chjfs)
-				              .append(jihuotimes)
-				              .append(yyzxids)
-				              .append(zhuangtais);
-						      
-								 */
-								
-							
 						}
-						
-						
 					}
-					
 				})
-				
-			
 		})	
-		
 	})
 </script>		
 </head>
@@ -364,6 +311,7 @@
     </div>
   </div>
 </div>
+
 <!-- 修改运营中心编号 -->
 <div class="modal fade" id="updateyybiaohao" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -374,8 +322,7 @@
       </div>
       <div class="modal-body">
        	<form class="form-horizontal">
-		 
-		  		 <input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhangdaoo_input"  />
+		  <input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhangdaoo_input"  />
 		  <div class="form-group">
 		    <label class="col-sm-2 control-label">原运营中心编号</label>
 		    <div class="col-sm-6">
@@ -390,17 +337,18 @@
 		      <input type="text" placeholder="请输入新的运营中心编号" value="" name="cTypeB" class="form-control" id="newbianhao_upd_input" >
 		    </div>
 		  </div>	
-		 
 		 </form>
-       		   
       </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button type="button" class="btn btn-primary qdyybian" >确定</button>
       </div>
+      
     </div>
   </div>
 </div>
+
 <!-- 修改 -->
 <div class="modal fade" id="updatexixi" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -412,32 +360,33 @@
       <div class="modal-body">
        	<form class="form-horizontal">
 		 
-		  		 <input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhanghaoss_input"  />
+		  <input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhanghaoss_input"  />
+		  
 		  <div class="form-group">
 		    <label class="col-sm-2 control-label">账号名字</label>
 		    <div class="col-sm-6">
-		     
 		      <input type="text" value="" name="cTypeB" class="form-control" id="name_upd_input" >
 		    </div>
-		  </div>	
+		  </div>
+		  
 		  <div class="form-group">
 		    <label class="col-sm-2 control-label">账号密码</label>
 		    <div class="col-sm-6">
-		     
 		      <input type="text" placeholder="请输入新密码" value="" name="cTypeB" class="form-control" id="password_upd_input" >
 		    </div>
 		  </div>	
-		 
-		 </form>
-       		   
+		</form>
       </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button type="button" class="btn btn-primary tijiaoss" >提交</button>
       </div>
+      
     </div>
   </div>
 </div>
+
 <!-- 增加积分模态框 -->
 <div class="modal fade" id="addjifenkuang" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -491,7 +440,7 @@
       <div class="modal-body">
        	<form class="form-horizontal">
 		 
-		  		 <input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhanghao_input"  />
+		<input type="text" name="zhanghao" readonly  unselectable="on" class="form-control33" id="zhanghao_input"  />
 		  <div class="form-group">
 		    <label class="col-sm-2 control-label">扣除数量</label>
 		    <div class="col-sm-6">
@@ -522,12 +471,8 @@
   </div>
 </div>
 
-
-
-
-
 <!-- 搭建显示页面 -->
-	<div class="container-fluid">
+<div class="container-fluid">
 		<!-- 标题 -->
 		<div class="row">
 			<div class="col-md-12">
@@ -562,8 +507,6 @@
 						<th>运营中心编号</th>
 						<th>状态</th>
 						<th>操作</th>
-						
-						
 					</tr>
 					<c:forEach items="${pageInfo.list }" var="reca">
 						<tr class="tabllll">
@@ -621,7 +564,6 @@
 						</a></li>
 					</c:if>
 
-
 					<c:forEach items="${pageInfo.navigatepageNums }" var="page_Num">
 						<c:if test="${page_Num == pageInfo.pageNum }">
 							<li class="active"><a href="#">${page_Num }</a></li>
@@ -642,10 +584,7 @@
 				</nav>
 			</div>
 		</div>
-		
-	</div>
-	
-
+</div>
 
 </body>
 </html>

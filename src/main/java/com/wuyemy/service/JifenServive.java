@@ -26,7 +26,7 @@ public class JifenServive {
 	
 	//扣除积分
 	public int kouchujifen(String zhanghao, Integer jibid, BigDecimal jbshu) {
-		
+		System.out.println("扣除积分Servive!!!!!!!!!!!");
 		//该账户分享金币数
 		BigDecimal getfxjb = kuserService.getfxjb(zhanghao);
 		//该账户出局金币数
@@ -51,11 +51,10 @@ public class JifenServive {
 		}else if(jibid==2){
 			jinbi = getgcjb.subtract(jbshu);
 			jifen.setGcjf(jinbi);
-			jifenMapper.updateByExampleSelective(jifen, jifenExample);	
+			jifenMapper.updateByExampleSelective(jifen, jifenExample);
 			jifenServive.subtractGCJinbiWitnZjmxTal(zhanghao, jbshu);
 			return 1;
 		}else{
-			
 			jinbi = getchuj.subtract(jbshu);
 			jifen.setChjf(jinbi);
 			jifenMapper.updateByExampleSelective(jifen, jifenExample);

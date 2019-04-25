@@ -29,7 +29,7 @@ public class JifenController {
 			return Msg.success();
 		}
 			return Msg.fail();
-		}
+	}
 	
 	@RequestMapping("/addjifen")
 	@ResponseBody
