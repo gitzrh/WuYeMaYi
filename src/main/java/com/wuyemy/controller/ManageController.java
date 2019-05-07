@@ -1,5 +1,8 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,18 @@ public class ManageController {
 	@Autowired
 	private ManageService mangageService;
 
+	@RequestMapping("/tohoutaiafterwymy")
+	public String htaigl(@RequestParam("wy")String str,HttpServletRequest request, 
+			HttpServletResponse response) throws Exception{
+		Calendar now = Calendar.getInstance(); 
+		String nw = now.get(Calendar.MONTH) + 1+""+now.get(Calendar.DAY_OF_MONTH);
+		
+		if(!str.equals(nw)){
+			response.sendRedirect("index.jsp");
+		}
+		return "houtaiguyi";
+	}
+	
 	@RequestMapping(value="/adminLogin",method=RequestMethod.POST)
 	@ResponseBody
 	public  Msg loginadmin(@RequestParam("username")String username,@RequestParam("password")String password,
