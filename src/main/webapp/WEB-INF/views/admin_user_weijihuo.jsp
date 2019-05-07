@@ -119,11 +119,11 @@
 							<th>${reca.zhuangtai.zhuangtai }</th>
 							<th>
 								<button  id="qidong" class="btn qidong btn-primary record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 								启动
 								</button>
 								<button   class=" chuanchu btn btn-danger record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								删除
 								</button>
 								

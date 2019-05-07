@@ -423,5 +423,14 @@ public class IndexService {
 		return null;
 	}
 
+	public String getsgenfid(String zhanhao) {
+		KuserExample example = new KuserExample();
+		KuserExample.Criteria criteria = example.createCriteria();
+		criteria.andZhanghaoEqualTo(zhanhao);
+		List<Kuser> selectByExample = kuserMapper.selectByExample(example);
+		 return selectByExample.get(0).getShenfenid();
+		
+	}
+
 
 }

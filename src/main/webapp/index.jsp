@@ -94,7 +94,7 @@
 				success:function(result){
 						var code = result.code;
 						if (code == 100) {
-							document.getElementById("imgVerify").src="AuthImage?"+Math.random();
+							
 							window.location.href="${APP_PATH }/toUserShou";
 						}else if(code == 200){
 							document.getElementById("imgVerify").src="AuthImage?"+Math.random();

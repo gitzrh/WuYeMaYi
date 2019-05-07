@@ -39,7 +39,7 @@ public class ManageController {
 		 }
 	} 
 	
-	@RequestMapping("/toadminqpwoamznjhh" )
+	@RequestMapping("/quadinhtai" )
 	public String toadmin( HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		String session  = (String) request.getSession().getAttribute("username");

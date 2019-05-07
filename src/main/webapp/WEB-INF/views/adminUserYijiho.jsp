@@ -35,21 +35,21 @@
 			 $("#zhangdaoo_input").val(zhhh);
 			 $("#oldbianhao_upd_input").val(yyid);
 				
-			 var zhanghaos = $("#zhangdaoo_input").val();
 			 
-			 $(".qdyybian").click(function(){
-			var bianhao = $("#newbianhao_upd_input").val();
-			 $.ajax({
-					url:"${APP_PATH }/updatebinhao",
-					type:"PUT",
-					data:"zhanghaos="+zhanghaos+"&bianhao="+bianhao,
-					success:function(result){
-							location.reload();
-					}
+		 })
+			 $("#qdyybian").click(function(){
+				 var zhanghaos = $("#zhangdaoo_input").val();
+				var bianhao = $("#newbianhao_upd_input").val();
+				 $.ajax({
+						url:"${APP_PATH }/updatebinhao",
+						type:"PUT",
+						data:"zhanghaos="+zhanghaos+"&bianhao="+bianhao,
+						success:function(result){
+								location.reload();
+						}
 					
 				});
 			 })
-		 })
 		 
 		 
 		//删除按钮
@@ -72,8 +72,11 @@
 				});
 			}
 		}); 
+	
 		 
 		//扣除积分
+	
+
 		$(".kouchujifen").click(function(){
 			$("#zhanghao_input").hide();
 			
@@ -84,7 +87,10 @@
 			});
 			
 			
-			$(".tijiao").click(function(){
+			
+			
+		});
+			$("#tijiao").click(function(){
 				var leix = $('#danxuank input:radio:checked').val();
 				var zhanghao = $("#zhanghao_input").val();
 				var num = $("#shuliang_upd_input").val();
@@ -99,9 +105,6 @@
 				})
 			})
 			
-			
-		});
-			
 		//增加积分
 		$(".addjifen").click(function(){
 			$("#zhanghaos_input").hide();
@@ -114,7 +117,8 @@
 			});
 			
 			
-			$(".tijiaos").click(function(){
+		})
+			$("#tijiaos").click(function(){
 				var leix = $('#danxuanks input:radio:checked').val();
 				var zhanghao = $("#zhanghaos_input").val();
 				var num = $("#addnum_upd_input").val();
@@ -127,7 +131,6 @@
 					}
 				})
 			})
-		})
 		
 		//更改用户信息
 		$(".updatexinxi").click(function(){
@@ -141,7 +144,8 @@
 				backdrop:"static"
 			});
 			
-			$(".tijiaoss").click(function(){
+		})
+			$("#tijiaoss").click(function(){
 				var zhanghao = $("#zhanghaoss_input").val();
 				var name = $("#name_upd_input").val();
 				var password = $("#password_upd_input").val()
@@ -155,7 +159,6 @@
 					}
 				})
 			 })
-		})
 		
 		//查找一个账号的信息
 		$("#chazhao1").click(function(){
@@ -206,6 +209,57 @@
 					}
 				})
 		})	
+		
+	$(".dngjiee").click(function(){
+			
+			var ddhh = $(this).parent().parent().find("th:eq(2)").text();
+			var textt = $(this).parent().parent().find("th:eq(1)").text();
+			
+			if(confirm("确定要冻结【"+ textt +"】吗？")){
+				
+				
+			
+			$.ajax({
+				url:"${APP_PATH }/dngjiee",
+				type:"PUT",
+				data:"zhanghao="+ddhh,
+				success:function(result){
+					
+						
+						location.reload();
+					
+
+				}
+				
+				})
+			}
+		})
+	$(".jiedongs").click(function(){
+			
+			var ddhh = $(this).parent().parent().find("th:eq(2)").text();
+			var textt = $(this).parent().parent().find("th:eq(1)").text();
+			
+			if(confirm("确定要激活【"+ textt +"】吗？")){
+				
+				
+			
+			$.ajax({
+				url:"${APP_PATH }/jiedongs",
+				type:"PUT",
+				data:"zhanghao="+ddhh,
+				success:function(result){
+					
+						
+						location.reload();
+					
+
+				}
+				
+				})
+			}
+		})
+			
+		
 	})
 </script>		
 </head>
@@ -342,7 +396,7 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary qdyybian" >确定</button>
+        <button type="button" class="btn btn-primary " id="qdyybian" >确定</button>
       </div>
       
     </div>
@@ -380,7 +434,7 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary tijiaoss" >提交</button>
+        <button type="button" class="btn btn-primary " id="tijiaoss" >提交</button>
       </div>
       
     </div>
@@ -423,7 +477,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary tijiaos" >提交</button>
+        <button type="button" class="btn btn-primary " id="tijiaos" >提交</button>
       </div>
     </div>
   </div>
@@ -465,7 +519,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary tijiao" >提交</button>
+        <button type="button" class="btn btn-primary " id="tijiao" >提交</button>
       </div>
     </div>
   </div>
@@ -522,23 +576,36 @@
 							<th id="yyzxid">${reca.yyzxid }</th>
 							<th id="zhuangtai">${reca.zhuangtai.zhuangtai }</th>
 							<th id="caozuo"><button   class="btn btn-primary  updatexinxi get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 								编辑
 								</button>
 								<button   class="btn btn-info  xiugaiyyzxid get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 								修改运营中心编号
 								</button>
 								<button   class="btn btn-success addjifen record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 								增加积分
 								</button>
 								<button   class="btn btn-warning   kouchujifen   record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								扣除积分
 								</button>
+								
+							<c:if test="${reca.zhuangtai.zhuangtai == '正常' }">
+								<button   class="btn btn-info  dngjiee record_get_model_btn btn-sm">
+								<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								冻结
+								</button>
+							</c:if>
+							<c:if test="${reca.zhuangtai.zhuangtai == '禁用' }">
+								<button   class="btn btn-success  jiedongs record_get_model_btn btn-sm">
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								激活
+								</button>
+							</c:if>
 								<button   class="btn btn-danger  shanchu record_get_model_btn btn-sm">
-								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								删除
 								</button>
 							</th>

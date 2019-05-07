@@ -93,7 +93,8 @@
 				backdrop:"static"
 			});
 			
-			$(".qdyyinbi").click(function(){
+		})
+			$("#qdyyinbi").click(function(){
 				var jinbis = $("#newjinbi_upd_input").val();
 				var bianhaos = $("#bianhao_input").val();
 				$.ajax({
@@ -107,7 +108,6 @@
 				})
 				
 			})
-		})
 		
 		
 	})
@@ -149,7 +149,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary qdyyinbi" >确定</button>
+        <button type="button" id="qdyyinbi" class="btn btn-primary " >确定</button>
       </div>
     </div>
   </div>

@@ -287,8 +287,10 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("6000");
 		BigDecimal values = new BigDecimal("0");
-			
-		 if (!gcjf.equals("") && !realname1.equals("") && !bankaddress1.equals("") && !bankname1.equals("") && !bankcard1.equals("")) {
+		
+		String shenfzid = indexService.getsgenfid(zhanhao);
+		
+		 if ((shenfzid!=null &&!shenfzid.equals(""))&&!gcjf.equals("") && !realname1.equals("") && !bankaddress1.equals("") && !bankname1.equals("") && !bankcard1.equals("")) {
 			
 			if (zhanhao != null && gcjf.compareTo(values) == 1) {
 				//拥有总金币
@@ -330,8 +332,8 @@ public class IndexController {
 		String zhanhao = (String) session.getAttribute("zhanghao");
 		
 		BigDecimal value = new BigDecimal("0");
-		
-		if (!cjjf.equals("") && !realname2.equals("") && !bankaddress2.equals("") && !bankname2.equals("") && !bankcard2.equals("")) {
+		String shenfzid = indexService.getsgenfid(zhanhao);
+		if ((shenfzid!=null &&!shenfzid.equals(""))&&!cjjf.equals("") && !realname2.equals("") && !bankaddress2.equals("") && !bankname2.equals("") && !bankcard2.equals("")) {
 		
 			if (zhanhao != null && cjjf.compareTo(value) == 1) {
 				//拥有总金币
@@ -372,7 +374,9 @@ public class IndexController {
 		
 		BigDecimal value = new BigDecimal("0");
 		
-		if (!fxjf.equals("") && !realname3.equals("") && !bankaddress3.equals("") && !bankname3.equals("") && !bankcard3.equals("")) {
+		String shenfzid = indexService.getsgenfid(zhanhao);
+		
+		if ((shenfzid!=null &&!shenfzid.equals(""))&&!fxjf.equals("") && !realname3.equals("") && !bankaddress3.equals("") && !bankname3.equals("") && !bankcard3.equals("")) {
 			if (zhanhao != null && fxjf.compareTo(value) == 1) {
 				//拥有总金币
 				BigDecimal decimal = indexService.hqfxjb(zhanhao);

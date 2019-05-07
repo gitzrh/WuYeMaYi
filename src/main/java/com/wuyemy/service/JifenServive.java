@@ -26,7 +26,6 @@ public class JifenServive {
 	
 	//扣除积分
 	public int kouchujifen(String zhanghao, Integer jibid, BigDecimal jbshu) {
-		System.out.println("扣除积分Servive!!!!!!!!!!!");
 		//该账户分享金币数
 		BigDecimal getfxjb = kuserService.getfxjb(zhanghao);
 		//该账户出局金币数

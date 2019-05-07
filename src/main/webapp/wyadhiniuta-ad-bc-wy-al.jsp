@@ -37,8 +37,8 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
    					success:function(result){
    						var code = result.code;
    						if (code == 100) {
-   							document.getElementById("imgVerify").src="ValidateColorServlet?"+Math.random();
-   							window.location.href="${APP_PATH }/toadminqpwoamznjhh";
+   							
+   							window.location.href="${APP_PATH }/quadinhtai";
    						}else{
    							document.getElementById("imgVerify").src="ValidateColorServlet?"+Math.random();
    							$(".check-tips").show();

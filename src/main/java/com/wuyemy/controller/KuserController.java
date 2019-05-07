@@ -1,5 +1,6 @@
 package com.wuyemy.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -80,7 +81,13 @@ public class KuserController {
 	
 	@RequestMapping("/qidong")
 	@ResponseBody
-	public Msg qidong(@RequestParam("zhanghao") String zhanghao,@RequestParam("tzhanghao")String tzhanghao ){
+	public Msg qidong(@RequestParam("zhanghao") String zhanghao,@RequestParam("tzhanghao")String tzhanghao,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			response.sendRedirect("index.jsp");
+		}
 		
 		int jihuo = kuserService.jihuo(zhanghao, tzhanghao);
 		
@@ -89,6 +96,35 @@ public class KuserController {
 		}
 		
 		return null;
+		
+	}
+	@RequestMapping("/dngjiee")
+	@ResponseBody
+	public Msg dngjiee(@RequestParam("zhanghao") String zhanghao,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			response.sendRedirect("index.jsp");
+		}
+		kuserService.dongjie(zhanghao);		
+		
+		return Msg.success() ;
+	
+	}
+	
+	@RequestMapping("/jiedongs")
+	@ResponseBody
+	public Msg jiefengf(@RequestParam("zhanghao") String zhanghao,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String session  = (String) request.getSession().getAttribute("username");
+		
+		if(session==null){
+			response.sendRedirect("index.jsp");
+		}
+		kuserService.jiefengs(zhanghao);		
+		
+		return Msg.success() ;
 		
 	}
 	
@@ -139,6 +175,8 @@ public class KuserController {
 				    	 long j = kuseer.get(0).getZhuangtaiid();
 					     if(j==1){
 					    	return Msg.fail().add("login", "账号未激活") ;
+					     }else if(j==9){
+					    	 return Msg.fail().add("login", "账号已冻结") ;
 					     }else{
 		     
 							String sessionCode = (String)request.getSession().getAttribute("verCode");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,9 +35,12 @@
 			 $("#zhangdaoo_input").val(zhhh);
 			 $("#oldbianhao_upd_input").val(yyid);
 				
-			 var zhanghaos = $("#zhangdaoo_input").val();
 			 
-			 $(".qdyybian").click(function(){
+			 
+			 
+		 })
+			 $("#qdyybian").click(function(){
+			 var zhanghaos = $("#zhangdaoo_input").val();
 			var bianhao = $("#newbianhao_upd_input").val();
 			 $.ajax({
 					url:"${APP_PATH }/updatebinhao",
@@ -48,13 +52,10 @@
 					
 				});
 			 })
-			 
-			 
-		 })
 		 
 		 
 		//删除按钮
-		$(".shanchu").click(function(){
+		$("#shanchu").click(function(){
 			
 			var ddhh = $(this).parent().parent().find("th:eq(2)").text();
 			var textt = $(this).parent().parent().find("th:eq(1)").text();
@@ -73,7 +74,7 @@
 		}); 
 		 
 		//扣除积分
-		$(".kouchujifen").click(function(){
+		$("#kouchujifen").click(function(){
 			$("#zhanghao_input").hide();
 			
 			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
@@ -82,7 +83,8 @@
 				backdrop:"static"
 			});
 			
-			$(".tijiao").click(function(){
+		});
+			$("#tijiao").click(function(){
 				var leix = $('#danxuank input:radio:checked').val();
 				var zhanghao = $("#zhanghao_input").val();
 				var num = $("#shuliang_upd_input").val();
@@ -96,10 +98,9 @@
 					}
 				})
 			})
-		});
 			
 		//增加积分
-		$(".addjifen").click(function(){
+		$("#addjifen").click(function(){
 			$("#zhanghaos_input").hide();
 			
 			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
@@ -110,7 +111,9 @@
 			});
 			
 			
-			$(".tijiaos").click(function(){
+			
+		})
+			$("#tijiaos").click(function(){
 				var leix = $('#danxuanks input:radio:checked').val();
 				var zhanghao = $("#zhanghaos_input").val();
 				var num = $("#addnum_upd_input").val();
@@ -125,10 +128,8 @@
 				
 				
 			})
-			
-		})
 		//更改用户信息
-		$(".updatexinxi").click(function(){
+		$("#updatexinxi").click(function(){
 			$("#zhanghaoss_input").hide();
 			var zhanghao = $(this).parent().parent().find("th:eq(2)").text();
 			var name = $(this).parent().parent().find("th:eq(1)").text();
@@ -139,7 +140,9 @@
 				backdrop:"static"
 			});
 			
-		$(".tijiaoss").click(function(){
+		
+		})
+		$("#tijiaoss").click(function(){
 			var zhanghao = $("#zhanghaoss_input").val();
 			var name = $("#name_upd_input").val();
 			var password = $("#password_upd_input").val()
@@ -154,8 +157,6 @@
 				
 			})
 		 })
-		
-		})
 		
 		//查看该账号信息
 		$("#chakan1").click(function(){
@@ -201,7 +202,6 @@
 				
 			
 		})	
-		
 	})
 	</script>
 </head>
@@ -238,7 +238,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary qdyybian" >确定</button>
+        <button type="button" class="btn btn-primary " id="qdyybian" >确定</button>
       </div>
     </div>
   </div>
@@ -275,7 +275,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary tijiaoss" >提交</button>
+        <button type="button" id="tijiaoss" class="btn btn-primary " >提交</button>
       </div>
     </div>
   </div>
@@ -316,7 +316,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary tijiaos" >提交</button>
+        <button type="button" id="tijiaos" class="btn btn-primary " >提交</button>
       </div>
     </div>
   </div>
@@ -358,7 +358,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary tijiao" >提交</button>
+        <button type="button" id="tijiao" class="btn btn-primary " >提交</button>
       </div>
     </div>
   </div>
@@ -413,7 +413,7 @@
 							<th id="b9"></th>
 							<th id="b10"></th>
 							<th id="b11"></th>
-							<th id="caozuo"><button   class="btn btn-primary  updatexinxi get_model_btn btn-sm">
+							<th id="caozuo"><button  id="updatexinxi" class="btn btn-primary   get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								编辑
 								</button>
@@ -421,15 +421,15 @@
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								修改运营中心编号
 								</button>
-								<button   class="btn btn-success addjifen record_get_model_btn btn-sm">
+								<button id="addjifen"  class="btn btn-success  record_get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								增加积分
 								</button>
-								<button   class="btn btn-warning   kouchujifen   record_get_model_btn btn-sm">
+								<button  id="kouchujifen" class="btn btn-warning      record_get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								扣除积分
 								</button>
-								<button   class="btn btn-danger  shanchu record_get_model_btn btn-sm">
+								<button id="shanchu"  class="btn btn-danger   record_get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 								删除
 								</button>

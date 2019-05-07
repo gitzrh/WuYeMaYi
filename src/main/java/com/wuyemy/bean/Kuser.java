@@ -15,7 +15,7 @@ public class Kuser {
 
     private String jihuotime;
 
-    private Date dongjietime;
+    private String dongjietime;
 
     private String yyzxid;
 
@@ -94,7 +94,7 @@ public class Kuser {
 
 
 	public Kuser(Integer kid, String zhanghao, String khname, String tzhanghao, String zhucetime, String jihuotime,
-			Date dongjietime, String yyzxid, String shenfenid, String kpassword, String zhenshishoujihao,
+			String dongjietime, String yyzxid, String shenfenid, String kpassword, String zhenshishoujihao,
 			String zhenshiname, String yinhangname, String yinhangkajao, String kaihudizhi, String zhifubaoid,
 			Integer zhuangtaiid, Zhuangtai zhuangtai) {
 		super();
@@ -129,7 +129,7 @@ public class Kuser {
 	}
 
 
-	public Kuser(String zhanghao, String khname, String tzhanghao,String yyzxid,String kpassword,String zhucetime,int zhuangtaiid) {
+	public Kuser(String zhanghao, String khname, String tzhanghao,String yyzxid,String kpassword,String zhenshishoujihao,String zhucetime,int zhuangtaiid) {
 		super();
 		this.zhanghao = zhanghao;
 		this.khname = khname;
@@ -138,7 +138,7 @@ public class Kuser {
 		this.kpassword = kpassword;
 		this.zhucetime = zhucetime;
 		this.zhuangtaiid = zhuangtaiid;
-		
+		this.zhenshishoujihao = zhenshishoujihao;
 	}
     
 
@@ -192,11 +192,11 @@ public class Kuser {
         this.jihuotime = jihuotime;
     }
 
-    public Date getDongjietime() {
+    public String getDongjietime() {
         return dongjietime;
     }
 
-    public void setDongjietime(Date dongjietime) {
+    public void setDongjietime(String dongjietime) {
         this.dongjietime = dongjietime;
     }
 

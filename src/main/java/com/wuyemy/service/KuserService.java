@@ -45,7 +45,7 @@ public class KuserService {
 	private YyzxMapper yyzxMapper;
 	
 	public void insertKuser(String zhanghao, String khname, String tzhanghao,String zhucetime, String yyzxid, String kpassword, int zhuangtaiid) {
-		Kuser kuser = new Kuser(zhanghao, khname, tzhanghao, yyzxid,kpassword, zhucetime, zhuangtaiid);
+		Kuser kuser = new Kuser(zhanghao, khname, tzhanghao, yyzxid,kpassword,zhanghao, zhucetime, zhuangtaiid);
 		kuserMapper.insert(kuser);
 	}
 
@@ -877,6 +877,7 @@ public class KuserService {
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
 		criteria.andYyzxidEqualTo(yybianhao);
+		criteria.andZhuangtaiidNotEqualTo(1);
 		long countByExample = kuserMapper.countByExample(example);
 		
 		YyzxExample yeExample = new YyzxExample();
@@ -892,6 +893,7 @@ public class KuserService {
 		KuserExample example = new KuserExample();
 		KuserExample.Criteria criteria = example.createCriteria();
 		criteria.andTzhanghaoEqualTo(zhanghao);
+		criteria.andZhuangtaiidNotEqualTo(1);
 		long countByExample = kuserMapper.countByExample(example);
 		
 		YyzxExample yeExample = new YyzxExample();
@@ -923,6 +925,27 @@ public class KuserService {
 		jifenZonghe.setZainum(selectjifeZTzonghe);
 		
 		return jifenZonghe;
+	}
+
+	
+	public void dongjie(String zhanghao) {
+		KuserExample emple = new KuserExample();
+		KuserExample.Criteria criteria = emple.createCriteria();
+		criteria.andZhanghaoEqualTo(zhanghao);
+		Kuser kuser = new Kuser();
+		kuser.setZhuangtaiid(9);
+		kuser.setDongjietime(DateToString.DateToStr(new Date()));
+		 kuserMapper.updateByExampleSelective(kuser, emple);
+		 
+	}
+
+	public void jiefengs(String zhanghao) {
+		KuserExample emple = new KuserExample();
+		KuserExample.Criteria criteria = emple.createCriteria();
+		criteria.andZhanghaoEqualTo(zhanghao);
+		Kuser kuser = new Kuser();
+		kuser.setZhuangtaiid(2);
+		 kuserMapper.updateByExampleSelective(kuser, emple);
 	}
 }
 	
