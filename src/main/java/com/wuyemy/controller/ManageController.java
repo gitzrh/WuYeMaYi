@@ -1,6 +1,6 @@
 package com.wuyemy.controller;
 
-import java.io.IOException;
+
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ public class ManageController {
 	@Autowired
 	private ManageService mangageService;
 
-	@RequestMapping("/tohoutaiafterwymy")
-	public String htaigl(@RequestParam("wy")String str,HttpServletRequest request, 
+	@RequestMapping("/hotiaferwymy")
+	public String htaigl(@RequestParam("wymy")String str,HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		Calendar now = Calendar.getInstance(); 
 		String nw = now.get(Calendar.MONTH) + 1+""+now.get(Calendar.DAY_OF_MONTH);
