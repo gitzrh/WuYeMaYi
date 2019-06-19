@@ -12,6 +12,8 @@
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
+
+<link rel="shortcut  icon" type="image/x-icon" href="${APP_PATH }/Home/img/bitbug_favicon.ico" media="screen"/>
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="${APP_PATH }/Admin/css/font.css">
 <link rel="stylesheet" href="${APP_PATH }/Admin/css/xadmin.css">
@@ -19,9 +21,13 @@
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="${APP_PATH }/Admin/lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="${APP_PATH }/Admin/js/xadmin.js"></script>
+<script type="text/javascript">
 
+	
+</script>	
 </head>
 <body>
+
 
 
     <!-- 顶部开始 -->
@@ -36,6 +42,7 @@
             <a href="javascript:;" > admin </a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a  href="${APP_PATH }/tuichu">退出</a></dd>
+              
             </dl>
           </li>
          
@@ -205,8 +212,7 @@
         <div class="copyright">@.wuye五叶蚂蚁实业集团</div>  
     </div>
     <!-- 底部结束 -->
-    <script>
-   
-    </script>
 </body>
+
+
 </html>

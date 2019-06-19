@@ -27,8 +27,8 @@
     <form class="updatepassword" action="" method="post" id="myform">
     
         <div class="messageDidsplayDiv div1">
-			<div class="leftMessage">手机号:</div>
-			<input type="text" placeholder="请输入绑定的手机号" id="realname1" class="rightMessage phone">
+			<div class="leftMessage">账号:</div>
+			<input type="text" placeholder="请输入您的账号" id="realname1" class="rightMessage phone">
 		</div>
         
         <div class="messageDidsplayDiv div2">
@@ -143,7 +143,7 @@
 			
 			var phone = $.trim($(".phone").val());
 			if (phone == "") {
-				myalert6("手机号不能为空!");
+				myalert6("账号不能为空!");
 				return;
 			}
 
@@ -206,7 +206,7 @@
 			
 			var phone = $.trim($(".phone").val());
 			if (phone == "") {
-				myalert6("手机号不能为空!");
+				myalert6("账号不能为空!");
 				return;
 			}
 			

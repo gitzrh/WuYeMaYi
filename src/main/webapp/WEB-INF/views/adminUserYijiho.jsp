@@ -168,7 +168,6 @@
 		//查看该账号信息
 		$("#chakan1").click(function(){
 			var zhanghao = $.trim($("#chakan2").val());
-
 			$("#selectxixi").modal({
 				backdrop:"static"
 			});
@@ -559,6 +558,7 @@
 						<th>出局积分</th>
 						<th>激活时间</th>
 						<th>运营中心编号</th>
+						<th>最后登录时间</th>
 						<th>状态</th>
 						<th>操作</th>
 					</tr>
@@ -574,6 +574,8 @@
 							<th id="chjf">${reca.jifen.chjf }</th>
 							<th id="jihuotime">${reca.jihuotime }</th>
 							<th id="yyzxid">${reca.yyzxid }</th>
+							<th id="denglutime">${reca.sdjlu.biandongtime }</th>
+							
 							<th id="zhuangtai">${reca.zhuangtai.zhuangtai }</th>
 							<th id="caozuo"><button   class="btn btn-primary  updatexinxi get_model_btn btn-sm">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

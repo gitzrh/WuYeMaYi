@@ -17,9 +17,9 @@ public interface YyzxMapper {
     int insertSelective(Yyzx record);
 
     List<Yyzx> selectByExample(YyzxExample example);
-    //查询带等级的
-    List<Yyzx> selectByExampleWithLv(YyzxExample example);
 
+    List<Yyzx> selectByExampleWithLv(YyzxExample paramYyzxExample);
+    
     Yyzx selectByPrimaryKey(Integer yyzxid);
 
     int updateByExampleSelective(@Param("record") Yyzx record, @Param("example") YyzxExample example);

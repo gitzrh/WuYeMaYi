@@ -16,6 +16,8 @@ import com.wuyemy.bean.JifenExample.Criteria;
 import com.wuyemy.bean.Kuser;
 import com.wuyemy.bean.KuserExample;
 import com.wuyemy.bean.Lunbotu;
+import com.wuyemy.bean.Sdjilu;
+import com.wuyemy.bean.SdjiluExample;
 import com.wuyemy.bean.Tixian;
 import com.wuyemy.bean.TixianExample;
 import com.wuyemy.bean.Yyzx;
@@ -29,6 +31,7 @@ import com.wuyemy.dao.CanshuMapper;
 import com.wuyemy.dao.JifenMapper;
 import com.wuyemy.dao.KuserMapper;
 import com.wuyemy.dao.LunbotuMapper;
+import com.wuyemy.dao.SdjiluMapper;
 import com.wuyemy.dao.TixianMapper;
 import com.wuyemy.dao.YyzxMapper;
 import com.wuyemy.dao.YyzxsqMapper;
@@ -57,7 +60,9 @@ public class IndexService {
 	private ZixunguanliMapper zixunguanliMapper;
 	@Autowired
 	private YyzxMapper yyzxMapper;
-	
+	 @Autowired
+	  private SdjiluMapper sdjiluMapper;
+	  DateToString dateToString;
 	/**
 	 * 获取金币信息
 	 * @param zhanghao
@@ -107,7 +112,7 @@ public class IndexService {
 	public void oneUser(String zhanghao, String phone, String card) {
 		
 		KuserExample example = new KuserExample();
-		com.wuyemy.bean.KuserExample.Criteria createCriteria = example.createCriteria();
+		KuserExample.Criteria createCriteria = example.createCriteria();
 		createCriteria.andZhanghaoEqualTo(zhanghao);
 		Kuser kuser = new Kuser();
 		kuser.setShenfenid(card);
@@ -431,6 +436,26 @@ public class IndexService {
 		 return selectByExample.get(0).getShenfenid();
 		
 	}
+	
+	public void lastloginrtime(String zhanghao) {
+	    SdjiluExample example = new SdjiluExample();
+	    SdjiluExample.Criteria criteria = example.createCriteria();
+	    criteria.andZhanghaoEqualTo(zhanghao);
+	    long countByExample = this.sdjiluMapper.countByExample(example);
+	    
+	    if (countByExample == 0L) {
+	      Sdjilu sdjilu = new Sdjilu(null, zhanghao, DateToString.DateToStr(new Date()));
+	      
+	      this.sdjiluMapper.insert(sdjilu);
+	    } else {
+	      SdjiluExample example2 = new SdjiluExample();
+	      SdjiluExample.Criteria criteria2 = example2.createCriteria();
+	      criteria2.andZhanghaoEqualTo(zhanghao);
+	      Sdjilu sdjilu = new Sdjilu();
+	      sdjilu.setBiandongtime(DateToString.DateToStr(new Date()));
+	      this.sdjiluMapper.updateByExampleSelective(sdjilu, example2);
+	    } 
+	  }
 
 
 }

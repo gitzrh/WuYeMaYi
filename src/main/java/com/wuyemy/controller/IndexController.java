@@ -49,6 +49,7 @@ public class IndexController {
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
+			indexService.lastloginrtime(zhanghao);
 			Jifen jifen = indexService.jinbi(zhanghao);
 			long l = indexService.yyzt(zhanghao);
 			int i = indexService.yyztid(zhanghao);

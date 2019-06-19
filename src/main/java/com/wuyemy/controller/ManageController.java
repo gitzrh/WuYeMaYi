@@ -22,7 +22,7 @@ public class ManageController {
 	@Autowired
 	private ManageService mangageService;
 
-	@RequestMapping("/hotiaferwymy")
+	@RequestMapping("/wymyhcaftehou")
 	public String htaigl(@RequestParam("wymy")String str,HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		Calendar now = Calendar.getInstance(); 
@@ -79,4 +79,13 @@ public class ManageController {
 		request.getSession().removeAttribute("username");
 		response.sendRedirect("index.jsp");
 	}
-}
+	
+	 @RequestMapping({"/lookemm"})
+	  @ResponseBody
+	  public Msg lookemm(HttpServletRequest request, HttpServletResponse response) {
+	    String session = (String)request.getSession().getAttribute("username");
+	    
+	    return Msg.success().add("username", session);
+	  }
+	}
+

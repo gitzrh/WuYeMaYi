@@ -20,6 +20,7 @@ import com.wuyemy.bean.Lunbotu;
 import com.wuyemy.bean.Xiaozu;
 import com.wuyemy.bean.Yyzx;
 import com.wuyemy.bean.Zixunguanli;
+import com.wuyemy.service.IndexService;
 import com.wuyemy.service.TuanduiService;
 import com.wuyemy.until.liuweishu;
 
@@ -29,6 +30,8 @@ public class TuanduiController {
 	@Autowired
 	private TuanduiService tuanduiService;
 	
+	  @Autowired
+	  private IndexService indexService;
 	/**
 	 * 转向修改密码页面
 	 * @param request
@@ -44,8 +47,7 @@ public class TuanduiController {
 		String zhanghao = (String) session.getAttribute("zhanghao");
 		
 		if (zhanghao != null) {
-			String phone = tuanduiService.phone(zhanghao);
-			map.put("phone", phone);
+			map.put("phone", zhanghao);
 			return "updatepassword";
 		}else {
 			response.sendRedirect("index.jsp");
@@ -63,50 +65,53 @@ public class TuanduiController {
 	 */
 	@RequestMapping("/huoquphone")
 	@ResponseBody
-	public Msg Huoquphone(@RequestParam("phone")String phone){
+	public Msg Huoquphone(@RequestParam("phone")String zhanghao){
 		
-		long l = tuanduiService.kphon(phone);
-		if (l == 1) {
-			str = liuweishu.yanzhnegma();
-			String sid = "71d51808f02cc0094354fbd71f05d5c5";
-			String token = "f6e6e0f7d6a73d9329613077970df402";
-			String appid = "3fc3212aaf7b4203afe938ee6682c15b";
-			String templateid = "451911";
-			String param = str;
-			String mobile = phone;
-			String uid = "2d92c6132139467b989d087c84a365d7";
-			RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
-			return Msg.success().add("yzh", str);
-		}
-		return Msg.fail().add("fphone", "请检查您的手机号!");
-		
-	}
+		 Kuser kuser = this.indexService.user(zhanghao);
+		    String phone = kuser.getZhenshishoujihao();
+		    
+		    if (!phone.equals("")) {
+		      this.str = liuweishu.yanzhnegma();
+		      String sid = "71d51808f02cc0094354fbd71f05d5c5";
+		      String token = "f6e6e0f7d6a73d9329613077970df402";
+		      String appid = "3fc3212aaf7b4203afe938ee6682c15b";
+		      String templateid = "451911";
+		      String param = this.str;
+		      String mobile = phone;
+		      String uid = "2d92c6132139467b989d087c84a365d7";
+		      RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
+		      return Msg.success().add("yzh", this.str);
+		    } 
+		    return Msg.fail().add("fphone", "请检查你的手机号!");
+		  }
 	
 	
 	/**
 	 * 修改密码获取手机验证码
 	 * @return
 	 */
-	@RequestMapping("/updatephone")
-	@ResponseBody
-	public Msg Updatephone(@RequestParam("phone")String phone){
-		
-		long l = tuanduiService.kphon(phone);
-		if (l == 1) {
-			str = liuweishu.yanzhnegma();
-			String sid = "71d51808f02cc0094354fbd71f05d5c5";
-			String token = "f6e6e0f7d6a73d9329613077970df402";
-			String appid = "3fc3212aaf7b4203afe938ee6682c15b";
-			String templateid = "451839";
-			String param = str;
-			String mobile = phone;
-			String uid = "2d92c6132139467b989d087c84a365d7";
-			RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
-			return Msg.success().add("yzh", str);
-		}
-		return Msg.fail().add("fphone", "请检查您的手机号!");
-		
-	}
+
+	  @RequestMapping({"/updatephone"})
+	  @ResponseBody
+	  public Msg Updatephone(@RequestParam("phone") String zhanghao) {
+	    Kuser kuser = this.indexService.user(zhanghao);
+	    String phone = kuser.getZhenshishoujihao();
+	    
+	    if (!phone.equals("")) {
+	      this.str = liuweishu.yanzhnegma();
+	      String sid = "71d51808f02cc0094354fbd71f05d5c5";
+	      String token = "f6e6e0f7d6a73d9329613077970df402";
+	      String appid = "3fc3212aaf7b4203afe938ee6682c15b";
+	      String templateid = "451839";
+	      String param = this.str;
+	      String mobile = phone;
+	      String uid = "2d92c6132139467b989d087c84a365d7";
+	      RestTest.testSendSms(sid, token, appid, templateid, param, mobile, uid);
+	      return Msg.success().add("yzh", this.str);
+	    } 
+	    return Msg.fail().add("fphone", "请检查你的手机号!");
+	  }
+
 	
 	/**
 	 * 修改密码
@@ -154,32 +159,28 @@ public class TuanduiController {
 	 * 忘记密码
 	 * @return
 	 */
-	@RequestMapping("/forgetpass")
-	@ResponseBody
-	public Msg forgetpass(@RequestParam("verification1")String verification1, @RequestParam("password")String password,
-			@RequestParam("phone")String phone,@RequestParam("verification2")String verification2,
-			HttpServletRequest request, HttpServletResponse response){
-		HttpSession session = request.getSession();
-		String attribute = (String) session.getAttribute("verCode");
-		
-		if (verification2.equals(str)) {
-			if (verification1.equals(attribute)) {
-				long l = tuanduiService.kphon(phone);
-				if (l == 1) {
-					tuanduiService.forgetpass(phone,password);
-					return Msg.success();
-				}else {
-					return Msg.fail().add("fphone", "请检查您的手机号!");
-				}
-			}else {
-				return Msg.fail().add("attribute", "验证码错误!");
-			}
-		}else {
-			return Msg.fail().add("verification", "手机验证码错误!");
-		}
-		
-		
-	}
+
+	  @RequestMapping({"/forgetpass"})
+	  @ResponseBody
+	  public Msg forgetpass(@RequestParam("verification1") String verification1, @RequestParam("password") String password, @RequestParam("phone") String zhanghao, @RequestParam("verification2") String verification2, HttpServletRequest request, HttpServletResponse response) {
+	    HttpSession session = request.getSession();
+	    String attribute = (String)session.getAttribute("verCode");
+	    
+	    if (verification2.equals(this.str)) {
+	      if (verification1.equals(attribute)) {
+	        if (!zhanghao.equals("")) {
+	          this.tuanduiService.forgetpass(zhanghao, password);
+	          return Msg.success();
+	        } 
+	        return Msg.fail().add("fphone", "请检查你的账号!");
+	      } 
+	      
+	      return Msg.fail().add("attribute", "验证码错误!");
+	    } 
+	    
+	    return Msg.fail().add("verification", "手机验证码错误!");
+	  }
+
 	
 	/**
 	 * 运营中心申请跳转页面
@@ -411,7 +412,7 @@ public class TuanduiController {
 	@ResponseBody
 	public Msg Selectzx(HttpServletRequest request, HttpServletResponse response,@RequestParam("id")Integer id) throws IOException{
 		HttpSession session = request.getSession();
-		String zhanghao = (String) session.getAttribute("zhanghao");
+		String zhanghao = (String) session.getAttribute("username");
 		
 		if (zhanghao != null) {
 			Zixunguanli zixunguanli = tuanduiService.seletezx(id);

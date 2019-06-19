@@ -71,6 +71,10 @@
     	<result column="ztjf" property="ztjf"/>
     	<result column="chjf" property="chjf"/>
     </association>
+    <association property="sdjilu" javaType="com.wuyemy.bean.Sdjilu">
+    	<id column="zhanghao" property="zhanghao"/>
+    	<result column="biandongtime" property="biandongtime"/>
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -138,7 +142,7 @@
   <sql id="Base_Column_List_with_zhuantgtai">
     k.kid, k.zhanghao, k.khname, k.tzhanghao, k.zhucetime, k.jihuotime, k.dongjietime, k.yyzxid, k.shenfenid, 
     k.kpassword, k.zhenshishoujihao, k.zhenshiname, k.yinhangname,k.yinhangkajao, k.kaihudizhi, 
-    k.zhifubaoid, k.zhuangtaiid,z.zhuangtai,j.fxjf,j.gcjf,j.ztjf,j.chjf
+    k.zhifubaoid, k.zhuangtaiid,z.zhuangtai,j.fxjf,j.gcjf,j.ztjf,j.chjf,s.biandongtime
   </sql>
   
   <sql id="Base_Column_ListALL">
@@ -167,6 +171,7 @@
     from kuser k
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
      left join jifen j on k.`zhanghao` = j.`zhanghao`
+      left join sdjilu s on k.`zhanghao` = s.`zhanghao`
     where k.`zhuangtaiid` = 1
     order by k.`zhucetime` desc
     
@@ -183,6 +188,7 @@
     from kuser k
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
     left join jifen j on k.`zhanghao` = j.`zhanghao`
+    left join sdjilu s on k.`zhanghao` = s.`zhanghao`
     where k.`zhuangtaiid` != 1
     order by k.`jihuotime` desc
     
@@ -196,7 +202,7 @@
     from kuser k
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
     left join jifen j on k.`zhanghao` = j.`zhanghao`
-    
+    left join sdjilu s on k.`zhanghao` = s.`zhanghao`
     where k.`zhuangtaiid` != 1
     and  k.`tzhanghao`= #{_parameter}
    
@@ -213,7 +219,7 @@
     from kuser k
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
     left join jifen j on k.`zhanghao` = j.`zhanghao`
-    
+    left join sdjilu s on k.`zhanghao` = s.`zhanghao`
     where k.`zhuangtaiid` != 1
     and  k.`yyzxid`= #{_parameter}
    
@@ -230,6 +236,7 @@
     from kuser k
     left join zhuangtai z on k.`zhuangtaiid` = z.`zhuangtaiid`
     left join jifen j on k.`zhanghao` = j.`zhanghao`
+    left join sdjilu s on k.`zhanghao` = s.`zhanghao`
 	where k.`zhanghao`= #{parameter}
   
   </select>
